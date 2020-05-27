@@ -16,5 +16,18 @@ namespace PersonManagement.Controllers
             ViewBag.Dpt = db.Department.ToList();
             return View();
         }
+
+        public ActionResult DptAdd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DptAdd(Department Dpt)
+        {
+            Dpt.CreateTime = DateTime.Now;
+            db.Department.Add(Dpt);
+            db.SaveChanges();
+            return RedirectToAction("DptAdd","Department");
+        }
     }
 }
