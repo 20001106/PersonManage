@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoginPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="TadayTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Person" Relationship="Self.FK__Attendanc__Perso__1CF15040" FromRole="Attendance" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="BasicPay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Employment" Relationship="Self.FK__Employmen__DptID__164452B1" FromRole="Department" ToRole="Employment" />
+    <NavigationProperty Name="Person" Relationship="Self.FK__Person__DptID__1A14E395" FromRole="Department" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Employment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Native_place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DptID" Type="Int32" Nullable="false" />
+    <Property Name="Diploma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Major" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WorkExper" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="State" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Employmen__DptID__164452B1" FromRole="Employment" ToRole="Department" />
+  </EntityType>
+  <EntityType Name="Pay">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="OverTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AttPay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="OtherPay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="Self.FK__Pay__PersonID__22AA2996" FromRole="Pay" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="IDCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Native_place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DptID" Type="Int32" Nullable="false" />
+    <Property Name="Diploma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Major" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Attendance" Relationship="Self.FK__Attendanc__Perso__1CF15040" FromRole="Person" ToRole="Attendance" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Person__DptID__1A14E395" FromRole="Person" ToRole="Department" />
+    <NavigationProperty Name="Pay" Relationship="Self.FK__Pay__PersonID__22AA2996" FromRole="Person" ToRole="Pay" />
+    <NavigationProperty Name="Reward" Relationship="Self.FK__Reward__PersonID__1FCDBCEB" FromRole="Person" ToRole="Reward" />
+  </EntityType>
+  <EntityType Name="Reward">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RewardType" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="RewardTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RewardGift" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="Self.FK__Reward__PersonID__1FCDBCEB" FromRole="Reward" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Train">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Site" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Attendanc__Perso__1CF15040">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employmen__DptID__164452B1">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Employment" Type="Self.Employment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employment">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Person__DptID__1A14E395">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pay__PersonID__22AA2996">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pay">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reward__PersonID__1FCDBCEB">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Reward">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminT" EntityType="Self.AdminT" />
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" />
+    <EntitySet Name="Department" EntityType="Self.Department" />
+    <EntitySet Name="Employment" EntityType="Self.Employment" />
+    <EntitySet Name="Pay" EntityType="Self.Pay" />
+    <EntitySet Name="Person" EntityType="Self.Person" />
+    <EntitySet Name="Reward" EntityType="Self.Reward" />
+    <EntitySet Name="Train" EntityType="Self.Train" />
+    <AssociationSet Name="FK__Attendanc__Perso__1CF15040" Association="Self.FK__Attendanc__Perso__1CF15040">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employmen__DptID__164452B1" Association="Self.FK__Employmen__DptID__164452B1">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Employment" EntitySet="Employment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Person__DptID__1A14E395" Association="Self.FK__Person__DptID__1A14E395">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pay__PersonID__22AA2996" Association="Self.FK__Pay__PersonID__22AA2996">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Pay" EntitySet="Pay" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reward__PersonID__1FCDBCEB" Association="Self.FK__Reward__PersonID__1FCDBCEB">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Reward" EntitySet="Reward" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

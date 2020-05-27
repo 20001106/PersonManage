@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Snake人力资源网</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Css/LayoutPersonCss.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="top_view">
+
+    </div>
+    <div id="center_view">
+        <div id="left_view">
+            <div class="panel-group" id="accordion">
+                @*部门管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-glass"></span>部门管理</a>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="/Department/DptInfo"><span class="glyphicon glyphicon-edit"></span>部门信息</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-plus"></span>添加部门</a>
+                        </div>
+                    </div>
+                </div>
+                @*招聘管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-fire"></span>招聘管理</a>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-inbox"></span>应聘人员</a>
+                        </div>
+                    </div>
+                </div>
+                @*员工管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user"></span>员工管理</a>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-hdd"></span>员工信息</a>
+                        </div>
+                    </div>
+                </div>
+                @*薪资管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-usd"></span>薪资管理</a>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-list"></span>薪资列表</a>
+                        </div>
+                    </div>
+                </div>
+                @*考勤管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-calendar"></span>考勤管理</a>
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class=""></span>员工考勤</a>
+                        </div>
+                    </div>
+                </div>
+                @*奖惩管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-gift"></span>奖惩管理</a>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-list"></span>奖惩列表</a>
+                        </div>
+                    </div>
+                </div>
+                @*培训管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSever"><span class="glyphicon glyphicon-tag"></span>培训管理</a>
+                    </div>
+                    <div id="collapseSever" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-list"></span>培训列表</a>
+                        </div>
+                    </div>
+                </div>
+                @*系统管理*@
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><span class="glyphicon glyphicon-cog"></span>系统管理</a>
+                    </div>
+                    <div id="collapseEight" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-asterisk"></span>管理员</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-off"></span>退出系统</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="right_view">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="foot_view">
+        <p>&copy;CopyRight 版权所属--Snake人力资源管理系统</p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
