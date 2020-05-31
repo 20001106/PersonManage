@@ -11,7 +11,15 @@
 <body>
 
     <div id="top_view">
-
+        <div class="container-fluid" style="height:80px;">
+            <div class="navbar-header" style="width:80%;height:80px;">
+                <img src="#"/>
+            </div>
+            <ul class="nav navbar-nav navbar-right" style="width:20%;height:80px;">
+                <li style="width:60%;"><a href="#" style="height:80px;line-height:50px;">欢迎回来XXX</a></li>
+                <li style="width:40%;"><a href="#" style="height:80px;line-height:50px;" onclick="return confirm('确认注销？')"><span class="glyphicon glyphicon-log-out"></span> 注销</a></li>
+            </ul>
+        </div>
     </div>
     <div id="center_view">
         <div id="left_view">
@@ -19,7 +27,7 @@
                 @*部门管理*@
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon"></span>部门管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-book"></span>部门管理</a>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -106,12 +114,11 @@
                             <a href="#"><span class="glyphicon glyphicon-asterisk"></span>管理员</a>
                         </div>
                         <div class="panel-body">
-                            <a href="#"><span class="glyphicon glyphicon-off"></span>退出系统</a>
+                            <a href="#" onclick="return confirm('确认退出系统？')"><span class="glyphicon glyphicon-off"></span>退出系统</a>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div id="systime">
                 <p id="nowtime"></p>
             </div>
