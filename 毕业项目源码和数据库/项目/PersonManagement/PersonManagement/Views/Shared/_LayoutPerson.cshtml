@@ -19,7 +19,7 @@
                 @*部门管理*@
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-glass"></span>部门管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon"></span>部门管理</a>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -111,6 +111,10 @@
                     </div>
                 </div>
             </div>
+
+            <div id="systime">
+                <p id="nowtime"></p>
+            </div>
         </div>
 
         <div id="right_view">
@@ -126,3 +130,49 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script type="text/javascript">
+    function showClock() {
+        var now = new Date();//当前时间
+        var year = now.getFullYear();//年
+        var month = now.getMonth() + 1;//月
+        var day = now.getDate();//日
+        var hours = now.getHours();//时
+        var minutes = now.getMinutes();//分
+        var seconds = now.getSeconds();//秒
+        var week = now.getDay();//周
+        var sWeek;//转换为星期
+        switch (week) {
+            case 0:
+                sWeek = "星期日";
+                break;
+            case 6:
+                sWeek = "星期六";
+                break;
+            case 5:
+                sWeek = "星期五";
+                break;
+            case 4:
+                sWeek = "星期四";
+                break;
+            case 3:
+                sWeek = "星期三";
+                break;
+            case 2:
+                sWeek = "星期二";
+                break;
+            case 1:
+                sWeek = "星期一";
+                break;
+        }
+        $("#nowtime").html(year + "年" + checkTime(month) + "月" + checkTime(day) + "日<br />" + sWeek + "<br />" + checkTime(hours) + ":" + checkTime(minutes) + ":" + checkTime(seconds));
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    setInterval("showClock()", 1000);
+    onload = showClock();
+</script>

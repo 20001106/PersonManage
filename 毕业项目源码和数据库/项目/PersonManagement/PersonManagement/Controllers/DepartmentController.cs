@@ -27,7 +27,7 @@ namespace PersonManagement.Controllers
             Dpt.CreateTime = DateTime.Now;
             db.Department.Add(Dpt);
             db.SaveChanges();
-            return RedirectToAction("DptAdd","Department");
+            return RedirectToAction("DptInfo","Department");
         }
     }
 }

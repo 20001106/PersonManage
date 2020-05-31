@@ -6,7 +6,7 @@
 #top_view {
     width: 100%;
     height: 80px;
-    background-color: red;
+    background-color: white;
 }
 #center_view {
     width: 100%;
@@ -22,7 +22,8 @@
 }
 #accordion {
     width: 100%;
-    height: 560px;
+    height: 480px;
+    overflow: auto;
 }
 .panel-heading a {
     text-align: center;
@@ -42,6 +43,17 @@
 }
 .panel-body a:hover {
     color: black;
+}
+#systime {
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+#nowtime {
+    display: block;
+    width: 100%;
+    height: 80px;
+    text-align: center;
 }
 #right_view {
     width: 85%;
