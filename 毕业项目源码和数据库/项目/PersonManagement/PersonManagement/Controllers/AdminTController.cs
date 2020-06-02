@@ -28,7 +28,7 @@ namespace PersonManagement.Controllers
             }
             else
             {
-                var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginName).SingleOrDefault();
+                var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
                 if (adminT == null)
                 {
                     return Content("<script>alert('账户或密码错误！');history.go(-1)</script>");
@@ -42,10 +42,12 @@ namespace PersonManagement.Controllers
             }
         }
 
-        public ActionResult Quit()
+        //注销
+        public ActionResult LogOut()
         {
-            
-            return View();
+            Session["LoginName"] = "";
+            Session.Clear();//清除Session
+            return RedirectToAction("Index", "AdminT");
         }
     }
 }

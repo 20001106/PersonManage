@@ -236,6 +236,8 @@
     <Content Include="Views\AdminT\Index.cshtml" />
     <Content Include="Views\Department\DptInfo.cshtml" />
     <Content Include="Views\Department\DptAdd.cshtml" />
+    <Content Include="Views\AdminT\LogOut.cshtml" />
+    <Content Include="Views\Department\DptLook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

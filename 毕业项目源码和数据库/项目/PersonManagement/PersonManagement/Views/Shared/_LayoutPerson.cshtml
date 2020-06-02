@@ -16,8 +16,23 @@
                 <img src="#"/>
             </div>
             <ul class="nav navbar-nav navbar-right" style="width:20%;height:80px;">
-                <li style="width:60%;"><a href="#" style="height:80px;line-height:50px;" title="系统管理员">欢迎回来XXX</a></li>
-                <li style="width:40%;"><a href="#" style="height:80px;line-height:50px;" onclick="return confirm('确认注销？')"><span class="glyphicon glyphicon-log-out"></span> 注销</a></li> 
+                <li style="width:60%;">
+                    <a href="#" style="height:80px;line-height:50px;" title="系统管理员">
+                        @if (Session["LoginName"] == null)
+                        {
+                            @:欢迎回来--XXX
+                        }
+                        else
+                        {
+                            @:欢迎回来--@Session["LoginName"]
+                        }
+                    </a>
+                </li>
+                <li style="width:40%;">
+                    <a href="/AdminT/LogOut" style="height:80px;line-height:50px;" onclick="return confirm('确认注销？')">
+                        <span class="glyphicon glyphicon-log-out"></span> 注销
+                    </a>
+                </li> 
             </ul>
         </div>
     </div>
@@ -27,7 +42,7 @@
                 @*部门管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-book"></span>部门管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-book"></span>部门管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -41,7 +56,7 @@
                 @*招聘管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-fire"></span>招聘管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><span class="glyphicon glyphicon-fire"></span>招聘管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseFive" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -52,7 +67,7 @@
                 @*员工管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user"></span>员工管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-user"></span>员工管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
@@ -60,61 +75,73 @@
                         </div>
                     </div>
                 </div>
-                @*薪资管理*@
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-usd"></span>薪资管理</a>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <a href="#"><span class="glyphicon glyphicon-list"></span>薪资列表</a>
-                        </div>
-                    </div>
-                </div>
                 @*考勤管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-calendar"></span>考勤管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-calendar"></span>考勤管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseSix" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <a href="#"><span class=""></span>员工考勤</a>
+                            <a href="#"><span class="glyphicon glyphicon-list"></span>员工考勤</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-duplicate"></span>请假申请</a>
                         </div>
                     </div>
                 </div>
                 @*奖惩管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-gift"></span>奖惩管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-gift"></span>奖惩管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseFour" class="panel-collapse collapse">
                         <div class="panel-body">
                             <a href="#"><span class="glyphicon glyphicon-list"></span>奖惩列表</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-plus"></span>录入</a>
                         </div>
                     </div>
                 </div>
                 @*培训管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSever"><span class="glyphicon glyphicon-tag"></span>培训管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSever"><span class="glyphicon glyphicon-tag"></span>培训管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseSever" class="panel-collapse collapse">
                         <div class="panel-body">
                             <a href="#"><span class="glyphicon glyphicon-list"></span>培训列表</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-plus"></span>添加培训</a>
+                        </div>
+                    </div>
+                </div>
+                @*薪资管理*@
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-usd"></span>薪资管理<span style="float:right;font-weight:bold;">></span></a>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-list"></span>薪资列表</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="#"><span class="glyphicon glyphicon-th-list"></span>详情</a>
                         </div>
                     </div>
                 </div>
                 @*系统管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><span class="glyphicon glyphicon-cog"></span>系统管理</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"><span class="glyphicon glyphicon-cog"></span>系统管理<span style="float:right;font-weight:bold;">></span></a>
                     </div>
                     <div id="collapseEight" class="panel-collapse collapse">
                         <div class="panel-body">
                             <a href="#"><span class="glyphicon glyphicon-asterisk"></span>管理员</a>
                         </div>
                         <div class="panel-body">
-                            <a href="/AdminT/Quit" onclick="return confirm('确认退出系统？')"><span class="glyphicon glyphicon-off"></span>退出系统</a>
+                            <a href="#"><span class="glyphicon glyphicon-pushpin"></span>版本</a>
                         </div>
                     </div>
                 </div>

@@ -29,5 +29,11 @@ namespace PersonManagement.Controllers
             db.SaveChanges();
             return RedirectToAction("DptInfo","Department");
         }
+
+        public ActionResult DptLook(int? id)
+        {
+            ViewBag.Dpt = db.Department.Find(id);
+            return View();
+        }
     }
 }

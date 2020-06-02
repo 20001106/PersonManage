@@ -9,26 +9,42 @@
     List<Department> Dpt = ViewBag.Dpt;
 }
 
-<table border="1" width="80%" class="table table-hover" style="text-align:center;overflow:auto;margin:50px 10%">
-    <tr height="30px">
-        <th>编号</th>
-        <th>部门名称</th>
-        <th>创建时间</th>
-        <th>基础薪资</th>
-        <th>操作</th>
-    </tr>
-    @foreach (var item in Dpt)
-    {
-        <tr height="30px">
-            <td>@item.ID</td>
-            <td>@item.Name</td>
-            <td>@item.CreateTime.ToShortDateString()</td>
-            <td>@item.BasicPay.ToString("F2")</td>
-            <td>
-                <a href="#" class="btn btn-primary">编辑</a>
-                <a href="#" class="btn btn-danger">删除</a>
-                <a href="#" class="btn btn-primary">查看</a>
-            </td>
-        </tr>
+<style>
+    tr {
+        height: 30px;
     }
+    /*table tr:hover {
+        background-color: lightsteelblue;
+    }*/
+    thead tr th {
+        cursor: pointer;
+    }
+</style>
+
+<table border="1" width="80%" style="text-align:center;overflow:auto;margin:50px 10%;max-height: 300px;">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>部门名称</th>
+            <th>创建时间</th>
+            <th>基础薪资(元)</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Dpt)
+        {
+            <tr>
+                <td style="font-weight:bold;">@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.CreateTime.ToShortDateString()</td>
+                <td>@item.BasicPay.ToString("F2")</td>
+                <td>
+                    <a href="#?@item.ID" class="btn btn-primary">编辑</a>
+                    <a href="#?@item.ID" class="btn btn-danger">删除</a>
+                    <a href="/Department/DptLook?id=@item.ID" class="btn btn-info">查看</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
