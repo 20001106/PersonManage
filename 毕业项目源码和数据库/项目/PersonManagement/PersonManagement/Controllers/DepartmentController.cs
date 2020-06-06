@@ -11,9 +11,10 @@ namespace PersonManagement.Controllers
     {
         PersonManagementEntities db = new PersonManagementEntities();
         // GET: Department--部门管理
-        public ActionResult DptInfo()
+        public ActionResult DptInfo(string Name = "")
         {
-            ViewBag.Dpt = db.Department.ToList();
+            ViewBag.Dpt = db.Department.Where(p => Name == "" || p.Name.Contains(Name)).ToList();
+            ViewBag.Name = Name;
             return View();
         }
 

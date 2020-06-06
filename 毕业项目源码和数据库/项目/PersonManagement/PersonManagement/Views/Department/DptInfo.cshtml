@@ -5,7 +5,7 @@
 }
 
 @using PersonManagement.Models
-@{ 
+@{
     List<Department> Dpt = ViewBag.Dpt;
 }
 
@@ -13,44 +13,52 @@
     table {
         text-align: center;
         overflow: auto;
-        margin: 50px 10%;
+        margin: 10px 10%;
         max-height: 300px;
     }
+
     tr {
         height: 30px;
     }
-    /*table tr:hover {
-        background-color: lightsteelblue;
-    }*/
-    thead tr th {
+
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+
+    tr th {
         cursor: pointer;
     }
 </style>
 
+<form action="/Department/DptInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
+    <label style="font-weight:bold;" for="Name">部门名称：</label>
+    <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请输入部门名称" />
+    <input type="submit" value="搜&nbsp;&nbsp;&nbsp;&nbsp;索" class="btn btn-info" />
+</form>
+<form action="/Department/DptInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
+    <input type="submit" value="重&nbsp;&nbsp;&nbsp;&nbsp;置" class="btn btn-toolbar" />
+</form>
+
 <table border="1" width="80%">
-    <thead>
+    <tr>
+        <th>编号</th>
+        <th>部门名称</th>
+        <th>创建时间</th>
+        <th>基础薪资(元)</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in Dpt)
+    {
         <tr>
-            <th>编号</th>
-            <th>部门名称</th>
-            <th>创建时间</th>
-            <th>基础薪资(元)</th>
-            <th>操作</th>
+            <td style="font-weight:bold;">@item.ID</td>
+            <td>@item.Name</td>
+            <td>@item.CreateTime.ToShortDateString()</td>
+            <td>@item.BasicPay.ToString("F2")</td>
+            <td>
+                <a href="#?@item.ID" class="btn btn-primary">编辑</a>
+                <a href="#?@item.ID" class="btn btn-danger">删除</a>
+                <a href="/Department/DptLook?id=@item.ID" class="btn btn-info">查看</a>
+            </td>
         </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Dpt)
-        {
-            <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Name</td>
-                <td>@item.CreateTime.ToShortDateString()</td>
-                <td>@item.BasicPay.ToString("F2")</td>
-                <td>
-                    <a href="#?@item.ID" class="btn btn-primary">编辑</a>
-                    <a href="#?@item.ID" class="btn btn-danger">删除</a>
-                    <a href="/Department/DptLook?id=@item.ID" class="btn btn-info">查看</a>
-                </td>
-            </tr>
-        }
-    </tbody>
+    }
 </table>
