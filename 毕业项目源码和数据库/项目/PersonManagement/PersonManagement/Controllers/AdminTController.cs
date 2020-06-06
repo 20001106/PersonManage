@@ -24,15 +24,18 @@ namespace PersonManagement.Controllers
         {
             if (string.IsNullOrEmpty(LoginName) || string.IsNullOrEmpty(LoginName))
             {
-                return Content("<script>alert('账号或密码不能为空!');history.go(-1)</script>");
+                TempData["ErrorTips"] = "账号或密码不能为空!";
+                return RedirectToAction("Index","AdminT");
+                //return Content("<script>alert('账号或密码不能为空!');history.go(-1)</script>");
             }
             else
             {
                 var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
                 if (adminT == null)
                 {
-                    return Content("<script>alert('账户或密码错误！');history.go(-1)</script>");
-
+                    TempData["ErrorTips"] = "账户或密码错误!";
+                    return RedirectToAction("Index", "AdminT");
+                    //return Content("<script>alert('账户或密码错误！');history.go(-1)</script>");
                 }
                 else
                 {
