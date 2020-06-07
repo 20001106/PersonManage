@@ -133,6 +133,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminTController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EmploymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,7 +238,7 @@
     <Content Include="Views\Department\DptInfo.cshtml" />
     <Content Include="Views\Department\DptAdd.cshtml" />
     <Content Include="Views\AdminT\LogOut.cshtml" />
-    <Content Include="Views\Department\DptLook.cshtml" />
+    <Content Include="Views\Employment\EpmInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

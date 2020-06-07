@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,6 +19,10 @@ namespace PersonManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 添加部门
+        /// </summary>
+        /// <returns></returns>
         public ActionResult DptAdd()
         {
             return View();
@@ -31,10 +36,10 @@ namespace PersonManagement.Controllers
             return RedirectToAction("DptInfo","Department");
         }
 
-        public ActionResult DptLook(int? id)
+        public ActionResult Detail(int? ID)
         {
-            ViewBag.Dpt = db.Department.Find(id);
-            return View();
+            var Dpt = db.Department.Find(ID);
+            return Json(Dpt);
         }
     }
 }

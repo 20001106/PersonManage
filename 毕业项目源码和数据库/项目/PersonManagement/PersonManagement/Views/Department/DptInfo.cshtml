@@ -54,11 +54,62 @@
             <td>@item.Name</td>
             <td>@item.CreateTime.ToShortDateString()</td>
             <td>@item.BasicPay.ToString("F2")</td>
-            <td>
-                <a href="#?@item.ID" class="btn btn-primary">编辑</a>
-                <a href="#?@item.ID" class="btn btn-danger">删除</a>
-                <a href="/Department/DptLook?id=@item.ID" class="btn btn-info">查看</a>
+            <td style="width:40%;">
+                <a href="#" class="btn btn-primary">编&nbsp;&nbsp;辑</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#" class="btn btn-danger" onclick="return confirm('确认删除该部门吗？')">删&nbsp;&nbsp;除</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button href="#" class="btn btn-info" data-toggle="modal" data-target="#DetailModal" data-whatever="@item.ID">查&nbsp;&nbsp;看</button>
             </td>
         </tr>
     }
 </table>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="DetailModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title DptName" id="exampleModalLabel">111</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-inline">
+                    <span>111</span>
+                </div><br />
+                <div class="form-inline">
+                    <span>111</span>
+                </div><br />
+                <div class="form-inline">
+                    <span>111</span>
+                </div><br />
+                <div class="form-inline">
+                    <span>111</span>
+                </div><br />
+                <div class="form-inline">
+                    <span>111</span>
+                </div><br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $("#DetailModal").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var ID = button.data("whatever")
+            $.ajax({
+                type: "post",
+                url: "/Department/Detail",
+                data: { "ID": ID },
+                dataType: "Json",
+                success: function (Dpt) {
+                    $("#DptID").html(Dpt["ID"]);
+                }
+            })
+        })
+    </script>
+}
