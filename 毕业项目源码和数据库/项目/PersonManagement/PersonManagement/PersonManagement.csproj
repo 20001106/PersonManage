@@ -135,6 +135,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmploymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,6 +240,9 @@
     <Content Include="Views\Department\DptAdd.cshtml" />
     <Content Include="Views\AdminT\LogOut.cshtml" />
     <Content Include="Views\Employment\EpmInfo.cshtml" />
+    <Content Include="Views\Person\PersonInfo.cshtml" />
+    <Content Include="Views\AdminT\Versions.cshtml" />
+    <Content Include="Views\AdminT\Administrator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

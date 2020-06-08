@@ -52,5 +52,18 @@ namespace PersonManagement.Controllers
             Session.Clear();//清除Session
             return RedirectToAction("Index", "AdminT");
         }
+
+        //版本
+        public ActionResult Versions()
+        {
+            return View();
+        }
+
+        //查看该系统管理员
+        public ActionResult Administrator()
+        {
+            ViewBag.Admin = db.AdminT.ToList();
+            return View();
+        }
     }
 }
