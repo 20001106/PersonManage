@@ -19,10 +19,7 @@ namespace PersonManagement.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 添加部门
-        /// </summary>
-        /// <returns></returns>
+        //添加部门
         public ActionResult DptAdd()
         {
             return View();
@@ -36,10 +33,34 @@ namespace PersonManagement.Controllers
             return RedirectToAction("DptInfo","Department");
         }
 
-        public ActionResult Detail(int? ID)
+        //删除部门
+        public ActionResult DptDelete(int? id)
         {
-            var Dpt = db.Department.Find(ID);
-            return Json(Dpt);
+            List<Person> Plist = db.Person.Where(p => p.DptID == id).ToList();
+            if (Plist.Count > 0)
+            {
+                return Content("<script>alert('该部门有员工存在，不可删除！');history.go(-1)</script>");
+            }
+            else
+            {
+                Department Dpt = db.Department.Find(id);
+                db.Department.Remove(Dpt);
+                db.SaveChanges();
+            }
+            return RedirectToAction("DptInfo","Department");
+        }
+
+        //查看部门详细信息
+        public ActionResult DptDetail(int? id)
+        {
+            ViewBag.DptSingleDetail = db.Department.Find(id);
+            return View();
+        }
+
+        //编辑部门信息
+        public ActionResult DptSave()
+        {
+            return View();
         }
     }
 }
