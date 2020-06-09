@@ -39,7 +39,8 @@ namespace PersonManagement.Controllers
             List<Person> Plist = db.Person.Where(p => p.DptID == id).ToList();
             if (Plist.Count > 0)
             {
-                return Content("<script>alert('该部门有员工存在，不可删除！');history.go(-1)</script>");
+                TempData["Tips"] = "该部门有员工存在，不可删除！";
+                return RedirectToAction("DptInfo", "Department");
             }
             else
             {
@@ -58,9 +59,15 @@ namespace PersonManagement.Controllers
         }
 
         //编辑部门信息
-        public ActionResult DptSave()
+        public ActionResult DptSave(Department Dpt)
         {
-            return View();
+            Department newDpt = (from d in db.Department where d.ID == Dpt.ID select d).Single();
+            newDpt.BasicPay = Dpt.BasicPay;
+            newDpt.Remark = Dpt.Remark;
+            newDpt.CreateTime = Dpt.CreateTime;
+            db.Entry(newDpt).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("DptDetail","Department", new { id=Dpt.ID });
         }
     }
 }
