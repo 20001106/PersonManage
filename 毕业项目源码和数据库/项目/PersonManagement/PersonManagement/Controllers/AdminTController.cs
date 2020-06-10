@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Principal;
 using System.Web;
@@ -73,11 +74,14 @@ namespace PersonManagement.Controllers
             return View();
         }
 
-        //
-        public ActionResult Detail(int? id)
+        //更改管理
+        public ActionResult AdminUpdate(int? ID, string LoginPwd)
         {
-            ViewBag.AdminSingleDetail = db.AdminT.Find(id);
-            return View();
+            AdminT admin = db.AdminT.SingleOrDefault(p => p.ID == ID);
+            admin.LoginPwd = LoginPwd;
+            db.Entry(admin).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Administrator","AdminT");
         }
     }
 }

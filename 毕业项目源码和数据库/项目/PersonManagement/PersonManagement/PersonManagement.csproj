@@ -136,6 +136,7 @@
     <Compile Include="Controllers\EmploymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,6 +250,8 @@
     <Content Include="Views\Person\PersonDetail.cshtml" />
     <Content Include="Views\Employment\EpmDeleteRecord.cshtml" />
     <Content Include="Views\AdminT\BgHome.cshtml" />
+    <Content Include="Views\Reward\RewardInfo.cshtml" />
+    <Content Include="Views\Reward\RewardAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
