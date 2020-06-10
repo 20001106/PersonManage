@@ -40,10 +40,17 @@ namespace PersonManagement.Controllers
                 else
                 {
                     Session["LoginName"] = LoginName;
-                    return RedirectToAction("DptInfo", "Department");
+                    return RedirectToAction("BgHome", "AdminT");
                 }
             }
         }
+
+        //首页
+        public ActionResult BgHome()
+        {
+            return View();
+        }
+
 
         //注销
         public ActionResult LogOut()
@@ -63,6 +70,13 @@ namespace PersonManagement.Controllers
         public ActionResult Administrator()
         {
             ViewBag.Admin = db.AdminT.ToList();
+            return View();
+        }
+
+        //
+        public ActionResult Detail(int? id)
+        {
+            ViewBag.AdminSingleDetail = db.AdminT.Find(id);
             return View();
         }
     }

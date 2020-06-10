@@ -29,6 +29,7 @@ namespace PersonManagement.Models
         public string Remark { get; set; }
         public string WorkExper { get; set; }
         public int State { get; set; }
+        public int DeleteRecord { get; set; }
     
         public virtual Department Department { get; set; }
     }

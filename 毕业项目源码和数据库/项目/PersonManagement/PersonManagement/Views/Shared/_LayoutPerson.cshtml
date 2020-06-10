@@ -39,6 +39,15 @@
     <div id="foot_view">
         <div id="left_view">
             <div class="panel-group" id="accordion">
+                @*首页*@
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <a data-parent="#accordion" href="/AdminT/BgHome">
+                            <span class="glyphicon glyphicon-home"></span>
+                            首页<span style="float:right;font-weight:bold;">></span>
+                        </a>
+                    </div>
+                </div>
                 @*部门管理*@
                 <div class="panel panel-info">
                     <div class="panel-heading">
@@ -67,6 +76,9 @@
                     <div id="collapseFive" class="panel-collapse collapse">
                         <div class="panel-body">
                             <a href="/Employment/EpmInfo"><span class="glyphicon glyphicon-inbox"></span>应聘人员</a>
+                        </div>
+                        <div class="panel-body">
+                            <a href="/Employment/EpmDeleteRecord"><span class="glyphicon glyphicon-trash"></span>删除记录</a>
                         </div>
                     </div>
                 </div>

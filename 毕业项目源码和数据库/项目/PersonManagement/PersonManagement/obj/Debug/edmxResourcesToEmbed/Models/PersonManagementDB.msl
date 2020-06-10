@@ -35,6 +35,7 @@
     <EntitySetMapping Name="Employment">
       <EntityTypeMapping TypeName="PersonManagementModel.Employment">
         <MappingFragment StoreEntitySet="Employment">
+          <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Sex" ColumnName="Sex" />

@@ -51,6 +51,7 @@
     <Property Name="WorkExper" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="State" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Department" Relationship="Self.FK__Employmen__DptID__164452B1" FromRole="Employment" ToRole="Department" />
+    <Property Name="DeleteRecord" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Pay">
     <Key>

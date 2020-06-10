@@ -246,6 +246,9 @@
     <Content Include="Views\Department\DptDetail.cshtml" />
     <Content Include="Views\Department\DptDelete.cshtml" />
     <Content Include="Views\Employment\EpmDetail.cshtml" />
+    <Content Include="Views\Person\PersonDetail.cshtml" />
+    <Content Include="Views\Employment\EpmDeleteRecord.cshtml" />
+    <Content Include="Views\AdminT\BgHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PersonManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PersonManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminT">
           <Key>
             <PropertyRef Name="ID" />
@@ -52,6 +52,7 @@
           <Property Name="Remark" Type="nvarchar" MaxLength="200" />
           <Property Name="WorkExper" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
+          <Property Name="DeleteRecord" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
@@ -103,7 +104,7 @@
           <Property Name="Site" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Number" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Attendanc__Perso__1CF15040">
+        <Association Name="FK__Attendanc__Perso__48CFD27E">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +116,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employmen__DptID__164452B1">
+        <Association Name="FK__Employmen__DptID__412EB0B6">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
           <End Role="Employment" Type="Self.Employment" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,7 +128,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pay__PersonID__22AA2996">
+        <Association Name="FK__Pay__PersonID__4E88ABD4">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +140,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Person__DptID__1A14E395">
+        <Association Name="FK__Person__DptID__45F365D3">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
           <End Role="Person" Type="Self.Person" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reward__PersonID__1FCDBCEB">
+        <Association Name="FK__Reward__PersonID__4BAC3F29">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,29 +173,28 @@
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reward" EntityType="Self.Reward" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Train" EntityType="Self.Train" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Attendanc__Perso__1CF15040" Association="Self.FK__Attendanc__Perso__1CF15040">
+          <AssociationSet Name="FK__Attendanc__Perso__48CFD27E" Association="Self.FK__Attendanc__Perso__48CFD27E">
             <End Role="Person" EntitySet="Person" />
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employmen__DptID__164452B1" Association="Self.FK__Employmen__DptID__164452B1">
+          <AssociationSet Name="FK__Employmen__DptID__412EB0B6" Association="Self.FK__Employmen__DptID__412EB0B6">
             <End Role="Department" EntitySet="Department" />
             <End Role="Employment" EntitySet="Employment" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pay__PersonID__22AA2996" Association="Self.FK__Pay__PersonID__22AA2996">
+          <AssociationSet Name="FK__Pay__PersonID__4E88ABD4" Association="Self.FK__Pay__PersonID__4E88ABD4">
             <End Role="Person" EntitySet="Person" />
             <End Role="Pay" EntitySet="Pay" />
           </AssociationSet>
-          <AssociationSet Name="FK__Person__DptID__1A14E395" Association="Self.FK__Person__DptID__1A14E395">
+          <AssociationSet Name="FK__Person__DptID__45F365D3" Association="Self.FK__Person__DptID__45F365D3">
             <End Role="Department" EntitySet="Department" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reward__PersonID__1FCDBCEB" Association="Self.FK__Reward__PersonID__1FCDBCEB">
+          <AssociationSet Name="FK__Reward__PersonID__4BAC3F29" Association="Self.FK__Reward__PersonID__4BAC3F29">
             <End Role="Person" EntitySet="Person" />
             <End Role="Reward" EntitySet="Reward" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PersonManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -249,6 +249,7 @@
           <Property Name="WorkExper" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK__Employmen__DptID__164452B1" FromRole="Employment" ToRole="Department" />
+          <Property Name="DeleteRecord" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
@@ -436,6 +437,7 @@
           <EntitySetMapping Name="Employment">
             <EntityTypeMapping TypeName="PersonManagementModel.Employment">
               <MappingFragment StoreEntitySet="Employment">
+                <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />

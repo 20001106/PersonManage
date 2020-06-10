@@ -25,10 +25,10 @@ namespace PersonManagement.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DptAdd(Department Dpt)
+        public ActionResult DptAdd(Department dpt)
         {
-            Dpt.CreateTime = DateTime.Now;
-            db.Department.Add(Dpt);
+            dpt.CreateTime = DateTime.Now;
+            db.Department.Add(dpt);
             db.SaveChanges();
             return RedirectToAction("DptInfo","Department");
         }
@@ -44,8 +44,8 @@ namespace PersonManagement.Controllers
             }
             else
             {
-                Department Dpt = db.Department.Find(id);
-                db.Department.Remove(Dpt);
+                Department dpt = db.Department.Find(id);
+                db.Department.Remove(dpt);
                 db.SaveChanges();
             }
             return RedirectToAction("DptInfo","Department");

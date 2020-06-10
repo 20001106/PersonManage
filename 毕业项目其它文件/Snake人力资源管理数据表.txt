@@ -24,7 +24,7 @@ ID--ID(int)			姓名--Name(nvarchar(50))
 工作经验--WorkExper(nvarchar(50))	录用状态--State(int,[0\1])
 应聘部门ID--DptID(int)		学历--Diploma(nvarchar(50))
 所学专业--Major(nvarchar(50))	备注--Remark(nvarchar(200))
-身份证号--IDCard(nvarchar(50))
+身份证号--IDCard(nvarchar(50))	删除记录--DeleteRecord(int,[0\1])
 
 4、培训表--（Train）
 培训ID--ID(int)			培训主题--Topic(nvarchar(50))
