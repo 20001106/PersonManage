@@ -266,3 +266,5 @@ C:\Users\浅影\Desktop\毕业项目设计\毕业项目源码和数据库\项目
 C:\Users\浅影\Desktop\毕业项目设计\毕业项目源码和数据库\项目\PersonManagement\PersonManagement\obj\Debug\PersonManagement.csproj.CopyComplete
 C:\Users\浅影\Desktop\毕业项目设计\毕业项目源码和数据库\项目\PersonManagement\PersonManagement\obj\Debug\PersonManagement.dll
 C:\Users\浅影\Desktop\毕业项目设计\毕业项目源码和数据库\项目\PersonManagement\PersonManagement\obj\Debug\PersonManagement.pdb
+C:\Users\浅影\Desktop\毕业项目设计\毕业项目源码和数据库\项目\PersonManagement\PersonManagement\bin\Microsoft.OData.Edm.dll
+C:\Users\浅影\Desktop\毕业项目设计\毕业项目源码和数据库\项目\PersonManagement\PersonManagement\bin\Microsoft.OData.Edm.xml
