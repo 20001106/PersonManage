@@ -18,12 +18,14 @@
             list-style-type: none;
             background-color: aliceblue;
         }
+
         h2 {
             font-family: "楷体";
             font-weight: bold;
             text-align: center;
             margin-top: 140px;
         }
+
         #form1 {
             width: 40%;
             height: 360px;
@@ -34,10 +36,12 @@
             background-color: honeydew;
             box-shadow: 3px 3px 10px gray;
         }
+
         .form-text {
             text-align: center;
             line-height: 40px;
         }
+
         p {
             margin-top: 100px;
         }
@@ -45,7 +49,7 @@
 </head>
 <body>
     <h2>Snake人力资源管理系统</h2>
-    <form action="/AdminT/Index" method="post" id="form1">
+    <div id="form1">
         <p></p>
         <div class="form-inline form-group form-text">
             管理：<input type="text" class="form-control" name="LoginName" placeholder="管理员名称">
@@ -53,15 +57,39 @@
         <div class="form-inline form-group form-text">
             密码：<input type="password" class="form-control" name="LoginPwd" placeholder="管理员密码">
         </div>
-        <div class="form-group form-text" style="color:red;">
-            @TempData["ErrorTips"]
+        <div class="form-group form-text" style="color:red;" id="error">
         </div>
         <div class="form-group form-text">
-            <button type="submit" class="btn btn-info">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            <a href="#" onclick="checkValiad()" class="btn btn-info">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
         </div>
-    </form>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </body>
 </html>
+
+<script type="text/javascript">
+    function checkValiad() {
+        $.ajax({
+            url: "/AdminT/Index",
+            type: "post",
+            data: { "LoginName": $("input[name='LoginName']").val(), "LoginPwd": $("input[name='LoginPwd']").val() },
+            success: function (data) {
+                if (data == "false") {
+                    $("#error").html("用户名或密码为空！");
+                    $("input[name='LoginName']").focus();
+                }
+                if (data == "false1") {
+                    $("#error").html("用户名或密码错误！");
+                }
+                if (data == "true") {
+                    window.location.href = "/AdminT/BgHome";
+                }
+            },
+            error: function (xhr, error, ex) {
+                $("#error").html("出现错误，请稍后再试！");
+            }
+        })
+    }
+</script>

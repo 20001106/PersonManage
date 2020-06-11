@@ -25,7 +25,10 @@
 #accordion {
     width: 100%;
     height: 540px;
-    overflow: hidden;
+    overflow: auto;
+}
+#accordion::-webkit-scrollbar {
+    width: 0;
 }
 .panel-heading a {
     text-align: center;

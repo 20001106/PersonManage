@@ -25,33 +25,22 @@ namespace PersonManagement.Controllers
         {
             if (string.IsNullOrEmpty(LoginName) || string.IsNullOrEmpty(LoginName))
             {
-                TempData["ErrorTips"] = "账号或密码不能为空!";
-                return RedirectToAction("Index","AdminT");
-                //return Content("<script>alert('账号或密码不能为空!');history.go(-1)</script>");
+                return Content("false");
             }
             else
             {
                 var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
                 if (adminT == null)
                 {
-                    TempData["ErrorTips"] = "账户或密码错误!";
-                    return RedirectToAction("Index", "AdminT");
-                    //return Content("<script>alert('账户或密码错误！');history.go(-1)</script>");
+                    return Content("false1");
                 }
                 else
                 {
                     Session["LoginName"] = LoginName;
-                    return RedirectToAction("BgHome", "AdminT");
+                    return Content("true");
                 }
             }
         }
-
-        //首页
-        public ActionResult BgHome()
-        {
-            return View();
-        }
-
 
         //注销
         public ActionResult LogOut()
@@ -63,6 +52,12 @@ namespace PersonManagement.Controllers
 
         //版本
         public ActionResult Versions()
+        {
+            return View();
+        }
+
+        //首页
+        public ActionResult BgHome()
         {
             return View();
         }
