@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,12 +26,34 @@ namespace PersonManagement.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult DptAdd(Department dpt)
+        public ActionResult DptAdd(string Name, string BasicPay, string Remark)
         {
-            dpt.CreateTime = DateTime.Now;
-            db.Department.Add(dpt);
-            db.SaveChanges();
-            return RedirectToAction("DptInfo","Department");
+            if (Name == "" && BasicPay == "")
+            {
+                return Content("false");
+            }
+            else if (Name == "" || BasicPay == "")
+            {
+                if (Name == "")
+                {
+                    return Content("NameFalse");
+                }
+                if (BasicPay == "")
+                {
+                    return Content("BasicPayFalse");
+                }
+            }
+            else
+            {
+                Department dpt = new Department();
+                dpt.Name = Name;
+                dpt.BasicPay = int.Parse(BasicPay);
+                dpt.Remark = Remark;
+                dpt.CreateTime = DateTime.Now;
+                db.Department.Add(dpt);
+                db.SaveChanges();
+            }
+            return RedirectToAction("DptInfo", "Department");
         }
 
         //删除部门

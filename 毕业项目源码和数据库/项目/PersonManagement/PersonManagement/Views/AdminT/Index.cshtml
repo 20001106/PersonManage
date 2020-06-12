@@ -41,24 +41,25 @@
             text-align: center;
             line-height: 40px;
         }
-
-        p {
-            margin-top: 100px;
+        .short {
+            margin-top: 80px;
         }
     </style>
 </head>
 <body>
     <h2>Snake人力资源管理系统</h2>
     <div id="form1">
-        <p></p>
+        <p class="short"></p>
         <div class="form-inline form-group form-text">
-            管理：<input type="text" class="form-control" name="LoginName" placeholder="管理员名称">
+            管理：<input type="text" class="form-control" onfocus="LoginNamefocus()" name="LoginName" placeholder="管理员名称">
         </div>
+        <p class="LoginNameTips" style="color:red;text-align:center;"></p>
         <div class="form-inline form-group form-text">
-            密码：<input type="password" class="form-control" name="LoginPwd" placeholder="管理员密码">
+            密码：<input type="password" class="form-control" onfocus="LoginPwdfocus()" name="LoginPwd" placeholder="管理员密码">
         </div>
-        <div class="form-group form-text" style="color:red;" id="error">
-        </div>
+        <p class="LoginPwdTips" style="        color: red;
+        text-align: center;"></p>
+        <p class="twoTips" style="color:red;text-align:center;"></p>
         <div class="form-group form-text">
             <a href="#" onclick="checkValiad()" class="btn btn-info">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
         </div>
@@ -77,11 +78,17 @@
             data: { "LoginName": $("input[name='LoginName']").val(), "LoginPwd": $("input[name='LoginPwd']").val() },
             success: function (data) {
                 if (data == "false") {
-                    $("#error").html("用户名或密码为空！");
-                    $("input[name='LoginName']").focus();
+                    $(".LoginNameTips").html("用户名为空！");
+                    $(".LoginPwdTips").html("密码为空！");
+                }
+                if (data == "LoginNamefalse") {
+                    $(".LoginNameTips").html("用户名为空！");
+                }
+                if (data == "LoginPwdfalse") {
+                    $(".LoginPwdTips").html("密码为空！");
                 }
                 if (data == "false1") {
-                    $("#error").html("用户名或密码错误！");
+                    $(".twoTips").html("用户名或密码错误！");
                 }
                 if (data == "true") {
                     window.location.href = "/AdminT/BgHome";
@@ -91,5 +98,15 @@
                 $("#error").html("出现错误，请稍后再试！");
             }
         })
+    }
+
+    function LoginNamefocus() {
+        $(".LoginNameTips").html("");
+        $(".twoTips").html("");
+    }
+
+    function LoginPwdfocus() {
+        $(".LoginPwdTips").html("");
+        $(".twoTips").html("");
     }
 </script>
