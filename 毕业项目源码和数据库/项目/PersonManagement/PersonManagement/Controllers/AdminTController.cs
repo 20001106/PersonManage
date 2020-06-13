@@ -82,12 +82,19 @@ namespace PersonManagement.Controllers
         }
 
         //更改管理
-        public ActionResult AdminUpdate(int? ID, string LoginPwd)
+        public ActionResult AdminUpdate(string LoginName, string LoginPwd)
         {
-            AdminT admin = db.AdminT.SingleOrDefault(p => p.ID == ID);
-            admin.LoginPwd = LoginPwd;
-            db.Entry(admin).State = EntityState.Modified;
-            db.SaveChanges();
+            if (!string.IsNullOrEmpty(LoginName))
+            {
+                AdminT admin = db.AdminT.SingleOrDefault(p => p.LoginName == LoginName);
+                admin.LoginPwd = LoginPwd;
+                db.Entry(admin).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+            {
+                return Content("<script>alert('请先登录！');history.go(-1)</script>");
+            }
             return RedirectToAction("Administrator","AdminT");
         }
     }

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminTController.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmploymentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\AdminT\BgHome.cshtml" />
     <Content Include="Views\Pay\PayInfo.cshtml" />
     <Content Include="Views\Pay\Statistics.cshtml" />
+    <Content Include="Views\Attendance\AttInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
