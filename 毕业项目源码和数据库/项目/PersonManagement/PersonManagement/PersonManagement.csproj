@@ -142,6 +142,7 @@
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RewardController.cs" />
+    <Compile Include="Controllers\TrainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,6 +263,8 @@
     <Content Include="Views\Pay\PayInfo.cshtml" />
     <Content Include="Views\Pay\Statistics.cshtml" />
     <Content Include="Views\Attendance\AttInfo.cshtml" />
+    <Content Include="Views\Train\TrainInfo.cshtml" />
+    <Content Include="Views\Train\TrainAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
