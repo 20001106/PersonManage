@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "RewardInfo";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Reward> reward = ViewBag.Reward;
+}
+
+<style>
+    table {
+        text-align: center;
+        overflow: auto;
+        margin: 10px 10%;
+        max-height: 300px;
+    }
+    tr {
+        height: 30px;
+    }
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+    tr th {
+        cursor: pointer;
+    }
+</style>
+
+<form action="/Reward/RewardInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
+    <label style="font-weight:bold;" for="Name">奖惩类型：</label>
+    <select type="text" class="form-control" name="RewardType">
+        <option>--请选择--</option>
+        <option value="全部">全部</option>
+        <option value="奖励">奖励</option>
+        <option value="惩罚">惩罚</option>
+    </select>
+    <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />(选择筛选内容)
+</form>
+<form action="/Reward/RewardInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
+    <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
+</form>
+
+@if (reward.Count == 0)
+{
+    <p style="margin-left:10%">暂无数据！</p>
+}
+else
+{
+    <table border="1" width="80%">
+        <tr>
+            <th style="width:4%;font-weight:bold;">编号</th>
+            <th style="width:6%;">姓名</th>
+            <th style="width:20%;">内容</th>
+            <th style="width:4%;">类型</th>
+            <th style="width:10%;">时间</th>
+            <th style="width:15%;">实质</th>
+            <th style="width:12%;">操作</th>
+        </tr>
+        @foreach (var item in reward)
+        {
+            <tr>
+                <td style="font-weight:bold;">@item.ID</td>
+                <td>@item.Person.Name</td>
+                <td>@item.Topic</td>
+                <td>@item.RewardType</td>
+                <td>@item.RewardTime</td>
+                <td>@item.RewardGift</td>
+                <td>
+                    <a href="/Reward/RewardDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除该条奖惩？')">删除</a>
+                </td>
+            </tr>
+        }
+    </table>
+}

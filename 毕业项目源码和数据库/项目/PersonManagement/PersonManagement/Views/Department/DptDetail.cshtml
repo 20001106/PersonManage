@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "DptDetail";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    Department dpt = ViewBag.DptSingleDetail;
+}
+
+<style>
+    #detail {
+        width: 70%;
+        height: 400px;
+        margin: 80px 15%;
+    }
+    .title {
+        font-weight: bold;
+        width: 30%;
+    }
+    #edit_view {
+        width: 100%;
+        height: 50px;
+        display: none;
+    }
+</style>
+
+<div id="detail">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><span style="font-weight:bold;">@dpt.Name</span> 部门信息</h3>
+        </div>
+        <div class="panel-body">
+            备注：@dpt.Remark
+        </div>
+        <table class="table">
+            <tr>
+                <td class="title">部门编号：</td>
+                <td>@dpt.ID</td>
+            </tr>
+            <tr>
+                <td class="title">基本薪资：</td>
+                <td>@dpt.BasicPay.ToString("F2") 元</td>
+            </tr>
+            <tr>
+                <td class="title">创建时间：</td>
+                <td>@dpt.CreateTime</td>
+            </tr>
+            <tr>
+                <td class="title">部门成员：</td>
+                <td>
+                    @foreach (var item in dpt.Person.ToList())
+                    {
+                        @item.Name@:&nbsp;&nbsp;
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <a onclick="edit()" class="btn btn-info">编辑</a>
+    <a onclick="quit()" class="btn btn-info" style="display:none;" id="quit">取消</a>
+    &nbsp;|&nbsp;
+    <a href="/Department/DptInfo">返回</a><br /><br />
+
+    <form action="/Department/DptSave" method="post" class="form-group" id="edit_view">
+        <div class="form-group">
+            <input type="hidden" name="ID" value="@dpt.ID" />
+            <div class="form-inline">
+                <label for="BasicPay">基本薪资：</label>
+                <input type="text" name="BasicPay" class="form-control" value="@dpt.BasicPay.ToString("F2")" />
+            </div><br />
+            <div class="form-inline">
+                <label for="Remark">部门备注：</label>
+                <input type="text" name="Remark" class="form-control" value="@dpt.Remark" />
+            </div><br />
+            <div class="form-inline">
+                <label for="CreateTime">创建时间：</label>
+                <input type="text" name="CreateTime" class="form-control" value="@dpt.CreateTime.ToShortDateString()" />
+            </div><br />
+            <div class="form-inline">
+                <input type="submit" class="btn btn-info" value="保存" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function edit() {
+        document.getElementById("quit").style.display = 'inline-block';
+        document.getElementById("edit_view").style.display = 'inline-block';
+    }
+
+    function quit() {
+        document.getElementById("quit").style.display = 'none';
+        document.getElementById("edit_view").style.display = 'none';
+    }
+</script>

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "AttInfo";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Attendance> att = ViewBag.AttTime;
+}
+
+<style>
+    table {
+        text-align: center;
+        overflow: auto;
+        margin: 10px 10%;
+        max-height: 300px;
+    }
+
+    tr {
+        height: 30px;
+    }
+
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+
+    tr th {
+        cursor: pointer;
+    }
+</style>
+
+<form action="/Attendance/AttInfo" method="post" class="form-inline" style="margin-top:40px;margin-left:10%;">
+    <label style="font-weight:bold;" for="TadayTime">日期</label>
+    <input type="date" class="form-control" name="TadayTime" value="年/月/日" />
+    <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />(考勤时间段每日8:00--22:00)
+</form>
+<form action="/Attendance/AttInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
+    <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
+</form>
+
+@if (att.Count == 0)
+{
+    <p style="margin-left:10%">暂无数据！</p>
+}
+else
+{
+    <table border="1" width="80%">
+        <tr>
+            <th style="width:5%;font-weight:bold;">编号</th>
+            <th style="width:6%;">姓名</th>
+            <th style="width:8%;">考勤时间</th>
+            <th style="width:8%;">上班时间</th>
+            <th style="width:8%;">下班时间</th>
+        </tr>
+        @foreach (var item in att)
+        {
+            <tr>
+                <td style="font-weight:bold;">@item.ID</td>
+                <td>@item.Person.Name</td>
+                <td>@item.TadayTime.ToShortDateString()</td>
+                <td>@item.StartTime</td>
+                <td>@item.EndTime</td>
+            </tr>
+        }
+    </table>
+}
+<div style="margin-left:10%;">
+    <span>今日 @ViewBag.AttTaday 考勤人数 @ViewBag.AttTadayCount 人，缺勤人数 @ViewBag.AttTadayNoCount 人，总员工人数 @ViewBag.Person 人</span>
+</div>

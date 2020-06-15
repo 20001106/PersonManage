@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "RewardAdd";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Person> person = ViewBag.Person;
+}
+
+<style>
+    #form1 {
+        width: 50%;
+        height: 360px;
+        margin: 100px 25%;
+    }
+    .form_text {
+        margin-top: 30px;
+        text-align: center;
+    }
+</style>
+
+<form action="/Reward/RewardAdd" method="post" id="form1">
+    <div class="form-inline form_text">
+        <label for="PersonID">员工姓名：</label>
+        <select type="text" name="PersonID" class="form-control" style="width:40%">
+            @foreach (var item in person)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-inline form_text">
+        <label for="RewardType">奖惩类型：</label>
+        <select type="text" name="RewardType" class="form-control" style="width:40%">
+            <option value="奖励">奖励</option>
+            <option value="惩罚">惩罚</option>
+        </select>
+    </div>
+    <div class="form-inline form_text">
+        <label for="Topic">奖惩内容：</label>
+        <textarea name="Topic" id="Topic" class="form-control" style="width:40%;height:80px;" onfocus="focusTopic()" placeholder="请输入奖惩内容！"></textarea>
+    </div><p style="color:red;text-align:center;" class="Topic"></p>
+    <div class="form-inline form_text">
+        <label for="RewardGift">奖惩实质：</label>
+        <textarea name="RewardGift" id="RewardGift" class="form-control" style="width:40%;height:80px;" onfocus="focusRewardGift()" placeholder="请输入奖惩实质(奖励还是惩罚)格式：奖励(惩罚)：XXX!"></textarea>
+    </div><p style="color:red;text-align:center;" class="RewardGift"></p>
+    <div class="form-group form_text">
+        <input type="submit" onclick="return addReward()" class="btn btn-info" value="添&nbsp;&nbsp;加"/>
+    </div>
+</form>
+
+<script type="text/javascript">
+    function addReward() {
+        if ($("#Topic").val() == "" && $("#RewardGift").val() == "") {
+            $(".Topic").html("请输入奖惩内容！");
+            $(".RewardGift").html("请输入奖惩实质(奖励还是惩罚)格式：奖励(惩罚)：XXX!");
+            return false;
+        } else if ($("#Topic").val() == "" || $("#RewardGift").val() == "") {
+            if ($("#Topic").val() == "") {
+                $(".Topic").html("请输入奖惩内容！");
+                return false;
+            }
+            if ($("#RewardGift").val() == "") {
+                $(".RewardGift").html("请输入奖惩实质(奖励还是惩罚)格式：奖励(惩罚)：XXX!");
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    function focusTopic() {
+        $(".Topic").html("");
+    }
+
+    function focusRewardGift() {
+        $(".RewardGift").html("");
+    }
+</script>

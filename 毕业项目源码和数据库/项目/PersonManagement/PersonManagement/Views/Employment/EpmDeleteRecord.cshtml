@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "EpmDeleteRecord";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Employment> epm = ViewBag.Epm;
+}
+
+<style>
+    table {
+        text-align: center;
+        overflow: auto;
+        margin: 10px 10%;
+        max-height: 300px;
+    }
+    tr {
+        height: 30px;
+    }
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+    tr th {
+        cursor: pointer;
+    }
+</style>
+
+<form action="/Employment/EpmDeleteRecord" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
+    <label style="font-weight:bold;" for="Name">姓名：</label>
+    <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请筛选应聘者" />
+    <input type="submit" value="搜&nbsp;&nbsp;&nbsp;&nbsp;索" class="btn btn-info" />
+</form>
+<form action="/Employment/EpmInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
+    <input type="submit" value="重&nbsp;&nbsp;&nbsp;&nbsp;置" class="btn btn-toolbar" />
+</form>
+
+<table border="1" width="80%">
+    <tr>
+        <th style="width:4%;font-weight:bold;">编号</th>
+        <th style="width:6%;">姓名</th>
+        <th style="width:12%;">联系电话</th>
+        <th style="width:22%;">地址</th>
+        <th style="width:8%;">学历</th>
+        <th style="width:12%;">工作经验</th>
+        <th style="width:15%;">备注</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in epm)
+    {
+        <tr>
+            <td style="font-weight:bold;">@item.ID</td>
+            <td>@item.Name</td>
+            <td>@item.Phone</td>
+            <td>@item.Address</td>
+            <td>@item.Diploma</td>
+            <td>@item.WorkExper</td>
+            <td>@item.Remark</td>
+            <td>
+                <a href="/Employment/Record?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定恢复 @item.Name 应聘者吗？')">恢&nbsp;复</a>
+            </td>
+        </tr>
+    }
+</table>

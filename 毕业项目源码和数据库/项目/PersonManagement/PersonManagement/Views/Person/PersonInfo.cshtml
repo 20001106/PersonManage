@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "PersonInfo";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Person> person = ViewBag.Person;
+}
+
+<style>
+    table {
+        text-align: center;
+        overflow: auto;
+        margin: 10px 10%;
+        max-height: 300px;
+    }
+
+    tr {
+        height: 30px;
+    }
+
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+
+    tr th {
+        cursor: pointer;
+    }
+</style>
+
+<form action="/Person/PersonInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
+    <label style="font-weight:bold;" for="Name">姓名：</label>
+    <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请搜索员工" />
+    <input type="submit" value="搜&nbsp;&nbsp;索" class="btn btn-info" />
+</form>
+<form action="/Person/PersonInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
+    <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
+</form>
+
+@if (person.Count == 0)
+{
+    <p style="margin-left:10%">暂无数据！</p>
+}
+else
+{
+    <table border="1" width="80%">
+        <tr>
+            <th style="width:5%;font-weight:bold;">编号</th>
+            <th style="width:6%;">姓名</th>
+            <th style="width:5%;">性别</th>
+            <th style="width:8%;">所属部门</th>
+            <th style="width:12%;">联系电话</th>
+            <th style="width:25%;">地址</th>
+            <th style="width:20%;">备注</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var item in person)
+        {
+            <tr>
+                <td style="font-weight:bold;">@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.Sex</td>
+                <td>@item.Department.Name</td>
+                <td>@item.Phone</td>
+                <td>@item.Address</td>
+                <td>@item.Remark</td>
+                <td>
+                    <a href="/Person/PersonDetail?id=@item.ID" class="btn btn-info">查&nbsp看</a>
+                    <a href="/Person/PersonDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('请确保 @item.Name 无其它信息记录，再删除！')">删&nbsp;除</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<div style="margin-left:10%;">
+    <span style="color:red;">@TempData["Tips"]</span>
+</div>

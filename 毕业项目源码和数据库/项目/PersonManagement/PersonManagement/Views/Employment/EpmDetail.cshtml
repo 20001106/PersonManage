@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "EpmDetail";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    Employment epm = ViewBag.EpmSingleDetail;
+}
+
+<style>
+    #detail {
+        width: 70%;
+        height: 400px;
+        margin: 100px 15%;
+    }
+    .title {
+        width:6%;
+        font-weight: bold;
+    }
+    .data_title {
+        width: 20%;
+    }
+</style>
+
+<div id="detail">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><span style="font-weight:bold;">@epm.Name</span> 应聘者信息</h3>
+        </div>
+        <div class="panel-body">
+            备注：@epm.Remark
+        </div>
+        <table class="table">
+            <tr>
+                <td class="title">编号：</td>
+                <td class="data_title">@epm.ID</td>
+                <td class="title">录用状态：</td>
+                <td class="data_title">
+                    @epm.State
+                    (0:未录用,1:已录用)
+                </td>
+            </tr>
+            <tr>
+                <td class="title">性别：</td>
+                <td class="data_title">@epm.Sex</td>
+                <td class="title">年龄：</td>
+                <td class="data_title">@epm.Age</td>
+            </tr>
+            <tr>
+                <td class="title">学历：</td>
+                <td class="data_title">@epm.Diploma</td>
+                <td class="title">专业：</td>
+                <td class="data_title">@epm.Major</td>
+            </tr>
+            <tr>
+                <td class="title">电话：</td>
+                <td class="data_title">@epm.Phone</td>
+                <td class="title">邮箱：</td>
+                <td class="data_title">@epm.Email</td>
+            </tr>
+            <tr>
+                <td class="title">应聘部门：</td>
+                <td class="data_title">@epm.Department.Name</td>
+                <td class="title">工作经验：</td>
+                <td class="data_title">@epm.WorkExper</td>
+            </tr>
+            <tr>
+                <td class="title">地址：</td>
+                <td class="data_title">@epm.Address</td>
+                <td class="title">籍贯：</td>
+                <td class="data_title">@epm.Native_place</td>
+            </tr>
+            <tr>
+                <td class="title">身份证：</td>
+                <td class="data_title">@epm.IDCard</td>
+                <td class="title"></td>
+                <td class="data_title"></td>
+            </tr>
+        </table>
+    </div>
+    <a href="/Employment/EpmInfo" class="btn btn-info">返回</a>&nbsp;&nbsp;
+    <a href="/Employment/EpmEnroll?id=@epm.ID" class="btn btn-info" onclick="return confirm('确定录用 @epm.Name 吗？')">录用</a>
+    &nbsp;&nbsp;
+    <span style="color:red;">@TempData["Tips"]</span>
+</div>

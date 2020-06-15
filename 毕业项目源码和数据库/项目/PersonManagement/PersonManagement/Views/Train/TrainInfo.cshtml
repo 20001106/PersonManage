@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "TrainInfo";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Train> train = ViewBag.Train;
+}
+
+<style>
+    table {
+        text-align: center;
+        overflow: auto;
+        margin: 10px 10%;
+        max-height: 300px;
+    }
+    tr {
+        height: 30px;
+    }
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+    tr th {
+        cursor: pointer;
+    }
+</style>
+
+<form action="/Train/TrainInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
+    <label style="font-weight:bold;" for="Topic">培训主题：</label>
+    <input type="text" class="form-control" name="Topic" value="@ViewBag.Topic" id="content_name" placeholder="请输入培训主题关键字" />
+    <input type="submit" value="搜&nbsp;&nbsp;索" class="btn btn-info" />
+</form>
+<form action="/Train/TrainInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
+    <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
+</form>
+
+<table border="1" width="80%">
+    <tr>
+        <th style="width:5%;font-weight:bold;">编号</th>
+        <th style="width:20%;">主题</th>
+        <th style="width:10%;">地点</th>
+        <th style="width:15%;">开始时间</th>
+        <th style="width:15%;">结束时间</th>
+        <th style="width:25%;">成员</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var item in train)
+    {
+        <tr>
+            <td style="font-weight:bold;">@item.ID</td>
+            <td>@item.Topic</td>
+            <td>@item.Site</td>
+            <td>@item.StartTime</td>
+            <td>@item.EndTime</td>
+            <td>@item.Number</td>
+            <td>
+                <a href="/Train/TrainDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除该条培训信息！')">删&nbsp;除</a>
+            </td>
+        </tr>
+    }
+</table>

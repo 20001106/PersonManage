@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "DptAdd";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+<style>
+    #form1 {
+        width: 50%;
+        height: 400px;
+        margin: 100px 25%;
+    }
+    .form_text {
+        margin-top: 30px;
+        text-align: center;
+    }
+</style>
+
+<div id="form1">
+    <div class="form-inline form_text">
+        <label for="Name">部门名称：</label>
+        <input type="text" name="Name" value="" onfocus="Namefocus()" class="form-control" placeholder="&nbsp;请输入部门名称" style="width:40%;" />
+    </div>
+    <p class="NameTips" style="color:red;text-align:center;"></p>
+    <div class="form-inline form_text">
+        <label for="BasicPay">基础薪资：</label>
+        <input type="number" name="BasicPay" value="" onfocus="BasicPayfocus()" class="form-control" placeholder="&nbsp;请输入部门基础薪资" style="width:40%;" />
+    </div>
+    <p class="BasicPayTips" style="color:red;text-align:center;"></p>
+    <div class="form-inline form_text">
+        <label for="Remark">部门描述：</label>
+        <textarea name="Remark" class="form-control" style="width:40%;height:80px;" placeholder="可填可不填"></textarea>
+    </div>
+    <div class="form-group form_text">
+        <a href="#" class="btn btn-info" onclick="checkValiad()">添&nbsp;&nbsp;加</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function checkValiad() {
+        $.ajax({
+            url: "/Department/DptAdd",
+            type: "post",
+            data: {
+                "Name": $("input[name='Name']").val(),
+                "BasicPay": $("input[name='BasicPay']").val(),
+                "Remark": $("textarea[name='Remark']").val()
+            },
+            success: function (data) {
+                if (data == "false") {
+                    $(".NameTips").html("部门名称不能为空！");
+                    $(".BasicPayTips").html("基础薪资不能为空！");
+                }
+                if (data == "NameFalse") {
+                    $(".NameTips").html("部门名称不能为空！");
+                }
+                if (data == "BasicPayFalse") {
+                    $(".BasicPayTips").html("基础薪资不能为空！");
+                }
+                if (data == "true") {
+                    window.location.href = "/Department/DptInfo";
+                }
+            }
+        })
+    }
+
+    function Namefocus() {
+        $(".NameTips").html("");
+    }
+
+    function BasicPayfocus() {
+        $(".BasicPayTips").html("");
+    }
+</script>

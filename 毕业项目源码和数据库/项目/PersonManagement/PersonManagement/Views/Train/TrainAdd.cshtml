@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "TrainAdd";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+<style>
+    #form1 {
+        width: 50%;
+        height: 360px;
+        margin: 90px 25%;
+    }
+    .form_text {
+        margin-top: 30px;
+        text-align: center;
+    }
+</style>
+
+<form action="/Train/TrainAdd" method="post" id="form1">
+    <div class="form-inline form_text">
+        <label for="Topic">培训主题：</label>
+        <input type="text" name="Topic" id="Topic" class="form-control" onfocus="focusTopic()" style="width:40%" placeholder="请输入培训主题"/>
+    </div><p style="color:red;text-align:center;" class="Topic"></p>
+    <div class="form-inline form_text">
+        <label for="Site">培训地点：</label>
+        <input type="text" name="Site" id="Site" class="form-control" onfocus="focusSite()" style="width:40%" placeholder="请输入培训地点"/>
+    </div><p style="color:red;text-align:center;" class="Site"></p>
+    <div class="form-inline form_text">
+        <label for="Number">参与成员：</label>
+        <input type="text" name="Number" id="Number" class="form-control" onfocus="focusNumber()" style="width:40%" placeholder="请输入参与成员"/>
+    </div><p style="color:red;text-align:center;" class="Number"></p>
+    <div class="form-inline form_text">
+        <label for="StartTime">开始时间：</label>
+        <input type="datetime-local" name="StartTime" id="StartTime" onfocus="focusStartTime()" class="form-control" style="width:40%"/>
+    </div><p style="color:red;text-align:center;" class="StartTime"></p>
+    <div class="form-inline form_text">
+        <label for="EndTime">结束时间：</label>
+        <input type="datetime-local" name="EndTime" id="EndTime" onfocus="focusEndTime()" class="form-control" style="width:40%" />
+    </div><p style="color:red;text-align:center;" class="EndTime"></p>
+    <div class="form-group form_text">
+        <input type="submit" onclick="return addTrain()" class="btn btn-info" value="添&nbsp;&nbsp;加" />
+    </div>
+</form>
+
+<script type="text/javascript">
+    function addTrain() {
+        if ($("#Topic").val() == "" && $("#Site").val() == "" && $("#Number").val() == "" && $("#StartTime").val() == "" && $("#EndTime").val() == "") {
+            $(".Topic").html("请输入培训主题！");
+            $(".Site").html("请输入培训地点(XXX室XXX号)！");
+            $(".Number").html("请手动录入参与成员！");
+            $(".StartTime").html("请输入开始时间！");
+            $(".EndTime").html("请输入结束时间！");
+            return false;
+        } else if ($("#Topic").val() == "" || $("#Site").val() == "" || $("#Number").val() == "" || $("#StartTime").val() == "" || $("#EndTime").val() == "") {
+            if ($("#Topic").val() == "") {
+                $(".Topic").html("请输入培训主题！");
+                return false;
+            }
+            if ($("#Site").val() == "") {
+                $(".Site").html("请输入培训地点(XXX室XXX号)！");
+                return false;
+            }
+            if ($("#Number").val() == "") {
+                $(".Number").html("请手动录入参与成员！");
+                return false;
+            }
+            if ($("#StartTime").val() == "") {
+                $(".StartTime").html("请输入开始时间！");
+                return false;
+            }
+            if ($("#EndTime").val() == "") {
+                $(".EndTime").html("请输入结束时间！");
+                return false;
+            }
+        } else
+        {
+            return true;
+        }
+    }
+
+    function focusTopic() {
+        $(".Topic").html("");
+    }
+
+    function focusSite() {
+        $(".Site").html("");
+    }
+
+    function focusNumber() {
+        $(".Number").html("");
+    }
+
+    function focusStartTime() {
+        $(".StartTime").html("");
+    }
+
+    function focusEndTime() {
+        $(".EndTime").html("");
+    }
+</script>
