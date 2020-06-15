@@ -57,8 +57,7 @@
         <div class="form-inline form-group form-text">
             密码：<input type="password" class="form-control" onfocus="LoginPwdfocus()" name="LoginPwd" placeholder="管理员密码">
         </div>
-        <p class="LoginPwdTips" style="        color: red;
-        text-align: center;"></p>
+        <p class="LoginPwdTips" style="color: red;text-align: center;"></p>
         <p class="twoTips" style="color:red;text-align:center;"></p>
         <div class="form-group form-text">
             <a href="#" onclick="checkValiad()" class="btn btn-info">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
@@ -93,9 +92,6 @@
                 if (data == "true") {
                     window.location.href = "/AdminT/BgHome";
                 }
-            },
-            error: function (xhr, error, ex) {
-                $("#error").html("出现错误，请稍后再试！");
             }
         })
     }

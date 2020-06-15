@@ -39,33 +39,40 @@
     <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
 </form>
 
-<table border="1" width="80%">
-    <tr>
-        <th>编号</th>
-        <th>部门名称</th>
-        <th>创建时间</th>
-        <th>基础薪资(元)</th>
-        <th>部门人数</th>
-        <th style="width:15%;">备注</th>
-        <th style="width:30%;">操作</th>
-    </tr>
-    @foreach (var item in dpt)
-    {
+@if (dpt.Count == 0)
+{
+    <p style="margin-left:10%">暂无数据！</p>
+}
+else
+{
+    <table border="1" width="80%">
         <tr>
-            <td style="font-weight:bold;">@item.ID</td>
-            <td>@item.Name</td>
-            <td>@item.CreateTime.ToShortDateString()</td>
-            <td>@item.BasicPay.ToString("F2")</td>
-            <td>@item.Person.Count()</td>
-            <td>@item.Remark</td>
-            <td>
-                <a href="/Department/DptDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确认删除该部门吗？')">删&nbsp;&nbsp;除</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/Department/DptDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
-            </td>
+            <th>编号</th>
+            <th>部门名称</th>
+            <th>创建时间</th>
+            <th>基础薪资(元)</th>
+            <th>部门人数</th>
+            <th style="width:15%;">备注</th>
+            <th style="width:30%;">操作</th>
         </tr>
-    }
-</table>
+        @foreach (var item in dpt)
+        {
+            <tr>
+                <td style="font-weight:bold;">@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.CreateTime.ToShortDateString()</td>
+                <td>@item.BasicPay.ToString("F2")</td>
+                <td>@item.Person.Count()</td>
+                <td>@item.Remark</td>
+                <td>
+                    <a href="/Department/DptDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确认删除该部门吗？')">删&nbsp;&nbsp;除</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/Department/DptDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
 <div style="margin-left:10%;">
     <span style="color:red;">@TempData["Tips"]</span>
 </div>

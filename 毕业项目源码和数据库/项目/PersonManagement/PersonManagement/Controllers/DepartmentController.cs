@@ -53,7 +53,7 @@ namespace PersonManagement.Controllers
                 db.Department.Add(dpt);
                 db.SaveChanges();
             }
-            return RedirectToAction("DptInfo", "Department");
+            return Content("true");
         }
 
         //删除部门
