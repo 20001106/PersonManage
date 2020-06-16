@@ -108,5 +108,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_pay" FunctionName="PersonManagementModel.Store.proc_pay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PersonManagementModel.proc_pay_Result">
+          <ScalarProperty Name="findDay" ColumnName="findDay" />
+          <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

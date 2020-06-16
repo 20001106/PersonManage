@@ -179,6 +179,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PersonManagementDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_pay_Result.cs">
+      <DependentUpon>PersonManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Reward.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>

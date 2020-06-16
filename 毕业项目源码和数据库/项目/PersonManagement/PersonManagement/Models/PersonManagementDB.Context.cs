@@ -12,6 +12,8 @@ namespace PersonManagement.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PersonManagementEntities : DbContext
     {
@@ -33,5 +35,14 @@ namespace PersonManagement.Models
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Reward> Reward { get; set; }
         public virtual DbSet<Train> Train { get; set; }
+    
+        public virtual ObjectResult<proc_pay_Result> proc_pay(Nullable<System.DateTime> findDate)
+        {
+            var findDateParameter = findDate.HasValue ?
+                new ObjectParameter("FindDate", findDate) :
+                new ObjectParameter("FindDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_pay_Result>("proc_pay", findDateParameter);
+        }
     }
 }

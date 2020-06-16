@@ -152,7 +152,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reward__PersonID__4BAC3F29">
+        <Association Name="FK__Reward__PersonID__5FB337D6">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
           <ReferentialConstraint>
@@ -164,6 +164,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="proc_pay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FindDate" Type="date" Mode="In" />
+        </Function>
         <EntityContainer Name="PersonManagementModelStoreContainer">
           <EntitySet Name="AdminT" EntityType="Self.AdminT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
@@ -189,7 +192,7 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reward__PersonID__4BAC3F29" Association="Self.FK__Reward__PersonID__4BAC3F29">
+          <AssociationSet Name="FK__Reward__PersonID__5FB337D6" Association="Self.FK__Reward__PersonID__5FB337D6">
             <End Role="Person" EntitySet="Person" />
             <End Role="Reward" EntitySet="Reward" />
           </AssociationSet>
@@ -396,7 +399,14 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="Reward" EntitySet="Reward" />
           </AssociationSet>
+          <FunctionImport Name="proc_pay" ReturnType="Collection(PersonManagementModel.proc_pay_Result)">
+          <Parameter Name="FindDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="proc_pay_Result">
+          <Property Type="Int32" Name="findDay" Nullable="true" />
+          <Property Type="Decimal" Name="totalMoney" Nullable="true" Precision="19" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -510,6 +520,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_pay" FunctionName="PersonManagementModel.Store.proc_pay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PersonManagementModel.proc_pay_Result">
+                <ScalarProperty Name="findDay" ColumnName="findDay" />
+                <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

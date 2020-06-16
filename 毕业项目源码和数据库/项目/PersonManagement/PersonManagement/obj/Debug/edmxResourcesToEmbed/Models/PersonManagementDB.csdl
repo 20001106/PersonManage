@@ -198,5 +198,12 @@
       <End Role="Person" EntitySet="Person" />
       <End Role="Reward" EntitySet="Reward" />
     </AssociationSet>
+    <FunctionImport Name="proc_pay" ReturnType="Collection(PersonManagementModel.proc_pay_Result)">
+      <Parameter Name="FindDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="proc_pay_Result">
+    <Property Type="Int32" Name="findDay" Nullable="true" />
+    <Property Type="Decimal" Name="totalMoney" Nullable="true" Precision="19" />
+  </ComplexType>
 </Schema>

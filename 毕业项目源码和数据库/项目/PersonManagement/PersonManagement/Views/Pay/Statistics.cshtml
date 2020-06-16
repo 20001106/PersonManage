@@ -9,119 +9,131 @@
 <div id="main" style="width:100%;height:400px;margin-top:100px"></div>
 
 <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
-
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: '5月份每日下发员工总薪资柱状图'
-        },
-        tooltip: {
-            show: true,
-            trigger: 'item',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            axisPointer: {
-                lineStyle: {
-                    color: {
-                        type: 'linear',
-                        x: 0,
-                        y: 0,
-                        x2: 0,
-                        y2: 1,
-                        colorStops: [{
-                            offset: 0,
-                            color: '#FFD56E'
-                        }, {
-                            offset: 0.5,
-                            color: '#fff',
-                        }, {
-                            offset: 1,
-                            color: '#FFD56E'
-                        }],
-                        global: false
+    $.ajax({
+        url: "/Pay/PayData",
+        type: "get",
+        data: {},
+        cache: false,
+        success: function (res) {
+            var day = [];//x轴
+            var totpay = [];//y轴
+            for (var i = 0; i < res.data.length; i++) {
+                day[i] = res.data.DRUGNAME;
+                totpay[i] = res.data.STOCk;
+            }
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));// 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '5月份每日下发员工总薪资柱状图'
+                },
+                tooltip: {
+                    show: true,
+                    trigger: 'item',
+                    backgroundColor: 'rgba(0,0,0,0.5)',
+                    axisPointer: {
+                        lineStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: '#FFD56E'
+                                }, {
+                                    offset: 0.5,
+                                    color: '#fff',
+                                }, {
+                                    offset: 1,
+                                    color: '#FFD56E'
+                                }],
+                                global: false
+                            }
+                        },
                     }
                 },
-            }
-        },
-        xAxis: {
-            type: 'category',
-            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
-            name: '日',
-            axisTick: {
-                show: false // 是否显示坐标轴轴线
-            },
-            axisLabel: {
-                color: '#282828'
-            },
-            splitLine: {
-                show: false
-            },
-            boundaryGap: true,
-            axisLine: { //坐标轴轴线相关设置。
-                show: true,
-                inside: false,
-                lineStyle: {
-                    color: '#000'
-                }
-            }
-        },
-        yAxis: [{
-            type: 'value',
-            min: 0,
-            splitNumber: 4,
-            splitLine: {
-                show: true
-            },
-            axisLabel: { //坐标轴刻度标签的相关设置。
-                show: true,
-                textStyle: {
-                    color: '#737373',
-                }
-            },
-            axisLine: {
-                show: true,
-            },
-            axisTick: {
-                show: false,
-            },
-            splitLine: {
-                lineStyle: {
-                    color: 'rgba(131,101,101,0.2)',
-                    type: 'dashed',
-                }
-            },
-            show: true,
-        }],
-        series: [{
-            type: 'bar',
-            barMaxWidth: 20,
-            zlevel: 10,
-            // barGap: '100%',
-            data: [10, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40, 79, 50, 40],
-            itemStyle: {
-                normal: {
-                    color: {
-                        type: 'linear',
-                        x: 0,
-                        y: 0,
-                        x2: 0,
-                        y2: 1,
-                        colorStops: [{
-                            offset: 0,
-                            color: 'lightblue'
-                        }, {
-                            offset: 1,
-                            color: 'blue'
-                        }]
+                xAxis: {
+                    type: 'category',
+                    data: day,
+                    name: '日',
+                    axisTick: {
+                        show: false // 是否显示坐标轴轴线
                     },
-                    barBorderRadius: [30, 30, 0, 0],
+                    axisLabel: {
+                        color: '#282828'
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    boundaryGap: true,
+                    axisLine: { //坐标轴轴线相关设置。
+                        show: true,
+                        inside: false,
+                        lineStyle: {
+                            color: '#000'
+                        }
+                    }
+                },
+                yAxis: [{
+                    type: 'value',
+                    min: 0,
+                    splitNumber: 4,
+                    splitLine: {
+                        show: true
+                    },
+                    axisLabel: { //坐标轴刻度标签的相关设置。
+                        show: true,
+                        textStyle: {
+                            color: '#737373',
+                        }
+                    },
+                    axisLine: {
+                        show: true,
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: 'rgba(131,101,101,0.2)',
+                            type: 'dashed',
+                        }
+                    },
+                    show: true,
+                }],
+                series: [{
+                    type: 'bar',
+                    barMaxWidth: 20,
+                    zlevel: 10,
+                    // barGap: '100%',
+                    data: totpay,
+                    itemStyle: {
+                        normal: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'lightblue'
+                                }, {
+                                    offset: 1,
+                                    color: 'blue'
+                                }]
+                            },
+                            barBorderRadius: [30, 30, 0, 0],
+                        }
+                    },
                 }
-            },
-        }
-        ]
-    };
+                ]
+            };
 
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        }
+    })
 </script>

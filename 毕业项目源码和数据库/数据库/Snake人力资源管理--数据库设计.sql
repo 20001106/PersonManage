@@ -175,3 +175,21 @@ select * from Person
 select * from Attendance
 select * from Reward
 select * from Pay
+
+if Exists(select * from sysobjects where name='proc_pay')
+drop proc proc_pay
+go
+create proc proc_pay
+(
+  @FindDate date
+)
+as
+begin 
+	select DAY(OverTime) 日,sum(AttPay+otherpay+d.BasicPay) 总工资 from pay a,Person p,Department d  where 
+		a.PersonID = p.ID and p.DptID = d.ID and
+		(YEAR(overTime) = year(@FindDate) and MONTH(overTime) = MONTH(@FindDate) )
+		group by overtime
+end
+go
+
+exec proc_pay  '2020-05-23'

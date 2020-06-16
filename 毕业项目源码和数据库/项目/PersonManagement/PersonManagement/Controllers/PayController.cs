@@ -50,8 +50,14 @@ namespace PersonManagement.Controllers
         //统计
         public ActionResult Statistics()
         {
-            
             return View();
+        }
+
+        [HttpGet]
+        //数据
+        public JsonResult PayData()
+        {
+            return Json(new { day = , totpay =  }, JsonRequestBehavior.AllowGet);
         }
     }
 }

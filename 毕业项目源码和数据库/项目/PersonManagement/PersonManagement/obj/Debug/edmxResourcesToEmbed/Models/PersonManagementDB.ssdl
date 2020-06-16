@@ -147,7 +147,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Reward__PersonID__4BAC3F29">
+  <Association Name="FK__Reward__PersonID__5FB337D6">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
     <ReferentialConstraint>
@@ -159,6 +159,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="proc_pay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FindDate" Type="date" Mode="In" />
+  </Function>
   <EntityContainer Name="PersonManagementModelStoreContainer">
     <EntitySet Name="AdminT" EntityType="Self.AdminT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
@@ -184,7 +187,7 @@
       <End Role="Department" EntitySet="Department" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
-    <AssociationSet Name="FK__Reward__PersonID__4BAC3F29" Association="Self.FK__Reward__PersonID__4BAC3F29">
+    <AssociationSet Name="FK__Reward__PersonID__5FB337D6" Association="Self.FK__Reward__PersonID__5FB337D6">
       <End Role="Person" EntitySet="Person" />
       <End Role="Reward" EntitySet="Reward" />
     </AssociationSet>
