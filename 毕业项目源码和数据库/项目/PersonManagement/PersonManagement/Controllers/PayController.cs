@@ -57,7 +57,8 @@ namespace PersonManagement.Controllers
         //数据
         public JsonResult PayData()
         {
-            return Json(new { day = , totpay =  }, JsonRequestBehavior.AllowGet);
+            
+            return Json(new {  }, JsonRequestBehavior.AllowGet);
         }
     }
 }

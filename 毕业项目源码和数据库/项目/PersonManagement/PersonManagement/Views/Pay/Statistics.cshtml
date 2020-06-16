@@ -13,7 +13,7 @@
         url: "/Pay/PayData",
         type: "get",
         data: {},
-        cache: false,
+        dataType: "Json",
         success: function (res) {
             var day = [];//x轴
             var totpay = [];//y轴
@@ -22,7 +22,8 @@
                 totpay[i] = res.data.STOCk;
             }
             // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main'));// 指定图表的配置项和数据
+            var myChart = echarts.init(document.getElementById('main'));
+            // 指定图表的配置项和数据
             var option = {
                 title: {
                     text: '5月份每日下发员工总薪资柱状图'
@@ -107,7 +108,6 @@
                     type: 'bar',
                     barMaxWidth: 20,
                     zlevel: 10,
-                    // barGap: '100%',
                     data: totpay,
                     itemStyle: {
                         normal: {

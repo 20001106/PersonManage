@@ -123,9 +123,9 @@ insert into AdminT Values('sansan','123321')
 insert into AdminT Values('admin','111111')
 
 --插入部门表数据
-insert into Department Values('技术部','2020-05-10','管理技术','300')
-insert into Department Values('财务部','2020-05-15','管理财务','200')
-insert into Department Values('人事部','2020-05-20','管理人员','100')
+insert into Department Values('技术部','2020-05-10','管理技术','30')
+insert into Department Values('财务部','2020-05-15','管理财务','20')
+insert into Department Values('人事部','2020-05-20','管理人员','10')
 
 --插入员工表数据
 insert into Person Values('张三','男','20','400000200002023320','虚拟市虚拟区虚拟路22号','湖南省永州市','15273572761','15273572761@163.com','101','大专','会计','喜欢打球')
