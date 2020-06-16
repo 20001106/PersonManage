@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using PersonManagement.Models;
+using System.Web;
 using System.Web.Mvc;
 
 namespace PersonManagement
@@ -8,6 +9,9 @@ namespace PersonManagement
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            //注册全局
+            filters.Add(new MyFilterAttribute());
         }
     }
 }

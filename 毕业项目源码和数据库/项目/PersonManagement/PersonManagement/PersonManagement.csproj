@@ -142,6 +142,7 @@
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RewardController.cs" />
+    <Compile Include="Controllers\SystemManageController.cs" />
     <Compile Include="Controllers\TrainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -158,6 +159,7 @@
     <Compile Include="Models\Employment.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyFilterAttribute.cs" />
     <Compile Include="Models\Pay.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
@@ -185,6 +187,7 @@
     <Compile Include="Models\Reward.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SessionHelper.cs" />
     <Compile Include="Models\Train.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
@@ -250,11 +253,8 @@
     <Content Include="Views\AdminT\Index.cshtml" />
     <Content Include="Views\Department\DptInfo.cshtml" />
     <Content Include="Views\Department\DptAdd.cshtml" />
-    <Content Include="Views\AdminT\LogOut.cshtml" />
     <Content Include="Views\Employment\EpmInfo.cshtml" />
     <Content Include="Views\Person\PersonInfo.cshtml" />
-    <Content Include="Views\AdminT\Versions.cshtml" />
-    <Content Include="Views\AdminT\Administrator.cshtml" />
     <Content Include="Views\Department\DptDetail.cshtml" />
     <Content Include="Views\Department\DptDelete.cshtml" />
     <Content Include="Views\Employment\EpmDetail.cshtml" />
@@ -262,12 +262,14 @@
     <Content Include="Views\Employment\EpmDeleteRecord.cshtml" />
     <Content Include="Views\Reward\RewardInfo.cshtml" />
     <Content Include="Views\Reward\RewardAdd.cshtml" />
-    <Content Include="Views\AdminT\BgHome.cshtml" />
     <Content Include="Views\Pay\PayInfo.cshtml" />
     <Content Include="Views\Pay\Statistics.cshtml" />
     <Content Include="Views\Attendance\AttInfo.cshtml" />
     <Content Include="Views\Train\TrainInfo.cshtml" />
     <Content Include="Views\Train\TrainAdd.cshtml" />
+    <Content Include="Views\SystemManage\BgHome.cshtml" />
+    <Content Include="Views\SystemManage\Administrator.cshtml" />
+    <Content Include="Views\SystemManage\Versions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
