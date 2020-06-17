@@ -20,6 +20,7 @@ namespace PersonManagement.Models
             this.Attendance = new HashSet<Attendance>();
             this.Pay = new HashSet<Pay>();
             this.Reward = new HashSet<Reward>();
+            this.A_P_Message = new HashSet<A_P_Message>();
         }
     
         public int ID { get; set; }
@@ -43,5 +44,7 @@ namespace PersonManagement.Models
         public virtual ICollection<Pay> Pay { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reward> Reward { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<A_P_Message> A_P_Message { get; set; }
     }
 }

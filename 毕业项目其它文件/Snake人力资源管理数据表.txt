@@ -17,7 +17,7 @@
 身份证号--IDCard(nvarchar(50))
 
 3、应聘人员信息表（Employment）
-ID--ID(int)			姓名--Name(nvarchar(50))
+应聘人ID--ID(int)			姓名--Name(nvarchar(50))
 性别--Sex(char(2))			年龄--Age(int)
 员工地址--Address(nvarchar(100))	员工籍贯--Native_place(nvarchar(50))
 员工电话--Phone(nvarchar(50))	员工邮箱--Email(nvarchar(50))
@@ -50,6 +50,18 @@ ID--ID(int)			姓名--Name(nvarchar(50))
 管理员ID--ID(int)			登录名--LoginName(nvarchar(50))
 密码--LoginPwd(nvarchar(50))
 
-9、用户表（User）
-ID--用户ID(int)			员工ID--PersonID(int)
+9、用户表（UserT）
+用户ID--ID(int)			员工ID--PersonID(int null)
 登录名--LoginName(nvarchar(50))	登录密码--LoginPwd(nvarchar(50))
+
+10、消息表(A_P_Message)
+消息ID--ID(int)			员工ID--PersonID(int)
+发送消息--Message(nvarchar(100))	原因--Reason(nvarchar(100))
+发送时间--SendTime(datetime)	状态--State(int,[0\1])
+回复消息--ReplyMessage(nvarchar(100) null)
+回复时间--ReplyTime(datetime null）
+回复管理--ReplyAdmin(nvarchar(50 null))
+
+11、用户录用消息表(A_U_Message)
+消息ID--ID(int)			应聘人ID--EpmID(int)
+内容--Topic(nvarchar(100))

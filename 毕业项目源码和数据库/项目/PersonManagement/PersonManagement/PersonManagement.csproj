@@ -153,6 +153,12 @@
     <Compile Include="Models\Attendance.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\A_P_Message.cs">
+      <DependentUpon>PersonManagementDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A_U_Message.cs">
+      <DependentUpon>PersonManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
@@ -191,6 +197,9 @@
     <Compile Include="Models\Train.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserT.cs">
+      <DependentUpon>PersonManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +207,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Css\LayoutFrontCss.css" />
     <Content Include="Content\Css\LayoutPersonCss.css" />
     <Content Include="Content\ECharts\echatrs.min.js" />
     <Content Include="Content\Images\logo.jpg" />
@@ -270,6 +280,7 @@
     <Content Include="Views\SystemManage\BgHome.cshtml" />
     <Content Include="Views\SystemManage\Administrator.cshtml" />
     <Content Include="Views\SystemManage\Versions.cshtml" />
+    <Content Include="Views\Shared\_LayoutFront.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

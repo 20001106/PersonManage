@@ -5,19 +5,24 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="719178fa2ed04134a77f769dbc603633" Name="Diagram1">
-        <EntityTypeShape EntityType="PersonManagementModel.AdminT" Width="1.5" PointX="10.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonManagementModel.AdminT" Width="1.5" PointX="5.5" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="PersonManagementModel.Attendance" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PersonManagementModel.Department" Width="1.5" PointX="5.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PersonManagementModel.Employment" Width="1.5" PointX="8" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PersonManagementModel.Pay" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PersonManagementModel.Person" Width="1.5" PointX="2.875" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PersonManagementModel.Reward" Width="1.5" PointX="5.5" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="PersonManagementModel.Train" Width="1.5" PointX="10.375" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonManagementModel.Train" Width="1.5" PointX="7.75" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="PersonManagementModel.FK__Attendanc__Perso__1CF15040" ManuallyRouted="false" />
         <AssociationConnector Association="PersonManagementModel.FK__Employmen__DptID__164452B1" ManuallyRouted="false" />
         <AssociationConnector Association="PersonManagementModel.FK__Person__DptID__1A14E395" ManuallyRouted="false" />
         <AssociationConnector Association="PersonManagementModel.FK__Pay__PersonID__22AA2996" ManuallyRouted="false" />
         <AssociationConnector Association="PersonManagementModel.FK__Reward__PersonID__1FCDBCEB" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PersonManagementModel.A_P_Message" Width="1.5" PointX="2.875" PointY="5.75" />
+        <EntityTypeShape EntityType="PersonManagementModel.A_U_Message" Width="1.5" PointX="10.25" PointY="2" />
+        <AssociationConnector Association="PersonManagementModel.FK__A_P_Messa__Perso__10566F31" />
+        <AssociationConnector Association="PersonManagementModel.FK__A_U_Messa__EpmID__14270015" />
+        <EntityTypeShape EntityType="PersonManagementModel.UserT" Width="1.5" PointX="10.125" PointY="5.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -118,6 +118,43 @@ create table Pay(
 	OtherPay money not null--其它费
 )
 
+if Exists(select * from sysobjects where name='UserT')
+drop table UserT
+go
+--创建用户表（UserT）
+create table UserT(
+	ID int primary key identity(1,1),--用户ID
+	PersonID int null,--外键，员工表ID
+	UserName nvarchar(50) not null,--用户登录名
+	UserPwd nvarchar(50) not null,--用户登录密码
+)
+
+if Exists(select * from sysobjects where name='A_P_Message')
+drop table A_P_Message
+go
+--创建消息表(A_P_Message)
+create table A_P_Message(
+	ID int primary key identity(1,1),--消息ID
+	PersonID int foreign key references Person(ID) not null,--外键,员工表ID
+	Message nvarchar(100) not null,--发送信息
+	Reason nvarchar(50) not null,--原因
+	SendTime datetime not null,--发送时间
+	State int Default('0') not null,--回复状态(0:未回复，1：已回复)
+	ReplyMessage nvarchar(100) null,--回复消息
+	ReplyTime datetime null,--回复时间
+	ReplyAdmin nvarchar(50),--回复管理
+)
+
+if Exists(select * from sysobjects where name='A_U_Message')
+drop table A_U_Message
+go
+--创建用户录用消息表(A_U_Message)
+create table A_U_Message(
+	ID int primary key identity(1,1),--消息ID
+	EpmID int foreign key references Employment(ID) not null,--外键，应聘人员表ID
+	Topic nvarchar(100) not null,--内容
+)
+
 --插入管理员表数据
 insert into AdminT Values('sansan','123321')
 insert into AdminT Values('admin','111111')
@@ -130,9 +167,10 @@ insert into Department Values('人事部','2020-05-20','管理人员','10')
 --插入员工表数据
 insert into Person Values('张三','男','20','400000200002023320','虚拟市虚拟区虚拟路22号','湖南省永州市','15273572761','15273572761@163.com','101','大专','会计','喜欢打球')
 insert into Person Values('李琼','女','19','400000200106013321','虚拟市虚拟区虚拟路55号','湖南省长沙市','15273572762','15273572762@163.com','101','大专','会计','听歌')
-insert into Person Values('王五','男','18','400000200212023322','虚拟市虚拟区虚拟路33号','湖南省岳阳市','15273572763','15273572763@163.com','100','本科','软件技术','交朋友')
+insert into Person Values('王五','男','18','400000200212023322','虚拟市虚拟区虚拟路33号','湖南省岳阳市','15273572763','15273572763@163.com','102','本科','软件技术','交朋友')
 insert into Person Values('赵茜','女','21','400000199911113323','虚拟市虚拟区虚拟路11号','湖南省益阳市','15273572764','15273572764@163.com','100','本科','软件技术','跳舞，敲代码')
 insert into Person Values('陈七','男','20','400000200008153324','虚拟市虚拟区虚拟路44号','湖南省郴州市','15273572765','15273572765@163.com','102','大专','资源管理','无')
+insert into Person Values('王七','男','20','400000200011043232','虚拟市虚拟区虚拟路10号','湖南省湘潭市','15273572222','15273572222@163.com','100','本科','软件技术','无')
 
 --插入培训表数据
 insert into Train Values('提升相关技术','2020-05-21 12:00:00','2020-05-22 22:00:00','虚拟室101号','王五,赵茜')
@@ -140,8 +178,8 @@ insert into Train Values('人员的相关管理','2020-05-20 09:00:00','2020-05-20 22:0
 
 --插入应聘人员表数据
 insert into Employment Values('张思','男','19','400000200103123230','虚拟市虚拟区虚拟路01号','湖南省怀化市','15273572262','15273572262@163.com','102','大专','资源管理','结交朋友','无','0','0')
-insert into Employment Values('李前','女','18','400000200207113231','虚拟市虚拟区虚拟路08号','湖南省衡阳市','15273572268','15273572268@163.com','101','大专','会计','听歌','一年会计管理','0','0')
-insert into Employment Values('王七','男','20','400000200011043232','虚拟市虚拟区虚拟路10号','湖南省虚拟市','15273572222','15273572222@163.com','100','本科','软件技术','敲代码','两年编程','0','0')
+insert into Employment Values('李前','女','18','400000200207113231','虚拟市虚拟区虚拟路08号','湖南省衡阳市','15273572268','15273572268@163.com','101','大专','会计','听歌','一年会计管理','1','0')
+insert into Employment Values('王七','男','20','400000200011043232','虚拟市虚拟区虚拟路10号','湖南省湘潭市','15273572222','15273572222@163.com','100','本科','软件技术','敲代码','两年编程','0','0')
 
 --插入考勤表数据
 insert into Attendance Values('1000','2020-05-22','2020-05-22 09:00:00','2020-05-22 22:00:00')
@@ -166,6 +204,22 @@ insert into Pay Values('1002','2020-05-23','0','20')
 insert into Pay Values('1003','2020-05-23','0','20')
 insert into Pay Values('1004','2020-05-23','0','20')
 
+--插入用户表数据
+insert into UserT Values('1000','san','112233')
+insert into UserT Values('1001','qiong','111111')
+insert into UserT Values('1002','wu','333333')
+insert into UserT Values('1003','qian','222222')
+insert into UserT Values('1004','qi','666666')
+insert into UserT Values('','si','222222')
+insert into UserT Values('','liqian','888888')
+insert into UserT Values('','wangqi','999999')
+
+--插入消息表数据
+insert into A_P_Message Values('1002','申请更换部门，更换至人事部。','提升这方面的技术。','2020-05-26 10:00:00','1','准许，已批准，继续努力。','2020-05-27 10:00:00','sansan')
+
+--插入用户录用消息表数据
+insert into A_U_Message Values('3','恭喜你，你已被录用！')
+
 --查询
 select * from AdminT
 select * from Train
@@ -175,6 +229,9 @@ select * from Person
 select * from Attendance
 select * from Reward
 select * from Pay
+select * from UserT
+select * from A_P_Message
+select * from A_U_Message
 
 if Exists(select * from sysobjects where name='proc_pay')
 drop proc proc_pay

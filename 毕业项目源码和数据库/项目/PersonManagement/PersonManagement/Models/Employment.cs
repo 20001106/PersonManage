@@ -14,6 +14,12 @@ namespace PersonManagement.Models
     
     public partial class Employment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Employment()
+        {
+            this.A_U_Message = new HashSet<A_U_Message>();
+        }
+    
         public int ID { get; set; }
         public string Name { get; set; }
         public string Sex { get; set; }
@@ -32,5 +38,7 @@ namespace PersonManagement.Models
         public int DeleteRecord { get; set; }
     
         public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<A_U_Message> A_U_Message { get; set; }
     }
 }
