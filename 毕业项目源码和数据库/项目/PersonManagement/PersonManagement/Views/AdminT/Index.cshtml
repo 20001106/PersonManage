@@ -86,6 +86,15 @@
                 if (data == "LoginPwdfalse") {
                     $(".LoginPwdTips").html("密码为空！");
                 }
+                if (data == "TwoLength") {
+                    $(".twoTips").html("用户名和密码长度都不能超过10个字符！");
+                }
+                if (data == "LoginNameLengthfalse") {
+                    $(".LoginNameTips").html("用户名长度不能超过10个字符！");
+                }
+                if (data == "LoginPwdLengthfalse") {
+                    $(".LoginPwdTips").html("密码长度不能超过10个字符！");
+                }
                 if (data == "false1") {
                     $(".twoTips").html("用户名或密码错误！");
                 }

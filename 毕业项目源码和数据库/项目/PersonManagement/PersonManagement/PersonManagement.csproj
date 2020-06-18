@@ -266,7 +266,6 @@
     <Content Include="Views\Employment\EpmInfo.cshtml" />
     <Content Include="Views\Person\PersonInfo.cshtml" />
     <Content Include="Views\Department\DptDetail.cshtml" />
-    <Content Include="Views\Department\DptDelete.cshtml" />
     <Content Include="Views\Employment\EpmDetail.cshtml" />
     <Content Include="Views\Person\PersonDetail.cshtml" />
     <Content Include="Views\Employment\EpmDeleteRecord.cshtml" />

@@ -17,7 +17,7 @@
     }
     .title {
         font-weight: bold;
-        width: 30%;
+        width: 35%;
     }
     #edit_view {
         width: 100%;
@@ -32,7 +32,7 @@
             <h3 class="panel-title"><span style="font-weight:bold;">@dpt.Name</span> 部门信息</h3>
         </div>
         <div class="panel-body">
-            备注：@dpt.Remark
+            <span style="font-weight:bold;">备注：</span>@dpt.Remark
         </div>
         <table class="table">
             <tr>
@@ -69,15 +69,15 @@
             <input type="hidden" name="ID" value="@dpt.ID" />
             <div class="form-inline">
                 <label for="BasicPay">基本薪资：</label>
-                <input type="text" name="BasicPay" class="form-control" value="@dpt.BasicPay.ToString("F2")" />
+                <input type="number" name="BasicPay" class="form-control" value="@dpt.BasicPay.ToString("F2")" style="width:25%;"/>
             </div><br />
             <div class="form-inline">
                 <label for="Remark">部门备注：</label>
-                <input type="text" name="Remark" class="form-control" value="@dpt.Remark" />
+                <input type="text" name="Remark" class="form-control" value="@dpt.Remark" style="width:25%;"/>
             </div><br />
             <div class="form-inline">
                 <label for="CreateTime">创建时间：</label>
-                <input type="text" name="CreateTime" class="form-control" value="@dpt.CreateTime.ToShortDateString()" />
+                <input type="text" name="CreateTime" class="form-control" value="@dpt.CreateTime.ToShortDateString()" style="width:25%;"/>
             </div><br />
             <div class="form-inline">
                 <input type="submit" class="btn btn-info" value="保存" />

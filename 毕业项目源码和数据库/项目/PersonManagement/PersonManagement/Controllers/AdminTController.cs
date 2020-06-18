@@ -41,15 +41,33 @@ namespace PersonManagement.Controllers
             }
             else
             {
-                var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
-                if (adminT == null)
+                if (LoginName.Length >= 10 && LoginPwd.Length >= 10)
                 {
-                    return Content("false1");
+                    return Content("TwoLength");
+                }
+                else if (LoginName.Length >= 10 || LoginPwd.Length >= 10)
+                {
+                    if (LoginName.Length >= 10)
+                    {
+                        return Content("LoginNameLengthfalse");
+                    }
+                    if (LoginPwd.Length >= 10)
+                    {
+                        return Content("LoginPwdLengthfalse");
+                    }
                 }
                 else
                 {
-                    Session["LoginName"] = LoginName;
-                    return Content("true");
+                    var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
+                    if (adminT == null)
+                    {
+                        return Content("false1");
+                    }
+                    else
+                    {
+                        Session["LoginName"] = LoginName;
+                        return Content("true");
+                    }
                 }
             }
             return RedirectToAction("BgHome", "SystemManage");

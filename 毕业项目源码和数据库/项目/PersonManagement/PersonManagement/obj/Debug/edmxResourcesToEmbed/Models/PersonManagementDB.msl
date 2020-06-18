@@ -116,5 +116,39 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="A_P_Message">
+      <EntityTypeMapping TypeName="PersonManagementModel.A_P_Message">
+        <MappingFragment StoreEntitySet="A_P_Message">
+          <ScalarProperty Name="ReplyAdmin" ColumnName="ReplyAdmin" />
+          <ScalarProperty Name="ReplyTime" ColumnName="ReplyTime" />
+          <ScalarProperty Name="ReplyMessage" ColumnName="ReplyMessage" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="A_U_Message">
+      <EntityTypeMapping TypeName="PersonManagementModel.A_U_Message">
+        <MappingFragment StoreEntitySet="A_U_Message">
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="EpmID" ColumnName="EpmID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserT">
+      <EntityTypeMapping TypeName="PersonManagementModel.UserT">
+        <MappingFragment StoreEntitySet="UserT">
+          <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -31,6 +31,7 @@
     <label style="font-weight:bold;" for="Name">部门名称：</label>
     <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请输入部门名称" />
     <input type="submit" value="搜&nbsp;&nbsp;索" class="btn btn-info" />
+    <span style="color:red;margin-left:5%;" id="DptTips">@TempData["Tips"]</span>
 </form>
 <form action="/Department/DptInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
     <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
@@ -44,13 +45,13 @@ else
 {
     <table border="1" width="80%">
         <tr>
-            <th>编号</th>
-            <th>部门名称</th>
-            <th>创建时间</th>
-            <th>基础薪资(元)</th>
-            <th>部门人数</th>
-            <th style="width:15%;">备注</th>
-            <th style="width:30%;">操作</th>
+            <th style="width:10%;">编号</th>
+            <th style="width:10%;">部门名称</th>
+            <th style="width:10%;">创建时间</th>
+            <th style="width:10%;">基础薪资(元)</th>
+            <th style="width:10%;">部门人数</th>
+            <th style="width:30%;">备注</th>
+            <th style="width:20%;">操作</th>
         </tr>
         @foreach (var item in dpt)
         {
@@ -70,6 +71,3 @@ else
         }
     </table>
 }
-<div style="margin-left:10%;">
-    <span style="color:red;">@TempData["Tips"]</span>
-</div>

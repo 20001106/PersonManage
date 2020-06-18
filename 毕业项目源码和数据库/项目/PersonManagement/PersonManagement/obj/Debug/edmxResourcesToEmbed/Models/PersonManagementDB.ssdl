@@ -1,5 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PersonManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="A_P_Message">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SendTime" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="ReplyMessage" Type="nvarchar" MaxLength="100" />
+    <Property Name="ReplyTime" Type="datetime" />
+    <Property Name="ReplyAdmin" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="A_U_Message">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EpmID" Type="int" Nullable="false" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="AdminT">
     <Key>
       <PropertyRef Name="ID" />
@@ -99,7 +121,40 @@
     <Property Name="Site" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Number" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Attendanc__Perso__48CFD27E">
+  <EntityType Name="UserT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonID" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__A_P_Messa__Perso__10566F31">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="A_P_Message" Type="Self.A_P_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="A_P_Message">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__A_U_Messa__EpmID__14270015">
+    <End Role="Employment" Type="Self.Employment" Multiplicity="1" />
+    <End Role="A_U_Message" Type="Self.A_U_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="A_U_Message">
+        <PropertyRef Name="EpmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Attendanc__Perso__7D439ABD">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
     <ReferentialConstraint>
@@ -111,7 +166,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employmen__DptID__412EB0B6">
+  <Association Name="FK__Employmen__DptID__75A278F5">
     <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="Employment" Type="Self.Employment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -123,7 +178,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pay__PersonID__4E88ABD4">
+  <Association Name="FK__Pay__PersonID__02FC7413">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
     <ReferentialConstraint>
@@ -135,7 +190,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Person__DptID__45F365D3">
+  <Association Name="FK__Person__DptID__7A672E12">
     <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="Person" Type="Self.Person" Multiplicity="*" />
     <ReferentialConstraint>
@@ -147,7 +202,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Reward__PersonID__5FB337D6">
+  <Association Name="FK__Reward__PersonID__00200768">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
     <ReferentialConstraint>
@@ -163,6 +218,8 @@
     <Parameter Name="FindDate" Type="date" Mode="In" />
   </Function>
   <EntityContainer Name="PersonManagementModelStoreContainer">
+    <EntitySet Name="A_P_Message" EntityType="Self.A_P_Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="A_U_Message" EntityType="Self.A_U_Message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AdminT" EntityType="Self.AdminT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -171,23 +228,32 @@
     <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reward" EntityType="Self.Reward" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Train" EntityType="Self.Train" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Attendanc__Perso__48CFD27E" Association="Self.FK__Attendanc__Perso__48CFD27E">
+    <EntitySet Name="UserT" EntityType="Self.UserT" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__A_P_Messa__Perso__10566F31" Association="Self.FK__A_P_Messa__Perso__10566F31">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="A_P_Message" EntitySet="A_P_Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK__A_U_Messa__EpmID__14270015" Association="Self.FK__A_U_Messa__EpmID__14270015">
+      <End Role="Employment" EntitySet="Employment" />
+      <End Role="A_U_Message" EntitySet="A_U_Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Attendanc__Perso__7D439ABD" Association="Self.FK__Attendanc__Perso__7D439ABD">
       <End Role="Person" EntitySet="Person" />
       <End Role="Attendance" EntitySet="Attendance" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employmen__DptID__412EB0B6" Association="Self.FK__Employmen__DptID__412EB0B6">
+    <AssociationSet Name="FK__Employmen__DptID__75A278F5" Association="Self.FK__Employmen__DptID__75A278F5">
       <End Role="Department" EntitySet="Department" />
       <End Role="Employment" EntitySet="Employment" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pay__PersonID__4E88ABD4" Association="Self.FK__Pay__PersonID__4E88ABD4">
+    <AssociationSet Name="FK__Pay__PersonID__02FC7413" Association="Self.FK__Pay__PersonID__02FC7413">
       <End Role="Person" EntitySet="Person" />
       <End Role="Pay" EntitySet="Pay" />
     </AssociationSet>
-    <AssociationSet Name="FK__Person__DptID__45F365D3" Association="Self.FK__Person__DptID__45F365D3">
+    <AssociationSet Name="FK__Person__DptID__7A672E12" Association="Self.FK__Person__DptID__7A672E12">
       <End Role="Department" EntitySet="Department" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
-    <AssociationSet Name="FK__Reward__PersonID__5FB337D6" Association="Self.FK__Reward__PersonID__5FB337D6">
+    <AssociationSet Name="FK__Reward__PersonID__00200768" Association="Self.FK__Reward__PersonID__00200768">
       <End Role="Person" EntitySet="Person" />
       <End Role="Reward" EntitySet="Reward" />
     </AssociationSet>

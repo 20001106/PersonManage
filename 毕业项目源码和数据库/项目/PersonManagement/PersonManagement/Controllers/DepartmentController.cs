@@ -60,14 +60,14 @@ namespace PersonManagement.Controllers
         public ActionResult DptDelete(int? id)
         {
             List<Person> Plist = db.Person.Where(p => p.DptID == id).ToList();
+            Department dpt = db.Department.Find(id);
             if (Plist.Count > 0)
             {
-                TempData["Tips"] = "该部门有员工存在，不可删除！";
+                TempData["Tips"] = dpt.Name + "有员工存在，不可删除！";
                 return RedirectToAction("DptInfo", "Department");
             }
             else
             {
-                Department dpt = db.Department.Find(id);
                 db.Department.Remove(dpt);
                 db.SaveChanges();
             }
