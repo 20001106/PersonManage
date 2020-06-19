@@ -28,9 +28,10 @@
 </style>
 
 <form action="/Person/PersonInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
-    <label style="font-weight:bold;" for="Name">姓名：</label>
+    <label style="font-weight:bold;" for="Name">员工姓名：</label>
     <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请搜索员工" />
     <input type="submit" value="搜&nbsp;&nbsp;索" class="btn btn-info" />
+    <span style="color:red;margin-left:3%;">@TempData["Tips"]</span>
 </form>
 <form action="/Person/PersonInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
     <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
@@ -64,13 +65,10 @@ else
                 <td>@item.Address</td>
                 <td>@item.Remark</td>
                 <td>
-                    <a href="/Person/PersonDetail?id=@item.ID" class="btn btn-info">查&nbsp看</a>
-                    <a href="/Person/PersonDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('请确保 @item.Name 无其它信息记录，再删除！')">删&nbsp;除</a>
+                    <a href="/Person/PersonDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>&nbsp;&nbsp;
+                    <a href="/Person/PersonDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('请确保 @item.Name 无其它信息记录，再删除！')">删&nbsp;&nbsp;除</a>
                 </td>
             </tr>
         }
     </table>
 }
-<div style="margin-left:10%;">
-    <span style="color:red;">@TempData["Tips"]</span>
-</div>

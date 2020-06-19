@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmploymentController.cs" />
+    <Compile Include="Controllers\FrontPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
@@ -211,6 +212,7 @@
     <Content Include="Content\Css\LayoutPersonCss.css" />
     <Content Include="Content\ECharts\echatrs.min.js" />
     <Content Include="Content\Images\logo.jpg" />
+    <Content Include="Content\Images\logoFront.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -278,8 +280,8 @@
     <Content Include="Views\Train\TrainAdd.cshtml" />
     <Content Include="Views\SystemManage\BgHome.cshtml" />
     <Content Include="Views\SystemManage\Administrator.cshtml" />
-    <Content Include="Views\SystemManage\Versions.cshtml" />
     <Content Include="Views\Shared\_LayoutFront.cshtml" />
+    <Content Include="Views\FrontPage\FrontHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

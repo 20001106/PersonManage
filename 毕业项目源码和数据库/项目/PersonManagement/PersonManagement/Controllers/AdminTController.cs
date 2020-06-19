@@ -21,7 +21,6 @@ namespace PersonManagement.Controllers
             return View();
         }
         [HttpPost]
-        [MyFilter]
         public ActionResult Index(string LoginName, string LoginPwd)
         {
             if (string.IsNullOrEmpty(LoginName) && string.IsNullOrEmpty(LoginPwd))
@@ -41,33 +40,15 @@ namespace PersonManagement.Controllers
             }
             else
             {
-                if (LoginName.Length >= 10 && LoginPwd.Length >= 10)
+                var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
+                if (adminT == null)
                 {
-                    return Content("TwoLength");
-                }
-                else if (LoginName.Length >= 10 || LoginPwd.Length >= 10)
-                {
-                    if (LoginName.Length >= 10)
-                    {
-                        return Content("LoginNameLengthfalse");
-                    }
-                    if (LoginPwd.Length >= 10)
-                    {
-                        return Content("LoginPwdLengthfalse");
-                    }
+                    return Content("false1");
                 }
                 else
                 {
-                    var adminT = db.AdminT.Where(u => u.LoginName == LoginName && u.LoginPwd == LoginPwd).SingleOrDefault();
-                    if (adminT == null)
-                    {
-                        return Content("false1");
-                    }
-                    else
-                    {
-                        Session["LoginName"] = LoginName;
-                        return Content("true");
-                    }
+                    Session["LoginName"] = LoginName;
+                    return Content("true");
                 }
             }
             return RedirectToAction("BgHome", "SystemManage");

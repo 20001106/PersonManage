@@ -31,6 +31,7 @@
     <label style="font-weight:bold;" for="Name">姓名：</label>
     <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请筛选应聘者" />
     <input type="submit" value="搜&nbsp;&nbsp;索" class="btn btn-info" />
+    <span style="color:red;margin-left:5%;">@TempData["Tips"]</span>
 </form>
 <form action="/Employment/EpmInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
     <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
@@ -64,13 +65,10 @@ else
                 <td>@item.WorkExper</td>
                 <td>@item.Remark</td>
                 <td>
-                    <a href="/Employment/EpmDetail?id=@item.ID" class="btn btn-info">查&nbsp看</a>
-                    <a href="/Employment/EpmDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除 @item.Name 应聘者吗？')">删&nbsp;除</a>
+                    <a href="/Employment/EpmDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                    <a href="/Employment/EpmDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除 @item.Name 应聘者吗？')">删&nbsp;&nbsp;除</a>
                 </td>
             </tr>
         }
     </table>
 }
-<div style="margin-left:10%;">
-    <span style="color:red;">@TempData["Tips"]</span>
-</div>

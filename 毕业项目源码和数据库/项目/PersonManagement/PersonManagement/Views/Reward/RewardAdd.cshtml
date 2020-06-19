@@ -40,11 +40,11 @@
     </div>
     <div class="form-inline form_text">
         <label for="Topic">奖惩内容：</label>
-        <textarea name="Topic" id="Topic" class="form-control" style="width:40%;height:80px;" onfocus="focusTopic()" placeholder="请输入奖惩内容！"></textarea>
+        <textarea name="Topic" id="Topic" maxlength="100" class="form-control" style="width:40%;height:80px;" onfocus="focusTopic()" placeholder="请输入奖惩内容！"></textarea>
     </div><p style="color:red;text-align:center;" class="Topic"></p>
     <div class="form-inline form_text">
         <label for="RewardGift">奖惩实质：</label>
-        <textarea name="RewardGift" id="RewardGift" class="form-control" style="width:40%;height:80px;" onfocus="focusRewardGift()" placeholder="请输入奖惩实质(奖励还是惩罚)格式：奖励(惩罚)：XXX!"></textarea>
+        <textarea name="RewardGift" id="RewardGift" maxlength="100" class="form-control" style="width:40%;height:80px;" onfocus="focusRewardGift()" placeholder="请输入奖惩实质(奖励还是惩罚)格式：奖励(惩罚)：XXX!"></textarea>
     </div><p style="color:red;text-align:center;" class="RewardGift"></p>
     <div class="form-group form_text">
         <input type="submit" onclick="return addReward()" class="btn btn-info" value="添&nbsp;&nbsp;加"/>

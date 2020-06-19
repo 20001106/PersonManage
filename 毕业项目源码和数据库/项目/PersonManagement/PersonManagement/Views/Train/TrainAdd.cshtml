@@ -19,12 +19,19 @@
 <form action="/Train/TrainAdd" method="post" id="form1">
     <div class="form-inline form_text">
         <label for="Topic">培训主题：</label>
-        <input type="text" name="Topic" id="Topic" class="form-control" onfocus="focusTopic()" style="width:40%" placeholder="请输入培训主题"/>
+        <input type="text" name="Topic" id="Topic" class="form-control" onfocus="focusTopic()" maxlength="50" style="width:40%" placeholder="请输入培训主题"/>
     </div><p style="color:red;text-align:center;" class="Topic"></p>
     <div class="form-inline form_text">
         <label for="Site">培训地点：</label>
-        <input type="text" name="Site" id="Site" class="form-control" onfocus="focusSite()" style="width:40%" placeholder="请输入培训地点"/>
-    </div><p style="color:red;text-align:center;" class="Site"></p>
+        <select name="Site" class="form-control" style="width:40%">
+            <option value="技术部101号" selected="selected">技术部101号</option>
+            <option value="技术部102号">技术部102号</option>
+            <option value="财务部101号">财务部101号</option>
+            <option value="财务部102号">财务部102号</option>
+            <option value="人事部101号">人事部101号</option>
+            <option value="人事部102号">人事部102号</option>
+        </select>
+    </div>
     <div class="form-inline form_text">
         <label for="Number">参与成员：</label>
         <input type="text" name="Number" id="Number" class="form-control" onfocus="focusNumber()" style="width:40%" placeholder="请输入参与成员"/>
@@ -44,20 +51,15 @@
 
 <script type="text/javascript">
     function addTrain() {
-        if ($("#Topic").val() == "" && $("#Site").val() == "" && $("#Number").val() == "" && $("#StartTime").val() == "" && $("#EndTime").val() == "") {
+        if ($("#Topic").val() == "" &&  $("#Number").val() == "" && $("#StartTime").val() == "" && $("#EndTime").val() == "") {
             $(".Topic").html("请输入培训主题！");
-            $(".Site").html("请输入培训地点(XXX室XXX号)！");
             $(".Number").html("请手动录入参与成员！");
             $(".StartTime").html("请输入开始时间！");
             $(".EndTime").html("请输入结束时间！");
             return false;
-        } else if ($("#Topic").val() == "" || $("#Site").val() == "" || $("#Number").val() == "" || $("#StartTime").val() == "" || $("#EndTime").val() == "") {
+        } else if ($("#Topic").val() == "" ||  $("#Number").val() == "" || $("#StartTime").val() == "" || $("#EndTime").val() == "") {
             if ($("#Topic").val() == "") {
                 $(".Topic").html("请输入培训主题！");
-                return false;
-            }
-            if ($("#Site").val() == "") {
-                $(".Site").html("请输入培训地点(XXX室XXX号)！");
                 return false;
             }
             if ($("#Number").val() == "") {

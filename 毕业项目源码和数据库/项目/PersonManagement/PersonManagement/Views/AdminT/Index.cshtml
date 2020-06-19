@@ -51,11 +51,11 @@
     <div id="form1">
         <p class="short"></p>
         <div class="form-inline form-group form-text">
-            管理：<input type="text" class="form-control" onfocus="LoginNamefocus()" name="LoginName" placeholder="管理员名称">
+            管理：<input type="text" class="form-control" onfocus="LoginNamefocus()" maxlength="10" name="LoginName" placeholder="管理员名称">
         </div>
         <p class="LoginNameTips" style="color:red;text-align:center;"></p>
         <div class="form-inline form-group form-text">
-            密码：<input type="password" class="form-control" onfocus="LoginPwdfocus()" name="LoginPwd" placeholder="管理员密码">
+            密码：<input type="password" class="form-control" onfocus="LoginPwdfocus()" maxlength="10" name="LoginPwd" placeholder="管理员密码">
         </div>
         <p class="LoginPwdTips" style="color: red;text-align: center;"></p>
         <p class="twoTips" style="color:red;text-align:center;"></p>
@@ -85,15 +85,6 @@
                 }
                 if (data == "LoginPwdfalse") {
                     $(".LoginPwdTips").html("密码为空！");
-                }
-                if (data == "TwoLength") {
-                    $(".twoTips").html("用户名和密码长度都不能超过10个字符！");
-                }
-                if (data == "LoginNameLengthfalse") {
-                    $(".LoginNameTips").html("用户名长度不能超过10个字符！");
-                }
-                if (data == "LoginPwdLengthfalse") {
-                    $(".LoginPwdTips").html("密码长度不能超过10个字符！");
                 }
                 if (data == "false1") {
                     $(".twoTips").html("用户名或密码错误！");

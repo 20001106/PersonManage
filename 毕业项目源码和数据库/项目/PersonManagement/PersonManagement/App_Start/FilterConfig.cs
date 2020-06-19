@@ -11,7 +11,7 @@ namespace PersonManagement
             filters.Add(new HandleErrorAttribute());
 
             //注册全局
-            filters.Add(new MyFilterAttribute());
+            //filters.Add(new MyFilterAttribute());
         }
     }
 }
