@@ -94,5 +94,19 @@ namespace PersonManagement.Controllers
                 return RedirectToAction("PersonInfo", "Person");
             }
         }
+
+        //招聘
+        public ActionResult EpmAdd()
+        {
+            ViewBag.Dpt = db.Department.ToList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EpmAdd(Employment epm)
+        {
+            db.Employment.Add(epm);
+            db.SaveChanges();
+            return RedirectToAction("EpmAdd", "Employment");
+        }
     }
 }
