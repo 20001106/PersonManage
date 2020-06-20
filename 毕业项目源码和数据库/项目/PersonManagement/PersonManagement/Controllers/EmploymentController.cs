@@ -106,6 +106,7 @@ namespace PersonManagement.Controllers
         {
             db.Employment.Add(epm);
             db.SaveChanges();
+            TempData["epmgo"] = "应聘成功，请等待后续通知，留意通知栏！";
             return RedirectToAction("EpmAdd", "Employment");
         }
     }

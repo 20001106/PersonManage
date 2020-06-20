@@ -213,8 +213,14 @@
     <Content Include="Content\Css\LayoutPersonCss.css" />
     <Content Include="Content\ECharts\echatrs.min.js" />
     <Content Include="Content\Images\back.jpg" />
+    <Content Include="Content\Images\demo1.jpg" />
+    <Content Include="Content\Images\demo2.jpg" />
+    <Content Include="Content\Images\demo3.jpg" />
+    <Content Include="Content\Images\demo4.jpg" />
     <Content Include="Content\Images\logo.jpg" />
     <Content Include="Content\Images\logoFront.jpg" />
+    <Content Include="Content\mincss\bootstrap.min.css" />
+    <Content Include="Content\minjs\bootstrap.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
