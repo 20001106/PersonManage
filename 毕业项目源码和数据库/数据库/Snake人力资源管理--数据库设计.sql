@@ -126,7 +126,7 @@ create table UserT(
 	ID int primary key identity(1,1),--用户ID
 	PersonID int null,--外键，员工表ID
 	UserName nvarchar(50) not null,--用户登录名
-	UserPwd nvarchar(50) not null,--用户登录密码
+	UserPwd nvarchar(50) not null--用户登录密码
 )
 
 if Exists(select * from sysobjects where name='A_P_Message')
@@ -142,7 +142,7 @@ create table A_P_Message(
 	State int Default('0') not null,--回复状态(0:未回复，1：已回复)
 	ReplyMessage nvarchar(100) null,--回复消息
 	ReplyTime datetime null,--回复时间
-	ReplyAdmin nvarchar(50),--回复管理
+	ReplyAdmin nvarchar(50)--回复管理
 )
 
 if Exists(select * from sysobjects where name='A_U_Message')
@@ -152,7 +152,8 @@ go
 create table A_U_Message(
 	ID int primary key identity(1,1),--消息ID
 	EpmID int foreign key references Employment(ID) not null,--外键，应聘人员表ID
-	Topic nvarchar(100) not null,--内容
+	UserID int foreign key references UserT(ID) not null,--外键，应聘人员表ID
+	Topic nvarchar(100) not null--内容
 )
 
 --插入管理员表数据
@@ -218,7 +219,7 @@ insert into UserT Values('','wangqi','999999')
 insert into A_P_Message Values('1002','申请更换部门，更换至人事部。','提升这方面的技术。','2020-05-26 10:00:00','1','准许，已批准，继续努力。','2020-05-27 10:00:00','sansan')
 
 --插入用户录用消息表数据
-insert into A_U_Message Values('3','恭喜你，你已被录用！')
+insert into A_U_Message Values('3','8','恭喜你，你已被录用！')
 
 --查询
 select * from AdminT

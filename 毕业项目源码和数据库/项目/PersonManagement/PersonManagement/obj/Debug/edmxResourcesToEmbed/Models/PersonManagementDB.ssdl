@@ -20,6 +20,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EpmID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="Topic" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="AdminT">
@@ -142,7 +143,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__A_U_Messa__EpmID__14270015">
+  <Association Name="FK__A_U_Messa__EpmID__2EDAF651">
     <End Role="Employment" Type="Self.Employment" Multiplicity="1" />
     <End Role="A_U_Message" Type="Self.A_U_Message" Multiplicity="*" />
     <ReferentialConstraint>
@@ -151,6 +152,18 @@
       </Principal>
       <Dependent Role="A_U_Message">
         <PropertyRef Name="EpmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__A_U_Messa__UserI__2FCF1A8A">
+    <End Role="UserT" Type="Self.UserT" Multiplicity="1" />
+    <End Role="A_U_Message" Type="Self.A_U_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="A_U_Message">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -233,8 +246,12 @@
       <End Role="Person" EntitySet="Person" />
       <End Role="A_P_Message" EntitySet="A_P_Message" />
     </AssociationSet>
-    <AssociationSet Name="FK__A_U_Messa__EpmID__14270015" Association="Self.FK__A_U_Messa__EpmID__14270015">
+    <AssociationSet Name="FK__A_U_Messa__EpmID__2EDAF651" Association="Self.FK__A_U_Messa__EpmID__2EDAF651">
       <End Role="Employment" EntitySet="Employment" />
+      <End Role="A_U_Message" EntitySet="A_U_Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK__A_U_Messa__UserI__2FCF1A8A" Association="Self.FK__A_U_Messa__UserI__2FCF1A8A">
+      <End Role="UserT" EntitySet="UserT" />
       <End Role="A_U_Message" EntitySet="A_U_Message" />
     </AssociationSet>
     <AssociationSet Name="FK__Attendanc__Perso__7D439ABD" Association="Self.FK__Attendanc__Perso__7D439ABD">

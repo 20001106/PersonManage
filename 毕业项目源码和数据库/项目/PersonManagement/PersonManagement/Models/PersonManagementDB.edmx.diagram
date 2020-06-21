@@ -19,10 +19,11 @@
         <AssociationConnector Association="PersonManagementModel.FK__Pay__PersonID__22AA2996" ManuallyRouted="false" />
         <AssociationConnector Association="PersonManagementModel.FK__Reward__PersonID__1FCDBCEB" ManuallyRouted="false" />
         <EntityTypeShape EntityType="PersonManagementModel.A_P_Message" Width="1.5" PointX="2.875" PointY="5.75" />
-        <EntityTypeShape EntityType="PersonManagementModel.A_U_Message" Width="1.5" PointX="10.25" PointY="2" />
+        <EntityTypeShape EntityType="PersonManagementModel.A_U_Message" Width="1.5" PointX="10.375" PointY="0.625" />
         <AssociationConnector Association="PersonManagementModel.FK__A_P_Messa__Perso__10566F31" />
         <AssociationConnector Association="PersonManagementModel.FK__A_U_Messa__EpmID__14270015" />
-        <EntityTypeShape EntityType="PersonManagementModel.UserT" Width="1.5" PointX="10.125" PointY="5.875" />
+        <EntityTypeShape EntityType="PersonManagementModel.UserT" Width="1.5" PointX="10.375" PointY="3" />
+        <AssociationConnector Association="PersonManagementModel.FK__A_U_Messa__UserI__2FCF1A8A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

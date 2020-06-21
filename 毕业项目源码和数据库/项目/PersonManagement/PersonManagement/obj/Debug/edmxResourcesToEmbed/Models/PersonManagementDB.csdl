@@ -214,6 +214,10 @@
       <End Role="A_U_Message" EntitySet="A_U_Message" />
     </AssociationSet>
     <EntitySet Name="UserT" EntityType="PersonManagementModel.UserT" />
+    <AssociationSet Name="FK__A_U_Messa__UserI__2FCF1A8A" Association="PersonManagementModel.FK__A_U_Messa__UserI__2FCF1A8A">
+      <End Role="UserT" EntitySet="UserT" />
+      <End Role="A_U_Message" EntitySet="A_U_Message" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="proc_pay_Result">
     <Property Type="Int32" Name="findDay" Nullable="true" />
@@ -242,6 +246,8 @@
     <Property Name="EpmID" Type="Int32" Nullable="false" />
     <Property Name="Topic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Employment" Relationship="PersonManagementModel.FK__A_U_Messa__EpmID__14270015" FromRole="A_U_Message" ToRole="Employment" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserT" Relationship="PersonManagementModel.FK__A_U_Messa__UserI__2FCF1A8A" FromRole="A_U_Message" ToRole="UserT" />
   </EntityType>
   <Association Name="FK__A_P_Messa__Perso__10566F31">
     <End Type="PersonManagementModel.Person" Role="Person" Multiplicity="1" />
@@ -275,5 +281,18 @@
     <Property Name="PersonID" Type="Int32" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="UserPwd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="A_U_Message" Relationship="PersonManagementModel.FK__A_U_Messa__UserI__2FCF1A8A" FromRole="UserT" ToRole="A_U_Message" />
   </EntityType>
+  <Association Name="FK__A_U_Messa__UserI__2FCF1A8A">
+    <End Type="PersonManagementModel.UserT" Role="UserT" Multiplicity="1" />
+    <End Type="PersonManagementModel.A_U_Message" Role="A_U_Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="A_U_Message">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

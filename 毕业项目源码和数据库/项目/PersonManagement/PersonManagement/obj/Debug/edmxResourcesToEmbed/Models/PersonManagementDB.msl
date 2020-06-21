@@ -134,6 +134,7 @@
     <EntitySetMapping Name="A_U_Message">
       <EntityTypeMapping TypeName="PersonManagementModel.A_U_Message">
         <MappingFragment StoreEntitySet="A_U_Message">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Topic" ColumnName="Topic" />
           <ScalarProperty Name="EpmID" ColumnName="EpmID" />
           <ScalarProperty Name="ID" ColumnName="ID" />

@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminTController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\A_U_MessageController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmploymentController.cs" />
     <Compile Include="Controllers\FrontPageController.cs" />
@@ -292,6 +293,7 @@
     <Content Include="Views\FrontPage\FrontHome.cshtml" />
     <Content Include="Views\Employment\EpmAdd.cshtml" />
     <Content Include="Views\UserT\LoginRegister.cshtml" />
+    <Content Include="Views\A_U_Message\AUMInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
