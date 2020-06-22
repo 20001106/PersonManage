@@ -89,7 +89,15 @@ namespace PersonManagement.Controllers
                 epm.State = 1;
                 db.Entry(epm).State = EntityState.Modified;
 
-                db.Person.Add(person);
+                db.Person.Add(person);//添加进员工表
+
+                //处理用户管理表--提示已录取
+                A_U_Message aum = new A_U_Message();
+                aum.EpmID = epm.ID;
+                //aum.UserID = ;
+                aum.Topic = "恭喜你，已通过录用";
+                db.A_U_Message.Add(aum);
+
                 db.SaveChanges();
                 return RedirectToAction("PersonInfo", "Person");
             }
@@ -106,7 +114,7 @@ namespace PersonManagement.Controllers
         {
             db.Employment.Add(epm);
             db.SaveChanges();
-            //TempData["epmgo"] = "应聘成功，请等待后续通知，留意通知栏！";
+            TempData["epmgo"] = "应聘成功，请等待后续通知，留意通知栏！";
             return RedirectToAction("EpmAdd", "Employment");
         }
     }

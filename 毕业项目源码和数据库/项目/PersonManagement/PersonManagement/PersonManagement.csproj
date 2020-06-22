@@ -220,6 +220,7 @@
     <Content Include="Content\Images\demo4.jpg" />
     <Content Include="Content\Images\logo.jpg" />
     <Content Include="Content\Images\logoFront.jpg" />
+    <Content Include="Content\Images\move.gif" />
     <Content Include="Content\mincss\bootstrap.min.css" />
     <Content Include="Content\minjs\bootstrap.min.js" />
     <Content Include="favicon.ico" />

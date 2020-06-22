@@ -22,7 +22,7 @@
         <EntityTypeShape EntityType="PersonManagementModel.A_U_Message" Width="1.5" PointX="10.375" PointY="0.625" />
         <AssociationConnector Association="PersonManagementModel.FK__A_P_Messa__Perso__10566F31" />
         <AssociationConnector Association="PersonManagementModel.FK__A_U_Messa__EpmID__14270015" />
-        <EntityTypeShape EntityType="PersonManagementModel.UserT" Width="1.5" PointX="10.375" PointY="3" />
+        <EntityTypeShape EntityType="PersonManagementModel.UserT" Width="1.5" PointX="10.375" PointY="3.375" />
         <AssociationConnector Association="PersonManagementModel.FK__A_U_Messa__UserI__2FCF1A8A" />
       </Diagram>
     </edmx:Diagrams>
