@@ -32,28 +32,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employment">
-      <EntityTypeMapping TypeName="PersonManagementModel.Employment">
-        <MappingFragment StoreEntitySet="Employment">
-          <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Sex" ColumnName="Sex" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="IDCard" ColumnName="IDCard" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Native_place" ColumnName="Native_place" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="DptID" ColumnName="DptID" />
-          <ScalarProperty Name="Diploma" ColumnName="Diploma" />
-          <ScalarProperty Name="Major" ColumnName="Major" />
-          <ScalarProperty Name="Remark" ColumnName="Remark" />
-          <ScalarProperty Name="WorkExper" ColumnName="WorkExper" />
-          <ScalarProperty Name="State" ColumnName="State" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Pay">
       <EntityTypeMapping TypeName="PersonManagementModel.Pay">
         <MappingFragment StoreEntitySet="Pay">
@@ -134,9 +112,32 @@
     <EntitySetMapping Name="A_U_Message">
       <EntityTypeMapping TypeName="PersonManagementModel.A_U_Message">
         <MappingFragment StoreEntitySet="A_U_Message">
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="EpmID" ColumnName="EpmID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employment">
+      <EntityTypeMapping TypeName="PersonManagementModel.Employment">
+        <MappingFragment StoreEntitySet="Employment">
+          <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="WorkExper" ColumnName="WorkExper" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Major" ColumnName="Major" />
+          <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="DptID" ColumnName="DptID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Native_place" ColumnName="Native_place" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

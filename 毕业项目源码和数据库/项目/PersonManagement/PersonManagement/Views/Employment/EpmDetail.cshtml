@@ -7,6 +7,7 @@
 @using PersonManagement.Models
 @{
     Employment epm = ViewBag.EpmSingleDetail;
+    Department dpt = ViewBag.DptUser;
 }
 
 <style>
@@ -62,7 +63,7 @@
             </tr>
             <tr>
                 <td class="title">应聘部门：</td>
-                <td class="data_title">@epm.Department.Name</td>
+                <td class="data_title">@dpt.Name</td>
                 <td class="title">工作经验：</td>
                 <td class="data_title">@epm.WorkExper</td>
             </tr>

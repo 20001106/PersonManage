@@ -21,7 +21,9 @@ namespace PersonManagement.Controllers
         //查看应聘者详细信息
         public ActionResult EpmDetail(int? id)
         {
-            ViewBag.EpmSingleDetail = db.Employment.Find(id);
+            var epm = db.Employment.Find(id);
+            ViewBag.EpmSingleDetail = epm;
+            ViewBag.DptUser = db.Department.Where(p => p.ID == epm.DptID).SingleOrDefault();
             return View();
         }
 
@@ -80,7 +82,7 @@ namespace PersonManagement.Controllers
                 person.Native_place = epm.Native_place;
                 person.Phone = epm.Phone;
                 person.Email = epm.Email;
-                person.DptID = epm.Department.ID;
+                person.DptID = epm.DptID;
                 person.Diploma = epm.Diploma;
                 person.Major = epm.Major;
                 person.Remark = epm.Remark;
@@ -94,7 +96,7 @@ namespace PersonManagement.Controllers
                 //处理用户管理表--提示已录取
                 A_U_Message aum = new A_U_Message();
                 aum.EpmID = epm.ID;
-                //aum.UserID = ;
+                aum.UserID = epm.UserID;
                 aum.Topic = "恭喜你，已通过录用";
                 db.A_U_Message.Add(aum);
 
@@ -106,12 +108,28 @@ namespace PersonManagement.Controllers
         //招聘
         public ActionResult EpmAdd()
         {
+            string UserName = Session["FrontLoginName"].ToString();
+            var user = db.UserT.Where(p => p.UserName == UserName).SingleOrDefault();//获取用户
+            var epm = db.Employment.Where(p => p.UserID == user.ID).ToList();
+            if (epm == null)
+            {
+                ViewBag.EpmUser = epm;
+            }
+            else
+            {
+                ViewBag.EpmUser = epm;
+            }
+
             ViewBag.Dpt = db.Department.ToList();
             return View();
         }
         [HttpPost]
         public ActionResult EpmAdd(Employment epm)
         {
+            string UserName = Session["FrontLoginName"].ToString();
+            var user = db.UserT.Where(p => p.UserName == UserName).SingleOrDefault();//获取用户
+
+            epm.UserID = user.ID;
             db.Employment.Add(epm);
             db.SaveChanges();
             TempData["epmgo"] = "应聘成功，请等待后续通知，留意通知栏！";

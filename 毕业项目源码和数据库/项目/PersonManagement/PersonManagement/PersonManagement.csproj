@@ -214,6 +214,8 @@
     <Content Include="Content\Css\LayoutPersonCss.css" />
     <Content Include="Content\ECharts\echatrs.min.js" />
     <Content Include="Content\Images\back.jpg" />
+    <Content Include="Content\Images\CatWLogoFront.jpg" />
+    <Content Include="Content\Images\CatWLogoPerson.jpg" />
     <Content Include="Content\Images\demo1.jpg" />
     <Content Include="Content\Images\demo2.jpg" />
     <Content Include="Content\Images\demo3.jpg" />

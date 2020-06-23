@@ -30,6 +30,7 @@ namespace PersonManagement.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public int DptID { get; set; }
+        public int UserID { get; set; }
         public string Diploma { get; set; }
         public string Major { get; set; }
         public string Remark { get; set; }
@@ -37,7 +38,6 @@ namespace PersonManagement.Models
         public int State { get; set; }
         public int DeleteRecord { get; set; }
     
-        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<A_U_Message> A_U_Message { get; set; }
     }

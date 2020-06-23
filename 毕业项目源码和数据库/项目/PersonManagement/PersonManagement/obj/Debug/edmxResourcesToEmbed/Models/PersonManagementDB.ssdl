@@ -65,6 +65,7 @@
     <Property Name="Phone" Type="nvarchar" MaxLength="11" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DptID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="Diploma" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Major" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Remark" Type="nvarchar" MaxLength="200" />
@@ -131,7 +132,7 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="UserPwd" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <Association Name="FK__A_P_Messa__Perso__10566F31">
+  <Association Name="FK__A_P_Messa__Perso__01D345B0">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="A_P_Message" Type="Self.A_P_Message" Multiplicity="*" />
     <ReferentialConstraint>
@@ -143,7 +144,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__A_U_Messa__EpmID__2EDAF651">
+  <Association Name="FK__A_U_Messa__EpmID__0B5CAFEA">
     <End Role="Employment" Type="Self.Employment" Multiplicity="1" />
     <End Role="A_U_Message" Type="Self.A_U_Message" Multiplicity="*" />
     <ReferentialConstraint>
@@ -155,7 +156,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__A_U_Messa__UserI__2FCF1A8A">
+  <Association Name="FK__A_U_Messa__UserI__0C50D423">
     <End Role="UserT" Type="Self.UserT" Multiplicity="1" />
     <End Role="A_U_Message" Type="Self.A_U_Message" Multiplicity="*" />
     <ReferentialConstraint>
@@ -167,7 +168,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Attendanc__Perso__7D439ABD">
+  <Association Name="FK__Attendanc__Perso__793DFFAF">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
     <ReferentialConstraint>
@@ -179,19 +180,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employmen__DptID__75A278F5">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
-    <End Role="Employment" Type="Self.Employment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Department">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Employment">
-        <PropertyRef Name="DptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Pay__PersonID__02FC7413">
+  <Association Name="FK__Pay__PersonID__7EF6D905">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
     <ReferentialConstraint>
@@ -203,7 +192,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Person__DptID__7A672E12">
+  <Association Name="FK__Person__DptID__76619304">
     <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="Person" Type="Self.Person" Multiplicity="*" />
     <ReferentialConstraint>
@@ -215,7 +204,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Reward__PersonID__00200768">
+  <Association Name="FK__Reward__PersonID__7C1A6C5A">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
     <ReferentialConstraint>
@@ -242,35 +231,31 @@
     <EntitySet Name="Reward" EntityType="Self.Reward" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Train" EntityType="Self.Train" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserT" EntityType="Self.UserT" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__A_P_Messa__Perso__10566F31" Association="Self.FK__A_P_Messa__Perso__10566F31">
+    <AssociationSet Name="FK__A_P_Messa__Perso__01D345B0" Association="Self.FK__A_P_Messa__Perso__01D345B0">
       <End Role="Person" EntitySet="Person" />
       <End Role="A_P_Message" EntitySet="A_P_Message" />
     </AssociationSet>
-    <AssociationSet Name="FK__A_U_Messa__EpmID__2EDAF651" Association="Self.FK__A_U_Messa__EpmID__2EDAF651">
+    <AssociationSet Name="FK__A_U_Messa__EpmID__0B5CAFEA" Association="Self.FK__A_U_Messa__EpmID__0B5CAFEA">
       <End Role="Employment" EntitySet="Employment" />
       <End Role="A_U_Message" EntitySet="A_U_Message" />
     </AssociationSet>
-    <AssociationSet Name="FK__A_U_Messa__UserI__2FCF1A8A" Association="Self.FK__A_U_Messa__UserI__2FCF1A8A">
+    <AssociationSet Name="FK__A_U_Messa__UserI__0C50D423" Association="Self.FK__A_U_Messa__UserI__0C50D423">
       <End Role="UserT" EntitySet="UserT" />
       <End Role="A_U_Message" EntitySet="A_U_Message" />
     </AssociationSet>
-    <AssociationSet Name="FK__Attendanc__Perso__7D439ABD" Association="Self.FK__Attendanc__Perso__7D439ABD">
+    <AssociationSet Name="FK__Attendanc__Perso__793DFFAF" Association="Self.FK__Attendanc__Perso__793DFFAF">
       <End Role="Person" EntitySet="Person" />
       <End Role="Attendance" EntitySet="Attendance" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employmen__DptID__75A278F5" Association="Self.FK__Employmen__DptID__75A278F5">
-      <End Role="Department" EntitySet="Department" />
-      <End Role="Employment" EntitySet="Employment" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Pay__PersonID__02FC7413" Association="Self.FK__Pay__PersonID__02FC7413">
+    <AssociationSet Name="FK__Pay__PersonID__7EF6D905" Association="Self.FK__Pay__PersonID__7EF6D905">
       <End Role="Person" EntitySet="Person" />
       <End Role="Pay" EntitySet="Pay" />
     </AssociationSet>
-    <AssociationSet Name="FK__Person__DptID__7A672E12" Association="Self.FK__Person__DptID__7A672E12">
+    <AssociationSet Name="FK__Person__DptID__76619304" Association="Self.FK__Person__DptID__76619304">
       <End Role="Department" EntitySet="Department" />
       <End Role="Person" EntitySet="Person" />
     </AssociationSet>
-    <AssociationSet Name="FK__Reward__PersonID__00200768" Association="Self.FK__Reward__PersonID__00200768">
+    <AssociationSet Name="FK__Reward__PersonID__7C1A6C5A" Association="Self.FK__Reward__PersonID__7C1A6C5A">
       <End Role="Person" EntitySet="Person" />
       <End Role="Reward" EntitySet="Reward" />
     </AssociationSet>
