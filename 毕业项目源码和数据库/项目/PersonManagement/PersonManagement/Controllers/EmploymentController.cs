@@ -110,16 +110,12 @@ namespace PersonManagement.Controllers
         {
             string UserName = Session["FrontLoginName"].ToString();
             var user = db.UserT.Where(p => p.UserName == UserName).SingleOrDefault();//获取用户
-            var epm = db.Employment.Where(p => p.UserID == user.ID).ToList();
+            var epm = db.Employment.Where(p => p.UserID == user.ID).SingleOrDefault();
             if (epm == null)
             {
-                ViewBag.EpmUser = epm;
+                epm = null;
             }
-            else
-            {
-                ViewBag.EpmUser = epm;
-            }
-
+            ViewBag.EpmUser = epm;
             ViewBag.Dpt = db.Department.ToList();
             return View();
         }

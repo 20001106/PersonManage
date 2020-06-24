@@ -211,6 +211,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Css\LayoutFrontCss.css" />
+    <Content Include="Content\Css\LayoutPersonCenter.css" />
     <Content Include="Content\Css\LayoutPersonCss.css" />
     <Content Include="Content\ECharts\echatrs.min.js" />
     <Content Include="Content\Images\back.jpg" />
@@ -297,6 +298,8 @@
     <Content Include="Views\Employment\EpmAdd.cshtml" />
     <Content Include="Views\UserT\LoginRegister.cshtml" />
     <Content Include="Views\A_U_Message\AUMInfo.cshtml" />
+    <Content Include="Views\Shared\_LayoutPersonCenter.cshtml" />
+    <Content Include="Views\Person\PUCenter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
