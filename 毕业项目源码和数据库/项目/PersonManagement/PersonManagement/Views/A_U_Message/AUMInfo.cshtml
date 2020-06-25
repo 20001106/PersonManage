@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "AUMInfo";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+}
+
+@using PersonManagement.Models;
+@{
+    UserT user = ViewBag.User;
+    A_U_Message aum = ViewBag.Aum;
+    Employment epm = ViewBag.EpmUser;
+    Department dpt = ViewBag.DptUser;
+}
+
+<style>
+    #aum {
+        width: 70%;
+        height: 500px;
+        background-color: ghostwhite;
+        margin: 50px 15%;
+        box-shadow: 0px 5px 10px grey;
+        border-radius: 5px;
+        display: block;
+    }
+    dl{
+        width: 48%;
+        height: 460px;
+        margin-top: 30px;
+    }
+    .item1{
+        float: left;
+    }
+    .item1 dt{
+        width: 100%;
+        height: 300px;
+    }
+    .item1 dt img{
+        width: 80%;
+        height: 250px;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-left: 15%;
+    }
+    .item1 dd{
+        text-align: center;
+        font-size: 18px;
+        color: red;
+    }
+    .item2{
+        float: right;
+        border-left: 1px dashed grey;
+    }
+    .item2 dt {
+        text-align: center;
+        width: 100%;
+        height: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        color: white;
+        background-color: cornflowerblue;
+    }
+    .item2 dd{
+        text-indent: 1em;
+        font-size: 16px;
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+    }
+</style>
+
+<div id="aum">
+    <dl class="item1">
+        <dt><img src="~/Content/Images/move.gif" title="欢迎.gif"/></dt>
+        @if (aum == null)
+        {
+            <dd style="color:black;">暂无已录用消息！</dd>
+        }
+        else
+        {
+            <dd>@aum.Topic，请单击确认，同步员工信息！</dd>
+            <dd><a href="#" onclick="OKPerson()" class="btn btn-info">确认</a></dd>
+        }
+    </dl>
+    <dl class="item2">
+        <dt>应聘信息</dt>
+        @if (epm == null)
+        {
+            <dd>你还没应聘！<a href="/Employment/EpmAdd">前往</a></dd>
+        }
+        else
+        {
+            <dd>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<span id="NameTag">@epm.Name</span></dd>
+            <dd>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：@epm.Age</dd>
+            <dd>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：@epm.Sex</dd>
+            <dd>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业：@epm.Major</dd>
+            <dd>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历：@epm.Diploma</dd>
+            <dd>工作经验：@epm.WorkExper</dd>
+            <dd>应聘部门：@dpt.Name</dd>
+            <dd>籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贯：@epm.Native_place</dd>
+            <dd>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：@epm.Address</dd>
+            <dd>手机号码：@epm.Phone</dd>
+            <dd>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：@epm.Email</dd>
+            <dd>身份证号：@epm.IDCard</dd>
+            <dd>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：@epm.Remark</dd>
+        }
+    </dl>
+</div>
+
+<script type="text/javascript">
+    function OKPerson() {
+        $.ajax({
+            url: "/A_U_Message/P_U_Add",
+            type: "post",
+            data: { "NameTag": $("#NameTag").html() },
+            success: function (data) {
+                if (data == "false") {
+                    alert("请勿重复确认！");
+                }
+                if (data == "true") {
+                    alert("恭喜你，已成为我们的一员！");
+                }
+            }
+        })
+    }
+</script>

@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "FrontHome";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/mincss/bootstrap.min.css">
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Content/minjs/bootstrap.min.js"></script>
+
+<style>
+    #demo_div {
+        width: 80%;
+        height: 1000px;
+        margin: 50px 10%;
+    }
+    .carousel-inner img {
+        width: 100%;
+        height: 450px;
+    }
+    #referral {
+        width: 80%;
+        height: 500px;
+        margin: 50px 10%;
+    }
+    #referral h1 {
+        width: 100%;
+        height: 80px;
+        text-align: center;
+        line-height: 80px;
+    }
+    .rfitem1 {
+        width: 100%;
+        height: 400px;
+    }
+    .rfitem1_left {
+        width: 46%;
+        height: 400px;
+        float: left;
+    }
+    .rfitem1_right {
+        width: 46%;
+        height: 400px;
+        float: right;
+    }
+    .left_item1 {
+        width: 100%;
+        height: 190px;
+        border-radius: 4px;
+        border: 1px solid slateblue;
+    }
+    .left_item2 {
+        width: 100%;
+        height: 190px;
+        margin-top: 19px;
+        border-radius: 4px;
+        border: 1px solid slateblue;
+    }
+    .right_item3 {
+        width: 100%;
+        height: 400px;
+        border-radius: 4px;
+        border: 1px solid slateblue;
+    }
+    h2 {
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        background-color: cornflowerblue;
+    }
+    .item_dl {
+        width: 100%;
+        height: 120px;
+        margin: 10px 0px;
+    }
+    .item_dl dl {
+        width: 31%;
+        height: 120px;
+        float: left;
+        margin: 0px 1%;
+    }
+    .item_dl dl dt {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        color: dodgerblue;
+        font-weight: normal;
+        font-size: 18px;
+    }
+    .item_dl dl dd {
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        font-weight: normal;
+        font-size: 14px;
+    }
+    .item4 {
+        width: 96%;
+        height: 100px;
+        margin: 12px 2%;
+        border-bottom: 1px dashed grey;
+    }
+    .item4 span {
+        width: 24%;
+        height: 100px;
+        float: left;
+        display: block;
+        text-align: center;
+        line-height: 100px;
+        font-size: 50px;
+        color: cornflowerblue;
+        cursor: pointer;
+    }
+    .item4 p {
+        width: 74%;
+        height: 100px;
+        text-align: left;
+        font-size: 14px;
+        float: right;
+        line-height: 24px;
+    }
+    .lun {
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px gray;
+    }
+</style>
+
+<div id="demo_div">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+        </ul>
+        <div class="carousel-inner lun">
+            <div class="carousel-item">
+                <img src="~/Content/Images/demo1.jpg">
+            </div>
+            <div class="carousel-item active">
+                <img src="~/Content/Images/demo2.jpg">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/Images/demo3.jpg">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/Images/demo4.jpg">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+
+    <div id="referral">
+        <h1>CatW公司简介</h1>
+        <div class="rfitem1">
+            <div class="rfitem1_left">
+                <div class="left_item1">
+                    <h2 title="三个主要有关员工与应聘者的管理模式">三主管理</h2>
+                    <div class="item_dl">
+                        <dl style="border-right:1px dashed grey;">
+                            <dt>部门管理</dt>
+                            <dd>应聘部门</dd>
+                            <dd>部门培训</dd>
+                            <dd>互助互竞争</dd>
+                        </dl>
+                        <dl style="border-right:1px dashed grey;">
+                            <dt>员工管理</dt>
+                            <dd>日常工作</dd>
+                            <dd>个人中心</dd>
+                            <dd>考勤与薪资</dd>
+                        </dl>
+                        <dl>
+                            <dt>应聘管理</dt>
+                            <dd>填写信息</dd>
+                            <dd>等候通知</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="left_item2">
+                    <h2 title="三个与员工相关的管理模式">三员管理</h2>
+                    <div class="item_dl">
+                        <dl style="border-right:1px dashed grey;">
+                            <dt>奖惩管理</dt>
+                            <dd>获得奖励</dd>
+                            <dd>惩罚</dd>
+                        </dl>
+                        <dl style="border-right:1px dashed grey;">
+                            <dt>薪资管理</dt>
+                            <dd>日结工资</dd>
+                            <dd>能者多奖</dd>
+                        </dl>
+                        <dl>
+                            <dt>信息管理</dt>
+                            <dd>信息反馈</dd>
+                            <dd>查看个人信息</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="rfitem1_right">
+                <div class="right_item3">
+                    <h2 title="自我提升">CatW人力</h2>
+                    <div class="item4">
+                        <span class="glyphicon glyphicon-collapse-up"></span>
+                        <p><br />私人定制工作计划：<br />分析工作、预测自我能力、给出建议</p>
+                    </div>
+                    <div class="item4">
+                        <span class="glyphicon glyphicon-hourglass"></span>
+                        <p><br />时间管理--合作与竞争：<br />合作中的时间竞争、竞争中的一起进步</p>
+                    </div>
+                    <div class="item4">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                        <p><br />列表计划：<br />考勤-奖惩-薪资-培训-反馈五体化、详细规划</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

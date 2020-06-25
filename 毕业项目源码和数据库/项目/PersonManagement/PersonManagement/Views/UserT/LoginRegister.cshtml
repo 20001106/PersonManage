@@ -1,0 +1,239 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CatW人力资源网登录--注册</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        background-image: url("/Content/Images/demo1.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+    .All {
+        width: 40%;
+        height: 400px;
+        margin: 120px 30%;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px grey;
+    }
+    #formLogin {
+        background-color: ghostwhite;
+        opacity: 0.8;
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+        display: block;
+    }
+    .title {
+        width: 100%;
+        height: 80px;
+        text-align: center;
+        line-height: 80px;
+        border-bottom: 2px solid lightblue;
+    }
+    .form-text {
+        text-align: center;
+        line-height: 25px;
+    }
+    #formRegister {
+        background-color: ghostwhite;
+        opacity: 0.8;
+        width: 100%;
+        height: 400px;
+        border-radius: 10px;
+        display: none;
+    }
+    .form-textt {
+        text-align: center;
+        line-height: 20px;
+    }
+</style>
+</head>
+<body>
+
+    <div class="All">
+        @*登录*@
+        <div id="formLogin">
+            <h3 class="title">CatW人力资源网--登录</h3>
+            <div style="width:100%;height:50px;"></div>
+            <div class="form-inline form-group form-text">
+                <label for="UserName">用户名：</label>
+                <input type="text" name="UserName" maxlength="10" onfocus="UserNamefocus()" class="form-control" style="width:35%;" placeholder="请输入用户名" />
+            </div>
+            <p class="UserNameTips" style="color:red;text-align:center;"></p>
+            <div class="form-inline form-group form-text">
+                <label for="UserPwd">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                <input type="password" name="UserPwd" maxlength="10" onfocus="UserPwdfocus()" class="form-control" style="width:35%;" placeholder="请输入密码" />
+            </div>
+            <p class="UserPwdTips" style="color:red;text-align:center;"></p>
+            <p class="twoTips" style="color:red;text-align:center;"></p>
+            <div class="form-inline form-group form-text">
+                <a href="#" onclick="checkValiad()" class="btn btn-info">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+                <span>没有账户？<a href="#" onclick="showRegister()">注册</a></span>
+            </div>
+        </div>
+        @*注册*@
+        <div id="formRegister">
+            <h3 class="title">CatW人力资源网--注册</h3>
+            <div style="width:100%;height:30px;"></div>
+            <div class="form-inline form-group form-textt">
+                <label for="UserNameR">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label>
+                <input type="text" name="UserNameR" maxlength="10" onfocus="UserNameRfocus()" class="form-control" style="width:35%;" placeholder="请输入用户名" />
+            </div>
+            <p class="UserNameRTips" style="color:red;text-align:center;"></p>
+            <div class="form-inline form-group form-textt">
+                <label for="UserPwdR">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                <input type="password" name="UserPwdR" maxlength="10" onfocus="UserPwdRfocus()" class="form-control" style="width:35%;" placeholder="请输入密码" />
+            </div>
+            <p class="UserPwdRTips" style="color:red;text-align:center;"></p>
+            <div class="form-inline form-group form-textt">
+                <label for="UserPwdRO">确认密码：</label>
+                <input type="password" name="UserPwdRO" maxlength="10" onfocus="UserPwdROfocus()" class="form-control" style="width:35%;" placeholder="请再次输入密码" />
+            </div>
+            <p class="UserPwdROTips" style="color:red;text-align:center;"></p>
+            <p class="threeTips" style="color:red;text-align:center;"></p>
+            <div class="form-inline form-group form-textt">
+                <a href="#" onclick="checkValiadR()" class="btn btn-info">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册</a>
+                <span>已有账户？<a href="#" onclick="showLogin()">登录</a></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function checkValiad() {
+        $.ajax({
+            url: "/UserT/Login",
+            type: "post",
+            data: { "UserName": $("input[name='UserName']").val(), "UserPwd": $("input[name='UserPwd']").val() },
+            success: function (data) {
+                if (data == "false") {
+                    $(".UserNameTips").html("用户名为空！");
+                    $(".UserPwdTips").html("密码为空！");
+                }
+                if (data == "UserNamefalse") {
+                    $(".UserNameTips").html("用户名为空！");
+                }
+                if (data == "UserPwdfalse") {
+                    $(".UserPwdTips").html("密码为空！");
+                }
+                if (data == "false1") {
+                    $(".twoTips").html("用户名或密码错误！");
+                }
+                if (data == "true") {
+                    window.location.href = "/FrontPage/FrontHome";
+                }
+            }
+        })
+    }
+
+    function UserNamefocus() {
+        $(".UserNameTips").html("");
+        $(".twoTips").html("");
+    }
+
+    function UserPwdfocus() {
+        $(".UserPwdTips").html("");
+        $(".twoTips").html("");
+    }
+    //登录部分
+
+    //注册部分
+    function checkValiadR() {
+        $.ajax({
+            url: "/UserT/Register",
+            type: "post",
+            data: {
+                "UserNameR": $("input[name='UserNameR']").val(),
+                "UserPwdR": $("input[name='UserPwdR']").val(),
+                "UserPwdRO": $("input[name='UserPwdRO']").val()
+            },
+            success: function (data) {
+                if (data == "false") {
+                    $(".UserNameRTips").html("用户名为空！");
+                    $(".UserPwdRTips").html("密码为空！");
+                    $(".UserPwdROTips").html("确认密码为空！");
+                }
+                if (data == "UserNameRfalse") {
+                    $(".UserNameRTips").html("用户名为空！");
+                }
+                if (data == "UN") {
+                    $(".UserNameRTips").html("已存在该用户，请重新输入！");
+                }
+                if (data == "UserPwdRfalse") {
+                    $(".UserPwdRTips").html("密码为空！");
+                }
+                if (data == "UserPwdROfalse") {
+                    $(".UserPwdROTips").html("确认密码为空！");
+                }
+                if (data == "RO") {
+                    $(".threeTips").html("两次密码不一致，请重新输入！");
+                }
+                if (data == "true") {
+                    alert('注册成功！');
+                    window.location.href = "/UserT/LoginRegister";
+                }
+            }
+        })
+    }
+
+    function UserNameRfocus() {
+        $(".UserNameRTips").html("");
+        $(".threeTips").html("");
+    }
+
+    function UserPwdRfocus() {
+        $(".UserPwdRTips").html("");
+        $(".threeTips").html("");
+    }
+
+    function UserPwdROfocus() {
+        $(".UserPwdROTips").html("");
+        $(".threeTips").html("");
+    }
+
+
+    //跳转
+    function showLogin() {
+        document.getElementById("formRegister").style.display = 'none';
+        document.getElementById("formLogin").style.display = 'block';
+
+        $("input[name='UserNameR']").val("");
+        $("input[name='UserPwdR']").val("");
+        $("input[name='UserPwdRO']").val("");
+
+        $(".UserNameRTips").html("");
+        $(".UserPwdRTips").html("");
+        $(".UserPwdROTips").html("");
+        $(".threeTips").html("");
+    }
+
+    function showRegister() {
+        document.getElementById("formLogin").style.display = 'none';
+        document.getElementById("formRegister").style.display = 'block';
+
+        $("input[name='UserName']").val("");
+        $("input[name='UserPwd']").val("");
+
+        $(".UserNameTips").html("");
+        $(".UserPwdTips").html("");
+        $(".twoTips").html("");
+    }
+</script>

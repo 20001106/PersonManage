@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CatW人力资源网</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Css/LayoutFrontCss.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="top_view">
+        <ul class="nav_head">
+            <li class="logo">
+                <img src="~/Content/Images/CatWLogoFront.jpg" title="猫赢logo" />
+            </li>
+            <li class="head">
+                <ul class="nav_ul_li">
+                    @if (Session["FrontLoginName"] == null)
+                    {
+                        <li><a href="/FrontPage/FrontHome">首页</a></li>
+                    }
+                    else
+                    {
+                        if (Session["ruserID"].ToString() == "0")
+                        {
+                            <li><a href="/FrontPage/FrontHome">首页</a></li>
+                            <li><a href="/Employment/EpmAdd">应聘</a></li>
+                            <li><a href="/A_U_Message/AUMInfo">通知栏</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/FrontPage/FrontHome">首页</a></li>
+                            <li><a href="/Person/PUCenter">个人中心</a></li>
+                            <li><a href="#">更多</a></li>
+                        }
+                        <li>
+                            <a href="/FrontPage/LogOut" style="font-size:14px;color:dodgerblue;" onclick="return confirm('确认注销吗？')">
+                                注销
+                                <span class="glyphicon glyphicon-log-out"></span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            <li class="loginRegister">
+                @if (Session["FrontLoginName"] == null)
+                {
+                    <a href="/UserT/LoginRegister" class="lr"><span class="glyphicon glyphicon-user"></span>登录&nbsp;\&nbsp;注册</a>
+                }
+                else
+                {
+                    if (Session["ruserID"].ToString() == "0")
+                    {
+                        <div class="person">欢迎回来--@Session["FrontLoginName"]！</div>
+                    }
+                    else
+                    {
+                        <div class="person">员工--@Session["FrontLoginName"]！</div>
+                    }
+                }
+            </li>
+            </ul>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <div id="foot_view">
+        <div class="none"></div>
+        <ul class="nav_item">
+            <li style="margin-left:35%;">关于我们</li>
+            <li>|</li>
+            <li>免责声明</li>
+            <li>|</li>
+            <li>隐私保护</li>
+            <li>|</li>
+            <li>快速审核</li>
+            <li>|</li>
+            <li>最新招聘</li>
+        </ul>
+        <ul class="nav_item">
+            <li style="margin-left:35%;">联系我们</li>
+            <li>|</li>
+            <li>公司简介</li>
+            <li>|</li>
+            <li>投诉咨询</li>
+            <li>|</li>
+            <li>法律声明</li>
+            <li>|</li>
+            <li>业务办理</li>
+        </ul>
+        <p id="copyright">Copyrigt &copy; 2020 CatW 版权所有 | 举报邮箱：<a href="#">15273572765@163.com</a></p>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

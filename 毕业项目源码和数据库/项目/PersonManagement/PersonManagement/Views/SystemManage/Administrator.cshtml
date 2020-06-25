@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Administrator";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<AdminT> admin = ViewBag.Admin;
+}
+
+<style>
+    #detail {
+        width: 70%;
+        height: 400px;
+        margin: 100px 15%;
+    }
+    .title {
+        width: 1%;
+        font-weight: bold;
+    }
+    .data_title {
+        width: 6%;
+    }
+    #edit_admin {
+        width: 30%;
+        height: 300px;
+        border-radius: 10px;
+        position: absolute;
+        top: 200px;
+        left: 40%;
+        background-color: lavender;
+        box-shadow: 0px 2px 8px grey;
+        display: none;
+    }
+    #form1 {
+        text-align: center;
+    }
+</style>
+
+<div id="detail">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">管理员信息</h3>
+        </div>
+        <div class="panel-body">
+            <a href="#" onclick="show()" class="btn btn-info" style="width:8%;">编&nbsp;&nbsp;辑</a>
+        </div>
+        <table class="table">
+            @foreach (var item in admin)
+            {
+                <tr>
+                    <td class="title">编号：</td>
+                    <td class="data_title">@item.ID</td>
+                    <td class="title">管理员：</td>
+                    <td class="data_title">@item.LoginName</td>
+                    <td class="title">密码：</td>
+                    <td class="data_title">
+                        @if (item.LoginName == Session["LoginName"].ToString())
+                        {
+                            <span>@item.LoginPwd</span>
+                        }
+                        else
+                        {
+                            <span style="font-size:18px;">******</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div id="edit_admin">
+    <h4 style="border-bottom:1px solid grey;height:25px;">
+        &nbsp;
+        <a href="#" onclick="closed()" class="glyphicon glyphicon-remove" title="关闭"></a>
+    </h4><br /><br />
+    <div id="form1">
+        <div class="form-group form-inline">
+            <label for="LoginName">管理：</label>
+            <input type="text" name="LoginName" value="@Session["LoginName"]" readonly="readonly" class="form-control" style="width:45%;background-color:white;" />
+        </div><br />
+        <div class="form-group form-inline">
+            <label for="LoginPwd">密码：</label>
+            <input type="text" name="LoginPwd" onfocus="checkLoginPwd()" value="" class="form-control" style="width:45%;" placeholder="请修改 @Session["LoginName"] 管理员的密码" />
+        </div><p style="color:red;text-align:center;" class="LoginPwd"></p>
+        <div class="form-group form-inline">
+            <a href="#" onclick="checkValiad()" class="btn btn-info">保&nbsp;&nbsp;存</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function checkValiad() {
+        $.ajax({
+            url: "/SystemManage/AdminUpdate",
+            type: "post",
+            data: { "LoginName": $("input[name='LoginName']").val(), "LoginPwd": $("input[name='LoginPwd']").val() },
+            success: function (data) {
+                if (data == "false") {
+                    $(".LoginPwd").html("请先登录！");
+                }
+                if (data == "false1") {
+                    $(".LoginPwd").html("修改密码不能为空！");
+                }
+                if (data == "true") {
+                    window.location.href = "/SystemManage/Administrator";
+                }
+            }
+        })
+    }
+
+    function show() {
+        document.getElementById("edit_admin").style.display = 'block';
+        $(".LoginPwd").html("");
+    }
+
+    function closed() {
+        document.getElementById("edit_admin").style.display = 'none';
+        $(".LoginPwd").html("");
+    }
+
+    function checkLoginPwd() {
+        $(".LoginPwd").html("");
+    }
+</script>
