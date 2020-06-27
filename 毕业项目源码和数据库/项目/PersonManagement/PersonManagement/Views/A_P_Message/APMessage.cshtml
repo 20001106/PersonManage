@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "APMessage";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<A_P_Message> apm = ViewBag.Apm;
+    List<Person> person = ViewBag.Person;
+}
+
+<style>
+    #forma {
+        width: 80%;
+        height: 40px;
+        margin-top: 40px;
+        margin-left: 10%;
+    }
+    table {
+        text-align: center;
+        overflow: auto;
+        margin: 10px 10%;
+        max-height: 300px;
+    }
+
+    tr {
+        height: 30px;
+    }
+
+    table tr:hover {
+        background-color: whitesmoke;
+    }
+
+    tr th {
+        cursor: pointer;
+    }
+</style>
+
+<div id="forma" class="form-inline">
+    <form action="/A_P_Message/APMessage" method="post" class="form-inline" style="width:30%;">
+        <label style="font-weight:bold;" for="State">回复状态：</label>
+        <select type="text" class="form-control" name="State">
+            <option value="">--请选择--</option>
+            <option value="全部">全部</option>
+            <option value="1">已回复</option>
+            <option value="0">未回复</option>
+        </select>
+        <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
+    </form>
+    <form action="/A_P_Message/APMessage" method="post" class="form-inline" style="width:30%;margin-top:-34px;margin-left:25%;">
+        <label style="font-weight:bold;" for="Name">员工姓名：</label>
+        <select type="text" class="form-control" name="ID">
+            <option value="">--请选择--</option>
+            <option value="全部">全部</option>
+            @foreach (var item in person)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+        <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
+    </form>
+    <form action="/A_P_Message/APMessage" method="post" style="float:right;margin-top:-34px;">
+        <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
+    </form>
+</div>
+
+@if (apm.Count == 0)
+{
+    <p style="margin-left:10%">暂无数据！</p>
+}
+else
+{
+    <table border="1" width="80%">
+        <tr>
+            <th style="width:5%;font-weight:bold;">编号</th>
+            <th style="width:8%;">姓名</th>
+            <th style="width:10%;">时间</th>
+            <th style="width:20%;">信息</th>
+            <th style="width:20%;">原因</th>
+            <th style="width:10%;">状态</th>
+            <th style="width:8%;">操作</th>
+        </tr>
+        @foreach (var item in apm)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Person.Name</td>
+                <td>@item.SendTime</td>
+                <td>@item.Message</td>
+                <td>@item.Reason</td>
+                <td>
+                    @if (item.State == 0)
+                    {
+                        @:未回复
+                    }
+                    else
+                    {
+                        @:已回复
+                    }
+                </td>
+                <td>
+                    @if (item.State == 0)
+                    {
+                        <a href="/A_P_Message/APMReply?id=@item.ID" class="btn btn-info">回&nbsp;&nbsp;复</a>
+                    }
+                    else
+                    {
+                        <a href="/A_P_Message/APMLook?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}

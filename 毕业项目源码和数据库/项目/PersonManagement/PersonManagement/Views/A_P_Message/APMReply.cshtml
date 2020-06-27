@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "APMReply";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    A_P_Message apm = ViewBag.APMPersonSingle;
+}
+
+<style>
+    #form1 {
+        width: 50%;
+        height: 100px;
+        margin: 150px 25%;
+    }
+    .form_text {
+        margin-top: 30px;
+        text-align: center;
+    }
+</style>
+
+<div id="form1">
+    <div class="form-inline form_text">
+        <label for="PersonID">员工姓名：</label>
+        <input type="text" name="PersonID" value="@apm.Person.Name" class="form-control" style="width:40%;" readonly="readonly" />
+    </div>
+    <div class="form-inline form_text">
+        <label for="ReplyMessage">回复内容：</label>
+        <input type="hidden" name="ID" value="@apm.ID" />
+        <textarea name="ReplyMessage" id="ReplyMessage" class="form-control" onclick="ReplyMessage()" style="width:40%;height:80px;" placeholder="请输入回复内容"></textarea>
+    </div>
+    <p class="ReplyMessageTips" style="color:red;text-align:center;"></p>
+    <div class="form-group form_text">
+        <a href="#" class="btn btn-info" onclick="checkValiad()">回&nbsp;&nbsp;复</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function checkValiad() {
+        $.ajax({
+            url: "/A_P_Message/APMReply",
+            type: "post",
+            data: {
+                "ID": $("input[name='ID']").val(),
+                "ReplyMessage": $("#ReplyMessage").val()
+            },
+            success: function (data) {
+                if (data == "false") {
+                    $(".ReplyMessageTips").html("回复内容不能为空！");
+                }
+                if (data == "true") {
+                    window.location.href = "/A_P_Message/APMessage?id=@apm.ID";
+                }
+            }
+        })
+    }
+
+    function ReplyMessage() {
+        $(".ReplyMessageTips").html("");
+    }
+</script>

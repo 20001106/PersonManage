@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "APMLook";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    A_P_Message apm = ViewBag.APMPersonSingle;
+}
+
+<style>
+    #detail {
+        width: 70%;
+        height: 400px;
+        margin: 80px 15%;
+    }
+
+    .title {
+        font-weight: bold;
+        width: 35%;
+    }
+</style>
+
+<div id="detail">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">回复 <span style="font-weight: bold;">@apm.Person.Name</span> 员工的信息</h3>
+        </div>
+        <div class="panel-body">
+            <span style="font-weight:bold;">回复人：</span>@apm.ReplyAdmin
+        </div>
+        <table class="table">
+            <tr>
+                <td class="title">编号：</td>
+                <td>@apm.ID</td>
+            </tr>
+            <tr>
+                <td class="title">状态：</td>
+                <td>
+                    @if (apm.State == 0)
+                    {
+                        @:0
+                    }
+                    else
+                    {
+                        @:1
+                    }
+                    (0:未回复,1:已回复)
+                </td>
+            </tr>
+            <tr>
+                <td class="title">时间：</td>
+                <td>@apm.SendTime</td>
+            </tr>
+            <tr>
+                <td class="title">信息：</td>
+                <td>@apm.Message</td>
+            </tr>
+            <tr>
+                <td class="title">原因：</td>
+                <td>@apm.Reason</td>
+            </tr>
+            <tr>
+                <td class="title">回复时间：</td>
+                <td>@apm.ReplyTime</td>
+            </tr>
+            <tr>
+                <td class="title">回复信息：</td>
+                <td>@apm.ReplyMessage</td>
+            </tr>
+        </table>
+    </div>
+    <a href="/A_P_Message/APMessage" class="btn btn-info">返&nbsp;&nbsp;回</a>
+</div>

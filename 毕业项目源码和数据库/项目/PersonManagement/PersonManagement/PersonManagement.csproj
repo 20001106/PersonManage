@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminTController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\A_P_MessageController.cs" />
     <Compile Include="Controllers\A_U_MessageController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmploymentController.cs" />
@@ -300,6 +301,9 @@
     <Content Include="Views\A_U_Message\AUMInfo.cshtml" />
     <Content Include="Views\Shared\_LayoutPersonCenter.cshtml" />
     <Content Include="Views\Person\PUCenter.cshtml" />
+    <Content Include="Views\A_P_Message\APMessage.cshtml" />
+    <Content Include="Views\A_P_Message\APMReply.cshtml" />
+    <Content Include="Views\A_P_Message\APMLook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
