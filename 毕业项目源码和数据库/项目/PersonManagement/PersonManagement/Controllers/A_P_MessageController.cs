@@ -30,10 +30,18 @@ namespace PersonManagement.Controllers
                     int sid = int.Parse(State);
                     ViewBag.Apm = db.A_P_Message.OrderByDescending(p => p.SendTime).Where(n => State == "" || n.State == sid).ToList();
                 }
+                if (State == "--请选择--")
+                {
+                    ViewBag.Apm = null;
+                }
             }
             else if (!string.IsNullOrEmpty(ID))
             {
-                if (ID == "全部")
+                if (ID == "--请选择--")
+                {
+                    ViewBag.Apm = null;
+                }
+                else if (ID == "全部")
                 {
                     ViewBag.Apm = db.A_P_Message.OrderByDescending(p => p.SendTime).ToList();
                 }

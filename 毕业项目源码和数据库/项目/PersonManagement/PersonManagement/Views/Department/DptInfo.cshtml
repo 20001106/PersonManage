@@ -29,8 +29,8 @@
 
 <form action="/Department/DptInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
     <label style="font-weight:bold;" for="Name">部门名称：</label>
-    <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请输入部门名称" />
-    <input type="submit" value="搜&nbsp;&nbsp;索" class="btn btn-info" />
+    <input type="text" class="form-control" name="Name" value="@ViewBag.Name" id="content_name" placeholder="请筛选部门名称" />
+    <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
     <span style="color:red;margin-left:5%;" id="DptTips">@TempData["Tips"]</span>
 </form>
 <form action="/Department/DptInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">

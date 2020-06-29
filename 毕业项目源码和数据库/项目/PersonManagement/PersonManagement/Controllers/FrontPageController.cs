@@ -24,5 +24,11 @@ namespace PersonManagement.Controllers
             Session.Clear();//清除Session
             return RedirectToAction("LoginRegister","UserT");
         }
+
+        //更多
+        public ActionResult More()
+        {
+            return View();
+        }
     }
 }

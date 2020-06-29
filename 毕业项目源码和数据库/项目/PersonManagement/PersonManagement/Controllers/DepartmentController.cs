@@ -87,7 +87,6 @@ namespace PersonManagement.Controllers
             Department newDpt = (from d in db.Department where d.ID == Dpt.ID select d).Single();
             newDpt.BasicPay = Dpt.BasicPay;
             newDpt.Remark = Dpt.Remark;
-            newDpt.CreateTime = Dpt.CreateTime;
             db.Entry(newDpt).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("DptDetail","Department", new { id=Dpt.ID });

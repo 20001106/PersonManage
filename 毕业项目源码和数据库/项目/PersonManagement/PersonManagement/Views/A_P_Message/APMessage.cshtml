@@ -41,7 +41,7 @@
     <form action="/A_P_Message/APMessage" method="post" class="form-inline" style="width:30%;">
         <label style="font-weight:bold;" for="State">回复状态：</label>
         <select type="text" class="form-control" name="State">
-            <option value="">--请选择--</option>
+            <option value="--请选择--">--请选择--</option>
             <option value="全部">全部</option>
             <option value="1">已回复</option>
             <option value="0">未回复</option>
@@ -51,7 +51,7 @@
     <form action="/A_P_Message/APMessage" method="post" class="form-inline" style="width:30%;margin-top:-34px;margin-left:25%;">
         <label style="font-weight:bold;" for="Name">员工姓名：</label>
         <select type="text" class="form-control" name="ID">
-            <option value="">--请选择--</option>
+            <option value="--请选择--">--请选择--</option>
             <option value="全部">全部</option>
             @foreach (var item in person)
             {
@@ -65,7 +65,7 @@
     </form>
 </div>
 
-@if (apm.Count == 0)
+@if (apm == null)
 {
     <p style="margin-left:10%">暂无数据！</p>
 }
