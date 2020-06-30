@@ -10,11 +10,16 @@
 }
 
 <style>
-    table {
-        text-align: center;
-        overflow: auto;
+    #epminfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
+        border: 1px solid black;
+    }
+    #epminfo table {
+        width: 100%;
+        text-align: center;
     }
     tr {
         height: 30px;
@@ -43,32 +48,34 @@
 }
 else
 {
-    <table border="1" width="80%">
-        <tr>
-            <th style="width:4%;font-weight:bold;">编号</th>
-            <th style="width:6%;">姓名</th>
-            <th style="width:12%;">联系电话</th>
-            <th style="width:22%;">地址</th>
-            <th style="width:8%;">学历</th>
-            <th style="width:12%;">工作经验</th>
-            <th style="width:15%;">备注</th>
-            <th>操作</th>
-        </tr>
-        @foreach (var item in epm)
-        {
+    <div id="epminfo">
+        <table border="1">
             <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Name</td>
-                <td>@item.Phone</td>
-                <td>@item.Address</td>
-                <td>@item.Diploma</td>
-                <td>@item.WorkExper</td>
-                <td>@item.Remark</td>
-                <td>
-                    <a href="/Employment/EpmDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
-                    <a href="/Employment/EpmDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除 @item.Name 应聘者吗？')">删&nbsp;&nbsp;除</a>
-                </td>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>联系电话</th>
+                <th>地址</th>
+                <th>学历</th>
+                <th>工作经验</th>
+                <th>备注</th>
+                <th>操作</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in epm)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.Diploma</td>
+                    <td>@item.WorkExper</td>
+                    <td>@item.Remark</td>
+                    <td>
+                        <a href="/Employment/EpmDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                        <a href="/Employment/EpmDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除 @item.Name 应聘者吗？')">删&nbsp;&nbsp;除</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 }

@@ -61,8 +61,15 @@ namespace PersonManagement.Controllers
         }
 
         //前端界面，员工个人信息整合
-        public ActionResult PUCenter() 
+        public ActionResult PCenter() 
         {
+            return View();
+        }
+
+        //我的信息
+        public ActionResult PMyInfo()
+        {
+
             return View();
         }
     }

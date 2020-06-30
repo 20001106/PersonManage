@@ -17,13 +17,17 @@
         margin-top: 40px;
         margin-left: 10%;
     }
-    table {
-        text-align: center;
-        overflow: auto;
+    #apminfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
+        border: 1px solid black;
     }
-
+    #apminfo table {
+        width: 100%;
+        text-align: center;
+    }
     tr {
         height: 30px;
     }
@@ -71,45 +75,47 @@
 }
 else
 {
-    <table border="1" width="80%">
-        <tr>
-            <th style="width:5%;font-weight:bold;">编号</th>
-            <th style="width:8%;">姓名</th>
-            <th style="width:10%;">时间</th>
-            <th style="width:20%;">信息</th>
-            <th style="width:20%;">原因</th>
-            <th style="width:10%;">状态</th>
-            <th style="width:8%;">操作</th>
-        </tr>
-        @foreach (var item in apm)
-        {
+    <div id="apminfo">
+        <table border="1">
             <tr>
-                <td>@item.ID</td>
-                <td>@item.Person.Name</td>
-                <td>@item.SendTime</td>
-                <td>@item.Message</td>
-                <td>@item.Reason</td>
-                <td>
-                    @if (item.State == 0)
-                    {
-                        @:未回复
-                    }
-                    else
-                    {
-                        @:已回复
-                    }
-                </td>
-                <td>
-                    @if (item.State == 0)
-                    {
-                        <a href="/A_P_Message/APMReply?id=@item.ID" class="btn btn-info">回&nbsp;&nbsp;复</a>
-                    }
-                    else
-                    {
-                        <a href="/A_P_Message/APMLook?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
-                    }
-                </td>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>时间</th>
+                <th>信息</th>
+                <th>原因</th>
+                <th>状态</th>
+                <th>操作</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in apm)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Person.Name</td>
+                    <td>@item.SendTime</td>
+                    <td>@item.Message</td>
+                    <td>@item.Reason</td>
+                    <td>
+                        @if (item.State == 0)
+                        {
+                            @:未回复
+                        }
+                        else
+                        {
+                            @:已回复
+                        }
+                    </td>
+                    <td>
+                        @if (item.State == 0)
+                        {
+                            <a href="/A_P_Message/APMReply?id=@item.ID" class="btn btn-info">回&nbsp;&nbsp;复</a>
+                        }
+                        else
+                        {
+                            <a href="/A_P_Message/APMLook?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 }

@@ -10,13 +10,17 @@
 }
 
 <style>
-    table {
-        text-align: center;
-        overflow: auto;
+    #attinfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
+        border: 1px solid black;
     }
-
+    #attinfo table {
+        width: 100%;
+        text-align: center;
+    }
     tr {
         height: 30px;
     }
@@ -45,25 +49,27 @@
 }
 else
 {
-    <table border="1" width="80%">
-        <tr>
-            <th style="width:5%;font-weight:bold;">编号</th>
-            <th style="width:6%;">姓名</th>
-            <th style="width:8%;">考勤时间</th>
-            <th style="width:8%;">上班时间</th>
-            <th style="width:8%;">下班时间</th>
-        </tr>
-        @foreach (var item in att)
-        {
+    <div id="attinfo">
+        <table border="1" width="80%">
             <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Person.Name</td>
-                <td>@item.TadayTime.ToShortDateString()</td>
-                <td>@item.StartTime</td>
-                <td>@item.EndTime</td>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>考勤时间</th>
+                <th>上班时间</th>
+                <th>下班时间</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in att)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Person.Name</td>
+                    <td>@item.TadayTime.ToShortDateString()</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.EndTime</td>
+                </tr>
+            }
+        </table>
+    </div>
 }
 <div style="margin-left:10%;">
     <span>今日 @ViewBag.AttTaday 考勤人数 @ViewBag.AttTadayCount 人，缺勤人数 @ViewBag.AttTadayNoCount 人，总员工人数 @ViewBag.Person 人</span>

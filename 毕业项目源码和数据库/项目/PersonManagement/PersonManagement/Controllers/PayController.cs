@@ -47,6 +47,12 @@ namespace PersonManagement.Controllers
             return View();
         }
 
+        //薪资发放
+        public ActionResult PayGrant()
+        {
+            return View();
+        }
+
         //统计
         public ActionResult Statistics()
         {

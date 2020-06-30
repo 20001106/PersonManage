@@ -10,11 +10,16 @@
 }
 
 <style>
-    table {
-        text-align: center;
-        overflow: auto;
+    #personinfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
+        border: 1px solid black;
+    }
+    #personinfo table {
+        width: 100%;
+        text-align: center;
     }
     tr {
         height: 30px;
@@ -43,32 +48,34 @@
 }
 else
 {
-    <table border="1" width="80%">
-        <tr>
-            <th style="width:5%;font-weight:bold;">编号</th>
-            <th style="width:6%;">姓名</th>
-            <th style="width:5%;">性别</th>
-            <th style="width:8%;">所属部门</th>
-            <th style="width:12%;">联系电话</th>
-            <th style="width:25%;">地址</th>
-            <th style="width:20%;">备注</th>
-            <th>操作</th>
-        </tr>
-        @foreach (var item in person)
-        {
+    <div id="personinfo">
+        <table border="1">
             <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Name</td>
-                <td>@item.Sex</td>
-                <td>@item.Department.Name</td>
-                <td>@item.Phone</td>
-                <td>@item.Address</td>
-                <td>@item.Remark</td>
-                <td>
-                    <a href="/Person/PersonDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>&nbsp;&nbsp;
-                    <a href="/Person/PersonDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('请确保 @item.Name 无其它信息记录，再删除！')">删&nbsp;&nbsp;除</a>
-                </td>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>所属部门</th>
+                <th>联系电话</th>
+                <th>地址</th>
+                <th>备注</th>
+                <th>操作</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in person)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Sex</td>
+                    <td>@item.Department.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.Remark</td>
+                    <td>
+                        <a href="/Person/PersonDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>&nbsp;&nbsp;
+                        <a href="/Person/PersonDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('请确保 @item.Name 无其它信息记录，再删除！')">删&nbsp;&nbsp;除</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 }

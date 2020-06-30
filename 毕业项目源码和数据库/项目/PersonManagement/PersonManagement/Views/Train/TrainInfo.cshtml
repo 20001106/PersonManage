@@ -10,11 +10,16 @@
 }
 
 <style>
-    table {
-        text-align: center;
-        overflow: auto;
+    #traininfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
+        border: 1px solid black;
+    }
+    #traininfo table {
+        width: 100%;
+        text-align: center;
     }
     tr {
         height: 30px;
@@ -29,7 +34,7 @@
 
 <form action="/Train/TrainInfo" method="post" class="form-inline" style="margin-top:50px;margin-left:10%;">
     <label style="font-weight:bold;" for="Topic">培训主题：</label>
-    <input type="text" class="form-control" name="Topic" value="@ViewBag.Topic" id="content_name" placeholder="请输入培训主题关键字" />
+    <input type="text" class="form-control" name="Topic" value="@ViewBag.Topic" id="content_name" placeholder="请筛选培训主题关键字" />
     <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
 </form>
 <form action="/Train/TrainInfo" method="post" style="float:right;margin-right:10%;margin-top:-34px;">
@@ -42,29 +47,31 @@
 }
 else
 {
-    <table border="1" width="80%">
-        <tr>
-            <th style="width:5%;font-weight:bold;">编号</th>
-            <th style="width:20%;">主题</th>
-            <th style="width:10%;">地点</th>
-            <th style="width:15%;">开始时间</th>
-            <th style="width:15%;">结束时间</th>
-            <th style="width:25%;">成员</th>
-            <th>操作</th>
-        </tr>
-        @foreach (var item in train)
-        {
+    <div id="traininfo">
+        <table border="1">
             <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Topic</td>
-                <td>@item.Site</td>
-                <td>@item.StartTime</td>
-                <td>@item.EndTime</td>
-                <td>@item.Number</td>
-                <td>
-                    <a href="/Train/TrainDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除该条培训信息！')">删&nbsp;&nbsp;除</a>
-                </td>
+                <th>编号</th>
+                <th>主题</th>
+                <th>地点</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>成员</th>
+                <th>操作</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in train)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Topic</td>
+                    <td>@item.Site</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.EndTime</td>
+                    <td>@item.Number</td>
+                    <td>
+                        <a href="/Train/TrainDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定删除该条培训信息！')">删&nbsp;&nbsp;除</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 }

@@ -10,10 +10,25 @@
 </head>
 <body>
     <div id="top_view">
-        <img src="~/Content/Images/CatWLogoFront.jpg" title="猫赢Logo"/>
+        <img src="~/Content/Images/CatWLogoPerson.jpg" title="猫赢Logo"/>
     </div>
-    <div>
-        @RenderBody()
+    <div id="foot_view">
+        <div id="left_view">
+            <p style="margin-top:5px;"><a href="/Person/PCenter">首页</a></p>
+            <p><a href="/Person/PMyInfo">我的资料</a></p>
+            <p><a href="#">考勤</a></p>
+            <p><a href="#">薪资</a></p>
+            <p><a href="#">培训</a></p>
+            <p><a href="#">奖惩</a></p>
+            <p><a href="#">消息</a></p>
+            <p><a href="#">公告</a></p>
+            <p><a href="/FrontPage/FrontHome">返回</a></p>
+        </div>
+        <div id="right_view">
+            <div id="MyInfo">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

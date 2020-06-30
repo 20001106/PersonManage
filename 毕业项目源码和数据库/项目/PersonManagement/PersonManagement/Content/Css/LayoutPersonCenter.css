@@ -1,17 +1,63 @@
 ﻿body {
     margin: 0px;
     padding: 0px;
-    list-style-type: none;
-    background-color: ghostwhite;
+    background-image: url('../Images/bj.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 #top_view {
     width: 100%;
     height: 80px;
     box-shadow: 3px 0px 9px grey;
     text-align: center;
-    background-color: white;
+    background-color: antiquewhite;
 }
 #top_view img {
     height: 80px;
     cursor: pointer;
+}
+#foot_view {
+    width: 80%;
+    height: 600px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 20px 10%;
+}
+#left_view {
+    width: 20%;
+    float: left;
+    height: 600px;
+    background-color: ghostwhite;
+    border-right: 1px dashed lightblue;
+    border-radius: 5px 0px 0px 5px;
+}
+p {
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+p a {
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 17px;
+    text-align: center;
+    line-height: 50px;
+}
+p a:hover {
+    text-decoration: none;
+    color: white;
+    transition-delay: 0.1s;
+    transition-duration: 0.5s;
+    background-color: cornflowerblue;
+}
+#right_view {
+    width: 80%;
+    float: right;
+    height: 600px;
+}
+#MyInfo {
+    width: 90%;
+    height: 560px;
+    margin: 20px 5%;
 }

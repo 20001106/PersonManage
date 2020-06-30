@@ -2,7 +2,9 @@
     margin: 0px;
     padding: 0px;
     list-style-type: none;
-    background-color: ghostwhite;
+    background-image: url('../Images/bj.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 #top_view {
     width: 100%;

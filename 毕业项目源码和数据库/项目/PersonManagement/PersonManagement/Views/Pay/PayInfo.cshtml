@@ -11,17 +11,16 @@
 }
 
 <style>
-    table {
-        display: block;
+    #payinfo{
         width: 80%;
-        height: 350px;
-        margin-top: 10px;
-        margin-left: 10%;
-        text-align: center;
+        height: 337px;
+        margin: 10px 10%;
         overflow: auto;
+        border: 1px solid black;
     }
-    table::-webkit-scrollbar {
-        width: 0px;
+    #payinfo table {
+        width: 100%;
+        text-align: center;
     }
     tr {
         height: 30px;
@@ -62,32 +61,34 @@
 }
 else
 {
-    <table border="1">
-        <tr>
-            <th>编号</th>
-            <th>姓名</th>
-            <th>发资时间</th>
-            <th>考勤费(元)</th>
-            <th>其它费(元)</th>
-            <th>部门费(元)</th>
-            <th>总薪资(元)</th>
-        </tr>
-        @foreach (var item in pay)
-        {
+    <div id="payinfo">
+        <table border="1">
             <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Person.Name</td>
-                <td>@item.OverTime.ToShortDateString()</td>
-                <td>@item.AttPay.ToString("F2")</td>
-                <td>@item.OtherPay.ToString("F2")</td>
-                <td>@item.Person.Department.BasicPay.ToString("F2")</td>
-                <td>
-                    @{
-                        var money = (item.AttPay + item.OtherPay + item.Person.Department.BasicPay).ToString("F2");
-                    }
-                    @money
-                </td>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>发资时间</th>
+                <th>考勤费(元)</th>
+                <th>其它费(元)</th>
+                <th>部门费(元)</th>
+                <th>总薪资(元)</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in pay)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Person.Name</td>
+                    <td>@item.OverTime.ToShortDateString()</td>
+                    <td>@item.AttPay.ToString("F2")</td>
+                    <td>@item.OtherPay.ToString("F2")</td>
+                    <td>@item.Person.Department.BasicPay.ToString("F2")</td>
+                    <td>
+                        @{
+                            var money = (item.AttPay + item.OtherPay + item.Person.Department.BasicPay).ToString("F2");
+                        }
+                        @money
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 }

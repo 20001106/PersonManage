@@ -216,6 +216,7 @@
     <Content Include="Content\Css\LayoutPersonCss.css" />
     <Content Include="Content\ECharts\echatrs.min.js" />
     <Content Include="Content\Images\back.jpg" />
+    <Content Include="Content\Images\bj.jpg" />
     <Content Include="Content\Images\CatWLogoFront.jpg" />
     <Content Include="Content\Images\CatWLogoPerson.jpg" />
     <Content Include="Content\Images\demo1.jpg" />
@@ -300,10 +301,13 @@
     <Content Include="Views\UserT\LoginRegister.cshtml" />
     <Content Include="Views\A_U_Message\AUMInfo.cshtml" />
     <Content Include="Views\Shared\_LayoutPersonCenter.cshtml" />
-    <Content Include="Views\Person\PUCenter.cshtml" />
     <Content Include="Views\A_P_Message\APMessage.cshtml" />
     <Content Include="Views\A_P_Message\APMReply.cshtml" />
     <Content Include="Views\A_P_Message\APMLook.cshtml" />
+    <Content Include="Views\Pay\PayGrant.cshtml" />
+    <Content Include="Views\SystemManage\BulletinBoard.cshtml" />
+    <Content Include="Views\Person\PCenter.cshtml" />
+    <Content Include="Views\Person\PMyInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

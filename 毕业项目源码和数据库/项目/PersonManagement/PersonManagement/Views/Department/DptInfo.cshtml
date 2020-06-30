@@ -10,11 +10,16 @@
 }
 
 <style>
-    table {
-        text-align: center;
-        overflow: auto;
+    #dptinfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
+        border: 1px solid black;
+    }
+    #dptinfo table {
+        width: 100%;
+        text-align: center;
     }
     tr {
         height: 30px;
@@ -43,31 +48,33 @@
 }
 else
 {
-    <table border="1" width="80%">
-        <tr>
-            <th style="width:10%;">编号</th>
-            <th style="width:10%;">部门名称</th>
-            <th style="width:10%;">创建时间</th>
-            <th style="width:10%;">基础薪资(元)</th>
-            <th style="width:10%;">部门人数</th>
-            <th style="width:30%;">备注</th>
-            <th style="width:20%;">操作</th>
-        </tr>
-        @foreach (var item in dpt)
-        {
+    <div id="dptinfo">
+        <table border="1">
             <tr>
-                <td style="font-weight:bold;">@item.ID</td>
-                <td>@item.Name</td>
-                <td>@item.CreateTime.ToShortDateString()</td>
-                <td>@item.BasicPay.ToString("F2")</td>
-                <td>@item.Person.Count()</td>
-                <td>@item.Remark</td>
-                <td>
-                    <a href="/Department/DptDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确认删除该部门吗？')">删&nbsp;&nbsp;除</a>
-                    &nbsp;&nbsp;
-                    <a href="/Department/DptDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
-                </td>
+                <th>编号</th>
+                <th>部门名称</th>
+                <th>创建时间</th>
+                <th>基础薪资(元)</th>
+                <th>部门人数</th>
+                <th>备注</th>
+                <th>操作</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in dpt)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.CreateTime.ToShortDateString()</td>
+                    <td>@item.BasicPay.ToString("F2")</td>
+                    <td>@item.Person.Count()</td>
+                    <td>@item.Remark</td>
+                    <td>
+                        <a href="/Department/DptDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确认删除该部门吗？')">删&nbsp;&nbsp;除</a>
+                        &nbsp;&nbsp;
+                        <a href="/Department/DptDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 }

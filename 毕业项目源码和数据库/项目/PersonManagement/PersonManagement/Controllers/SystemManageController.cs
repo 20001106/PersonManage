@@ -54,5 +54,11 @@ namespace PersonManagement.Controllers
                 return Content("true");
             }
         }
+
+        //公告栏
+        public ActionResult BulletinBoard()
+        {
+            return View();
+        }
     }
 }
