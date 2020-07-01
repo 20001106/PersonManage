@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -68,6 +69,70 @@ namespace PersonManagement.Controllers
 
         //我的信息
         public ActionResult PMyInfo()
+        {
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            var user = db.UserT.Where(p => p.PersonID == id).SingleOrDefault();
+            ViewBag.PersonSingle = person;
+            ViewBag.UserSingle = user;
+            return View();
+        }
+        //更改部分个人信息
+        [HttpPost]
+        public ActionResult EditSingleInfo(string UserName, string UserPwd,string ID, string Age, string Phone, string Address) {
+            var user = db.UserT.Where(p => p.UserName == UserName).SingleOrDefault();
+            user.UserPwd = UserPwd;
+            int id = int.Parse(ID);
+            int age = int.Parse(Age);
+            var person = db.Person.Find(id);
+            person.Age = age;
+            person.Phone = Phone;
+            person.Address = Address;
+            db.Entry(user).State = EntityState.Modified;
+            db.Entry(person).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("PMyInfo","Person");
+        }
+
+        //考勤
+        public ActionResult PMyAttendance()
+        {
+
+            return View();
+        }
+
+        //薪资
+        public ActionResult PMyPay()
+        {
+
+            return View();
+        }
+
+        //培训
+        public ActionResult PMyTrain()
+        {
+
+            return View();
+        }
+
+        //奖惩
+        public ActionResult PMyReward(string RewardType = "")
+        {
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            var reward = db.Reward.Where(p => (RewardType == "" || p.RewardType.Contains(RewardType)) && p.PersonID == id).ToList();
+            if (reward.Count() == 0)
+            {
+                reward = null;
+            }
+            ViewBag.MyReward = reward;
+            return View();
+        }
+
+        //消息
+        public ActionResult PMyMessage()
         {
 
             return View();

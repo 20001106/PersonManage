@@ -308,6 +308,11 @@
     <Content Include="Views\SystemManage\BulletinBoard.cshtml" />
     <Content Include="Views\Person\PCenter.cshtml" />
     <Content Include="Views\Person\PMyInfo.cshtml" />
+    <Content Include="Views\Person\PMyAttendance.cshtml" />
+    <Content Include="Views\Person\PMyPay.cshtml" />
+    <Content Include="Views\Person\PMyTrain.cshtml" />
+    <Content Include="Views\Person\PMyReward.cshtml" />
+    <Content Include="Views\Person\PMyMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

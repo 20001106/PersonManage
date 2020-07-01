@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "PMyReward";
+    Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
+}
+
+@using PersonManagement.Models
+@{ 
+    List<Reward> reward = ViewBag.MyReward;
+}
+
+<style>
+    #form5 {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 16px;
+        margin-left: 5%;
+    }
+</style>
+
+<div style="width:100%;height:20px;"></div>
+<form action="/Person/PMyReward" method="post" id="form5">
+    <div class="form-inline">
+        <label for="RewardType">奖惩类型：</label>
+        <select name="RewardType" class="form-control">
+            <option value="奖励" selected>奖励</option>
+            <option value="惩罚">惩罚</option>
+        </select>
+        <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
+    </div>
+</form>
+
+@if (reward.Count() == 0)
+{
+
+}
+else {
+    <table border="1">
+        <tr>
+            <th>编号</th>
+            <th>类型</th>
+            <th>内容</th>
+            <th>事件</th>
+            <th>奖励(惩罚)</th>
+        </tr>
+        @foreach (var item in reward)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </table>
+}

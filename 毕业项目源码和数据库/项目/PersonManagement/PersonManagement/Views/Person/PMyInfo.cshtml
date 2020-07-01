@@ -4,3 +4,197 @@
     Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
 }
 
+@using PersonManagement.Models
+@{ 
+    Person person = ViewBag.PersonSingle;
+    UserT user = ViewBag.UserSingle;
+}
+
+<style>
+    #formleft {
+        width: 72%;
+        height: 560px;
+        float: left;
+        margin-left: 8%;
+        font-size: 16px;
+    }
+    #formright {
+        width: 20%;
+        height: 560px;
+        border-left: 1px dashed lightblue;
+        float: right;
+    }
+    .form-inline {
+        height: 35px;
+        line-height: 35px;
+    }
+    .iteminput {
+        width: 100%;
+    }
+    .threebtn {
+        width: 100%;
+        height: 150px;
+        margin-top: 205px;
+    }
+    #onebtn {
+        display: block;
+        width: 50%;
+        margin-left: 25%;
+    }
+    #twobtn {
+        display: none;
+        width: 50%;
+        margin-left: 25%;
+    }
+    #thrbtn {
+        display: none;
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 25px;
+    }
+</style>
+
+<form action="/Person/EditSingleInfo" method="post">
+    <div id="formleft">
+        <div class="form-inline">
+            <label>用户：</label>
+            <span>@user.UserName</span>
+        </div>
+        <div class="form-inline">
+            <label>密码：</label>
+            <span class="itemspan">@user.UserPwd</span>
+            <span class="itemspan" style="color:red;">*</span>
+            <input type="hidden" id="UserPwd" name="UserPwd" maxlength="8" value="@user.UserPwd" class="form-control iteminput" />
+            <input type="hidden" id="UserName" name="UserName" value="@user.UserName" class="form-control" />
+            <span class="UserPwdTips" style="color:red;"></span>
+        </div>
+        <div class="form-inline">
+            <label>姓名：</label>
+            <span>@person.Name</span>
+            <input type="hidden" name="ID" value="@person.ID" class="form-control"/>
+        </div>
+        <div class="form-inline">
+            <label>性别：</label>
+            <span>@person.Sex</span>
+        </div>
+        <div class="form-inline">
+            <label>年龄：</label>
+            <span class="itemspan">@person.Age</span>
+            <span class="itemspan" style="color: red;">*</span>
+            <input type="hidden" id="Age" name="Age" maxlength="2" value="@person.Age" class="form-control iteminput" />
+            <span class="AgeTips" style="color:red;"></span>
+        </div>
+        <div class="form-inline">
+            <label>学历：</label>
+            <span>@person.Diploma</span>
+        </div>
+        <div class="form-inline">
+            <label>专业：</label>
+            <span>@person.Major</span>
+        </div>
+        <div class="form-inline">
+            <label>部门：</label>
+            <span>@person.Department.Name</span>
+        </div>
+        <div class="form-inline">
+            <label>籍贯：</label>
+            <span>@person.Native_place</span>
+        </div>
+        <div class="form-inline">
+            <label>电话：</label>
+            <span class="itemspan">@person.Phone</span>
+            <span class="itemspan" style="color:red;">*</span>
+            <input type="hidden" id="Phone" name="Phone" maxlength="11" value="@person.Phone" class="form-control iteminput" />
+            <span class="PhoneTips" style="color:red;"></span>
+        </div>
+        <div class="form-inline">
+            <label>邮箱：</label>
+            <span>@person.Email</span>
+        </div>
+        <div class="form-inline">
+            <label>身份：</label>
+            <span>@person.IDCard</span>
+        </div>
+        <div class="form-inline">
+            <label>地址：</label>
+            <span class="itemspan">@person.Address</span>
+            <span class="itemspan" style="color:red;">*</span>
+            <input type="hidden" id="Address" name="Address" value="@person.Address" class="form-control iteminput" />
+            <span class="AddressTips" style="color:red;"></span>
+        </div>
+        <div class="form-inline">
+            <label>备注：</label>
+            <span class="itemspan">@person.Remark</span>
+            <span class="itemspan" style="color:red;">*</span>
+            <input type="hidden" id="Remark" name="Remark" value="@person.Remark" class="form-control iteminput"/>
+        </div><br />
+        <div>
+            <p id="tipsstar" style="color:red;">只能编辑标有*号的信息，更换部门需在消息栏申请。</p>
+        </div>
+    </div>
+    <div id="formright">
+        <div class="threebtn">
+            <a href="#" id="onebtn" onclick="btnedit()" class="btn btn-info">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;辑</a>
+            <input type="submit" onclick="return CheckValid()" id="twobtn" value="保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存" class="btn btn-info"/>
+            <a href="#" id="thrbtn" onclick="btnclose()" class="btn btn-info">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</a>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    function btnedit() {
+        document.getElementById("onebtn").style.display = 'none';
+        document.getElementById("twobtn").style.display = 'block';
+        document.getElementById("thrbtn").style.display = 'block';
+
+        $(".itemspan").hide();
+        $(".iteminput").attr('type','text');
+    }
+    function btnclose() {
+        document.getElementById("twobtn").style.display = 'none';
+        document.getElementById("thrbtn").style.display = 'none';
+        document.getElementById("onebtn").style.display = 'block';
+
+        $(".iteminput").attr('type', 'hidden');
+        $(".itemspan").show();
+
+        //更改文本内容
+        $("input[name='UserPwd']").val("@user.UserPwd");
+        $("input[name='Age']").val("@person.Age");
+        $("input[name='Phone']").val("@person.Phone");
+        $("input[name='Address']").val("@person.Address");
+        $("input[name='Remark']").val("@person.Remark");
+    }
+
+    //保存修改的个人信息
+    function CheckValid() {
+        if ($("#UserPwd").val() == "" && $("#Age").val() == "" &&
+            $("#Phone").val() == ""  && $("#Address").val == "") {
+            $(".UserPwdTips").html("请输入密码！");
+            $(".AgeTips").html("请输入年龄！");
+            $(".PhoneTips").html("请输入新电话号码！");
+            $(".AddressTips").html("请输入现在所在地址！");
+            return false;
+        } else if ($("#UserPwd").val() == "" || $("#Age").val() == "" ||
+            $("#Phone").val() == "" || $("#Address").val == "") {
+            if ($("#UserPwd").val() == "") {
+                $(".UserPwdTips").html("请输入密码！");
+                return false;
+            }
+            if ($("#Age").val() == "") {
+                $(".AgeTips").html("请输入年龄！");
+                return false;
+            }
+            if ($("#Phone").val() == "") {
+                $(".PhoneTips").html("请输入新电话号码！");
+                return false;
+            }
+            if ($("#Address").val == "") {
+                $(".AddressTips").html("请输入现在所在地址！");
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+</script>
