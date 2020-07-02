@@ -103,16 +103,46 @@ namespace PersonManagement.Controllers
         }
 
         //薪资
-        public ActionResult PMyPay()
+        public ActionResult PMyPay(string OverTime = "")
         {
-
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            if (OverTime == "")
+            {
+                var pay = db.Pay.Where(p => OverTime == "" && p.PersonID == id).ToList();
+                if (pay.Count() == 0)
+                {
+                    pay = null;
+                }
+                ViewBag.MyPay = pay;
+            }
+            else
+            {
+                DateTime overtime = DateTime.Parse(OverTime);
+                var pay = db.Pay.Where(p => (OverTime == "" || p.OverTime == overtime) && p.PersonID == id).ToList();
+                if (pay.Count() == 0)
+                {
+                    pay = null;
+                }
+                ViewBag.MyPay = pay;
+            }
             return View();
         }
 
         //培训
-        public ActionResult PMyTrain()
+        public ActionResult PMyTrain(string Topic = "")
         {
-
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            string name = person.Name;
+            var train = db.Train.Where(p => (Topic == "" || p.Topic.Contains(Topic)) && p.Number.Contains(name)).ToList();
+            if (train.Count() == 0)
+            {
+                train = null;
+            }
+            ViewBag.MyTrain = train;
+            ViewBag.Person = person;
             return View();
         }
 
@@ -122,12 +152,42 @@ namespace PersonManagement.Controllers
             string PersonName = Session["FrontLoginName"].ToString();
             var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
             int id = person.ID;
-            var reward = db.Reward.Where(p => (RewardType == "" || p.RewardType.Contains(RewardType)) && p.PersonID == id).ToList();
-            if (reward.Count() == 0)
+            if (RewardType == "全部")
             {
-                reward = null;
+                var reward = db.Reward.Where(p => p.PersonID == id).ToList();
+                if (reward.Count() == 0)
+                {
+                    reward = null;
+                }
+                ViewBag.MyReward = reward;
             }
-            ViewBag.MyReward = reward;
+            else if (RewardType == "奖励")
+            {
+                var reward = db.Reward.Where(p => p.RewardType.Contains(RewardType) && p.PersonID == id).ToList();
+                if (reward.Count() == 0)
+                {
+                    reward = null;
+                }
+                ViewBag.MyReward = reward;
+            }
+            else if (RewardType == "惩罚")
+            {
+                var reward = db.Reward.Where(p => p.RewardType.Contains(RewardType) && p.PersonID == id).ToList();
+                if (reward.Count() == 0)
+                {
+                    reward = null;
+                }
+                ViewBag.MyReward = reward;
+            }
+            else
+            {
+                var reward = db.Reward.Where(p => RewardType == "" && p.PersonID == id).ToList();
+                if (reward.Count() == 0)
+                {
+                    reward = null;
+                }
+                ViewBag.MyReward = reward;
+            }
             return View();
         }
 

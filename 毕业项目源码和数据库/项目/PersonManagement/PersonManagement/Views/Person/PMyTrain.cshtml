@@ -4,5 +4,73 @@
     Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
 }
 
-<h2>我的培训</h2>
+@using PersonManagement.Models
+@{
+    List<Train> train = ViewBag.MyTrain;
+}
 
+<style>
+    #form3 {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 16px;
+        margin-left: 5%;
+    }
+    #table3 {
+        width: 90%;
+        height: 300px;
+        overflow: auto;
+        margin-left: 5%;
+    }
+    #table3 table {
+        width: 100%;
+    }
+    #table3 table tr {
+        height: 30px;
+        text-align: center;
+    }
+</style>
+
+<div style="width:100%;height:20px;"></div>
+<form action="/Person/PMyTrain" method="post" id="form3">
+    <div class="form-inline">
+        <label for="Topic">培训内容：</label>
+        <input type="text" name="Topic" value="" class="form-control" placeholder="请筛选培训内容" />
+        <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
+        <a href="/Person/PMyTrain" class="btn btn-info">刷&nbsp;&nbsp;新</a>
+    </div>
+</form>
+
+@if (train == null)
+{
+    <p style="margin-left:5%;">暂无数据！</p>
+}
+else
+{
+    <div id="table3">
+        <table border="1">
+            <tr>
+                <th>编号</th>
+                <th>主题</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>地点</th>
+                <th>成员</th>
+                <th>人数</th>
+            </tr>
+            @foreach (var item in train)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Topic</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.EndTime</td>
+                    <td>@item.Site</td>
+                    <td>@item.Number</td>
+                    <td>@item.Number.Split(',').Count()</td>
+                </tr>
+            }
+        </table>
+    </div>
+}

@@ -4,5 +4,84 @@
     Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
 }
 
-<h2>我的薪资</h2>
+@using PersonManagement.Models
+@{
+    List<Pay> pay = ViewBag.MyPay;
+    decimal money = 0;
+}
 
+<style>
+    #form2 {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 16px;
+        margin-left: 5%;
+    }
+    #table2 {
+        width: 90%;
+        height: 300px;
+        overflow: auto;
+        margin-left: 5%;
+    }
+    #table2 table {
+        width: 100%;
+    }
+    #table2 table tr {
+        height: 30px;
+        text-align: center;
+    }
+</style>
+
+<div style="width:100%;height:20px;"></div>
+<form action="/Person/PMyPay" method="post" id="form2">
+    <div class="form-inline">
+        <label for="OverTime">发放时间：</label>
+        <input type="date" name="OverTime" value="年/月/日" class="form-control" />
+        <input type="submit" value="筛&nbsp;&nbsp;选" class="btn btn-info" />
+        <a href="/Person/PMyPay" class="btn btn-info">刷&nbsp;&nbsp;新</a>
+    </div>
+</form>
+
+@if (pay == null)
+{
+    <p style="margin-left:5%;">暂无数据！</p>
+}
+else
+{
+    <div id="table2">
+        <table border="1">
+            <tr>
+                <th>编号</th>
+                <th>发放时间</th>
+                <th>考勤费</th>
+                <th>其它费</th>
+            </tr>
+            @foreach (var item in pay)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.OverTime.ToShortDateString()</td>
+                    <td>@item.AttPay.ToString("F2")</td>
+                    <td>@item.OtherPay.ToString("F2")</td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+<p style="margin-left:5%;margin-top:50px;">
+    我的当前查询薪资：
+    @if (pay == null)
+    {
+        @:0
+    }
+    else
+    {
+        foreach (var item in pay)
+        {
+            money += item.AttPay + item.OtherPay;
+        }
+        @money.ToString("F2")
+    }
+    &nbsp;元
+</p>
