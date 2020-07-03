@@ -161,16 +161,7 @@ namespace PersonManagement.Controllers
                 }
                 ViewBag.MyReward = reward;
             }
-            else if (RewardType == "奖励")
-            {
-                var reward = db.Reward.Where(p => p.RewardType.Contains(RewardType) && p.PersonID == id).ToList();
-                if (reward.Count() == 0)
-                {
-                    reward = null;
-                }
-                ViewBag.MyReward = reward;
-            }
-            else if (RewardType == "惩罚")
+            else if (RewardType == "奖励" || RewardType == "惩罚")
             {
                 var reward = db.Reward.Where(p => p.RewardType.Contains(RewardType) && p.PersonID == id).ToList();
                 if (reward.Count() == 0)
@@ -192,9 +183,86 @@ namespace PersonManagement.Controllers
         }
 
         //消息
-        public ActionResult PMyMessage()
+        public ActionResult PMyMessage(string State = "")
         {
-
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            if (State == "全部")
+            {
+                var apm = db.A_P_Message.Where(p => p.PersonID == id).ToList();
+                if (apm.Count() == 0)
+                {
+                    apm = null;
+                }
+                ViewBag.APMessage = apm;
+            }
+            else if (State == "0" || State == "1")
+            {
+                int state = int.Parse(State);
+                var apm = db.A_P_Message.Where(p => p.State == state && p.PersonID == id).ToList();
+                if (apm.Count() == 0)
+                {
+                    apm = null;
+                }
+                ViewBag.APMessage = apm;
+            }
+            else
+            {
+                var apm = db.A_P_Message.Where(p => State == "" && p.PersonID == id).ToList();
+                if (apm.Count() == 0)
+                {
+                    apm = null;
+                }
+                ViewBag.APMessage = apm;
+            }
+            return View();
+        }
+        //发送消息
+        public ActionResult PMySendMessage()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PMySendMessage(string Message, string Reason)
+        {
+            if (Message == "" && Reason == "")
+            {
+                return Content("false");
+            }
+            else if (Message == "" || Reason == "")
+            {
+                if (Message == "")
+                {
+                    return Content("Message");
+                }
+                if (Reason == "")
+                {
+                    return Content("Reason");
+                }
+            }
+            else
+            {
+                A_P_Message apm = new A_P_Message();
+                string PersonName = Session["FrontLoginName"].ToString();
+                var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+                int id = person.ID;
+                apm.PersonID = id;
+                apm.Message = Message;
+                apm.Reason = Reason;
+                apm.SendTime = DateTime.Now;
+                apm.State = 0;
+                db.A_P_Message.Add(apm);
+                db.SaveChanges();
+                return Content("true");
+            }
+            return View();
+        }
+        //查看消息
+        public ActionResult PMyLookMessage(int? id)
+        {
+            var apm = db.A_P_Message.Find(id);
+            ViewBag.APMessage = apm;
             return View();
         }
     }

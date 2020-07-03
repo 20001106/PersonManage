@@ -313,6 +313,8 @@
     <Content Include="Views\Person\PMyTrain.cshtml" />
     <Content Include="Views\Person\PMyReward.cshtml" />
     <Content Include="Views\Person\PMyMessage.cshtml" />
+    <Content Include="Views\Person\PMySendMessage.cshtml" />
+    <Content Include="Views\Person\PMyLookMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

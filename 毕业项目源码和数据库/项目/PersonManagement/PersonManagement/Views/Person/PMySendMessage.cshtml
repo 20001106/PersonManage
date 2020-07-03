@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "PMySendMessage";
+    Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
+}
+
+<style>
+    #form5_one {
+        margin-top: 60px;
+    }
+</style>
+
+<a href="/Person/PMyMessage"><span class="glyphicon glyphicon-arrow-left"></span>返回</a>
+<div id="form5_one">
+    <div>
+        <label for="Message">消息内容：</label>
+        <div class="form-inline">
+            <textarea name="Message" class="form-control text" onfocus="MessageFocus()" placeholder="请输入要发送的消息。" style="width:50%;height:100px;"></textarea>
+            <span class="MessageTips" style="color: red;"></span>
+        </div>
+    </div><br />
+    <div>
+        <label for="Reason">原因：</label>
+        <div class="form-inline">
+            <textarea name="Reason" class="form-control text" onfocus="ReasonFocus()" placeholder="请输入要发送的消息。" style="width:50%;height:100px;"></textarea>
+            <span class="ReasonTips" style="color: red;"></span>
+        </div>
+    </div><br />
+    <a href="#" class="btn btn-info" onclick="SendMessage()" style="margin-left:10%;"><span class="glyphicon glyphicon-send"></span>发&nbsp;&nbsp;送</a>
+</div>
+
+<script type="text/javascript">
+    function SendMessage() {
+        $.ajax({
+            url: '/Person/PMySendMessage',
+            type: 'post',
+            data: {
+                "Message": $("textarea[name='Message']").val(),
+                "Reason": $("textarea[name='Reason']").val()
+            },
+            success: function (data) {
+                if (data == "false") {
+                    $(".MessageTips").html("发送的消息不能为空！");
+                    $(".ReasonTips").html("发送的原因不能为空！");
+                }
+                if (data == "Message") {
+                    $(".MessageTips").html("发送的消息不能为空！");
+                }
+                if (data == "Reason") {
+                    $(".ReasonTips").html("发送的原因不能为空！");
+                }
+                if (data == "true") {
+                    window.location.href = "/Person/PMyMessage";
+                }
+            }
+        })
+    }
+
+    function MessageFocus() {
+        $(".MessageTips").html("");
+    }
+
+    function ReasonFocus() {
+        $(".ReasonTips").html("");
+    }
+</script>
