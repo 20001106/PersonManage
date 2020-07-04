@@ -6,27 +6,28 @@
 
 <style>
     #form5_one {
-        margin-top: 60px;
+        width: 100%;
+        margin-top: 70px;
     }
 </style>
 
 <a href="/Person/PMyMessage"><span class="glyphicon glyphicon-arrow-left"></span>返回</a>
 <div id="form5_one">
-    <div>
+    <div style="margin-left:35%;">
         <label for="Message">消息内容：</label>
         <div class="form-inline">
-            <textarea name="Message" class="form-control text" onfocus="MessageFocus()" placeholder="请输入要发送的消息。" style="width:50%;height:100px;"></textarea>
+            <textarea name="Message" class="form-control text" maxlength="100" onfocus="MessageFocus()" placeholder="请输入要发送的消息。(100字符)" style="width:50%;height:100px;resize:none;"></textarea>
             <span class="MessageTips" style="color: red;"></span>
         </div>
     </div><br />
-    <div>
+    <div style="margin-left:35%;">
         <label for="Reason">原因：</label>
         <div class="form-inline">
-            <textarea name="Reason" class="form-control text" onfocus="ReasonFocus()" placeholder="请输入要发送的消息。" style="width:50%;height:100px;"></textarea>
+            <textarea name="Reason" class="form-control text" maxlength="50" onfocus="ReasonFocus()" placeholder="请输入要发送的消息。(50字符)" style="width:50%;height:100px;resize:none;"></textarea>
             <span class="ReasonTips" style="color: red;"></span>
         </div>
     </div><br />
-    <a href="#" class="btn btn-info" onclick="SendMessage()" style="margin-left:10%;"><span class="glyphicon glyphicon-send"></span>发&nbsp;&nbsp;送</a>
+    <a href="#" class="btn btn-info" onclick="SendMessage()" style="margin-left:45%;"><span class="glyphicon glyphicon-send"></span>发&nbsp;&nbsp;送</a>
 </div>
 
 <script type="text/javascript">

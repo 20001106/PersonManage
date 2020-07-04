@@ -68,7 +68,6 @@ else
                 <th>发资时间</th>
                 <th>考勤费(元)</th>
                 <th>其它费(元)</th>
-                <th>部门费(元)</th>
                 <th>总薪资(元)</th>
             </tr>
             @foreach (var item in pay)
@@ -79,10 +78,9 @@ else
                     <td>@item.OverTime.ToShortDateString()</td>
                     <td>@item.AttPay.ToString("F2")</td>
                     <td>@item.OtherPay.ToString("F2")</td>
-                    <td>@item.Person.Department.BasicPay.ToString("F2")</td>
                     <td>
                         @{
-                            var money = (item.AttPay + item.OtherPay + item.Person.Department.BasicPay).ToString("F2");
+                            var money = (item.AttPay + item.OtherPay).ToString("F2");
                         }
                         @money
                     </td>

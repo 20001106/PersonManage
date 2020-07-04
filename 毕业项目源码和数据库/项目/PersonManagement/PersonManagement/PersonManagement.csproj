@@ -163,6 +163,9 @@
     <Compile Include="Models\A_U_Message.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Board.cs">
+      <DependentUpon>PersonManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>PersonManagementDB.tt</DependentUpon>
     </Compile>
@@ -315,6 +318,8 @@
     <Content Include="Views\Person\PMyMessage.cshtml" />
     <Content Include="Views\Person\PMySendMessage.cshtml" />
     <Content Include="Views\Person\PMyLookMessage.cshtml" />
+    <Content Include="Views\SystemManage\BoardDetail.cshtml" />
+    <Content Include="Views\SystemManage\PublishBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

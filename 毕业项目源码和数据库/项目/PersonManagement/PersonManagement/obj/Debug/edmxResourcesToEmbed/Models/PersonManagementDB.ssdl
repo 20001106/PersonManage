@@ -41,6 +41,16 @@
     <Property Name="StartTime" Type="datetime" Nullable="false" />
     <Property Name="EndTime" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="Board">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="PublishTime" Type="datetime" Nullable="false" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Content" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
   <EntityType Name="Department">
     <Key>
       <PropertyRef Name="ID" />
@@ -180,7 +190,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pay__PersonID__7EF6D905">
+  <Association Name="FK__Board__AdminID__24285DB4">
+    <End Role="AdminT" Type="Self.AdminT" Multiplicity="1" />
+    <End Role="Board" Type="Self.Board" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Board">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pay__PersonID__1E6F845E">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
     <ReferentialConstraint>
@@ -224,6 +246,7 @@
     <EntitySet Name="A_U_Message" EntityType="Self.A_U_Message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AdminT" EntityType="Self.AdminT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Board" EntityType="Self.Board" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employment" EntityType="Self.Employment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
@@ -247,7 +270,11 @@
       <End Role="Person" EntitySet="Person" />
       <End Role="Attendance" EntitySet="Attendance" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pay__PersonID__7EF6D905" Association="Self.FK__Pay__PersonID__7EF6D905">
+    <AssociationSet Name="FK__Board__AdminID__24285DB4" Association="Self.FK__Board__AdminID__24285DB4">
+      <End Role="AdminT" EntitySet="AdminT" />
+      <End Role="Board" EntitySet="Board" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pay__PersonID__1E6F845E" Association="Self.FK__Pay__PersonID__1E6F845E">
       <End Role="Person" EntitySet="Person" />
       <End Role="Pay" EntitySet="Pay" />
     </AssociationSet>

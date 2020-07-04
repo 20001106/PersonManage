@@ -38,6 +38,7 @@ namespace PersonManagement.Models
         public virtual DbSet<A_U_Message> A_U_Message { get; set; }
         public virtual DbSet<Employment> Employment { get; set; }
         public virtual DbSet<UserT> UserT { get; set; }
+        public virtual DbSet<Board> Board { get; set; }
     
         public virtual ObjectResult<proc_pay_Result> proc_pay(Nullable<System.DateTime> findDate)
         {

@@ -197,7 +197,7 @@
             <select name="DptID" id="DptID" class="form-control" style="width:40%;">
                 @foreach (var item in dpt)
                 {
-                    <option value="@item.ID">@item.Name</option>
+                    <option value="@item.ID">@item.Name&nbsp;&nbsp;￥:@item.BasicPay</option>
                 }
             </select>
             <span style="color:red;" class="DptID"></span>

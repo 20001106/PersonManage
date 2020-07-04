@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "PublishBoard";
+    Layout = "~/Views/Shared/_LayoutPerson.cshtml";
+}
+
+<style>
+    #Board {
+        width: 80%;
+        height: 450px;
+        margin-left: 10%;
+    }
+    #Board label {
+        margin-left: 35%;
+    }
+</style>
+
+<p style="display:block;width:100%;height:50px;"></p>
+<div id="Board">
+    <p style="display:block;width:100%;height:60px;"></p>
+    <div>
+        <label for="Topic">公告主题：</label>
+        <input type="text" id="Topic" name="Topic" max="20" class="form-control" onfocus="TopicFocus()" placeholder="请输入公告主题" style="margin-left:35%;" />
+        <p style="margin-left:35%;color:red;" class="TopicTips"></p>
+    </div><br />
+    <div>
+        <label for="ContentBoard">公告内容：</label>
+        <textarea id="ContentBoard" name="ContentBoard" maxlength="500" class="form-control" onfocus="ContentBoardFocus()" placeholder="请输入公告内容" style="margin-left:35%;height:150px;resize:none;"></textarea>
+        <p style="margin-left:35%;color:red;" class="ContentBoardTips"></p>
+    </div><br />
+    <a href="#" class="btn btn-info" onclick="PublishBoard()" style="margin-left:35%;">发&nbsp;&nbsp;布</a>&nbsp;|
+    <a href="/SystemManage/BulletinBoard">返&nbsp;&nbsp;回</a>
+</div>
+
+<script type="text/javascript">
+    function PublishBoard() {
+        $.ajax({
+            url: '/SystemManage/PublishBoard',
+            type: 'post',
+            data: {
+                "Topic": $("#Topic").val(),
+                "ContentBoard": $("#ContentBoard").val()
+            },
+            success: function (data) {
+                if (data == "false") {
+                    $(".TopicTips").html("公告主题不能为空！");
+                    $(".ContentBoardTips").html("公告内容不能为空！");
+                }
+                if (data == "Topic") {
+                    $(".TopicTips").html("公告主题不能为空！");
+                }
+                if (data == "ContentBoard") {
+                    $(".ContentBoardTips").html("公告内容不能为空！");
+                }
+                if (data == "true") {
+                    window.location.href = "/SystemManage/BulletinBoard";
+                }
+            }
+        })
+    }
+
+    function TopicFocus() {
+        $(".TopicTips").html("");
+    }
+
+    function ContentBoardFocus() {
+        $(".ContentBoardTips").html("");
+    }
+</script>

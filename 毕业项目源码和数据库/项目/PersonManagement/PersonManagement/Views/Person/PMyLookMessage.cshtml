@@ -8,3 +8,75 @@
 @{
     A_P_Message apm = ViewBag.APMessage;
 }
+
+<style>
+    #myapm {
+        width: 90%;
+        height: 500px;
+        margin-left: 5%;
+        margin-top: 20px;
+    }
+    #myapm_left {
+        width: 46%;
+        height: 450px;
+        float: left;
+        margin-left: 2%;
+        margin-top: 25px;
+    }
+    #myapm_right {
+        width: 46%;
+        height: 450px;
+        float: right;
+        margin-right: 2%;
+        margin-top: 25px;
+    }
+    .item_apm {
+        list-style: none;
+        width: 100%;
+        height: 380px;
+        border: 1px dashed cornflowerblue;
+    }
+    .item_apm li {
+        width: 100%;
+        height: 60px;
+        margin-top: 10px;
+        font-size: 17px;
+    }
+</style>
+
+<a href="/Person/PMyMessage"><span class="glyphicon glyphicon-arrow-left"></span>返回</a>
+<div id="myapm">
+    <div id="myapm_left">
+        <h3>我的发送消息</h3>
+        <ul class="item_apm">
+            <li>状态：
+                @if (apm.State == 0)
+                {
+                    <span>未回复</span>
+                }
+                else
+                {
+                    <span>已回复</span>
+                }
+            </li>
+            <li>时间：<span>@apm.SendTime</span></li>
+            <li style="height:100px;">原因：<span>@apm.Reason</span></li>
+            <li style="height:100px;">发送内容：<span>@apm.Message</span></li>
+        </ul>
+    </div>
+    <div id="myapm_right">
+        <h3>回复消息</h3>
+        <ul class="item_apm">
+            @if (apm.State == 0)
+            {
+                <li>暂无消息</li>
+            }
+            else
+            {
+                <li>回复人：<span>@apm.ReplyAdmin</span></li>
+                <li>回复时间：<span>@apm.ReplyTime</span></li>
+                <li style="height:100px;">回复内容：<span>@apm.ReplyMessage</span></li>
+            }
+        </ul>
+    </div>
+</div>

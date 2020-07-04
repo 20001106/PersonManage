@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using PersonManagement.Models;
 
 namespace PersonManagement.Controllers
@@ -56,8 +57,59 @@ namespace PersonManagement.Controllers
         }
 
         //公告栏
-        public ActionResult BulletinBoard()
+        public ActionResult BulletinBoard(string Topic = "")
         {
+            var board = db.Board.OrderByDescending(p => p.PublishTime).Where(n => Topic == "" || n.Topic.Contains(Topic)).ToList();
+            ViewBag.Board = board;
+            ViewBag.Topic = Topic;
+            return View();
+        }
+
+        //发布公告
+        public ActionResult PublishBoard()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult PublishBoard(string Topic, string ContentBoard)
+        {
+            if (Topic == "" && ContentBoard == "")
+            {
+                return Content("false");
+            }
+            else if (Topic == "" || ContentBoard == "")
+            {
+                if (Topic == "")
+                {
+                    return Content("Topic");
+                }
+                if (ContentBoard == "")
+                {
+                    return Content("ContentBoard");
+                }
+            }
+            else
+            {
+                string LoginName = Session["LoginName"].ToString();
+                var admin = db.AdminT.Where(p => p.LoginName == LoginName).SingleOrDefault();
+                int id = admin.ID;
+                Board board = new Board();
+                board.AdminID = id;
+                board.PublishTime = DateTime.Now;
+                board.Topic = Topic;
+                board.Content = ContentBoard;
+                db.Board.Add(board);
+                db.SaveChanges();
+                return Content("true");
+            }
+            return View();
+        }
+
+        //查看公告详情
+        public ActionResult BoardDetail(int? id)
+        {
+            var board = db.Board.Find(id);
+            ViewBag.Board = board;
             return View();
         }
     }

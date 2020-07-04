@@ -152,5 +152,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Board">
+      <EntityTypeMapping TypeName="PersonManagementModel.Board">
+        <MappingFragment StoreEntitySet="Board">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

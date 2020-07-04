@@ -78,7 +78,7 @@
             <p class="UserNameTips" style="color:red;text-align:center;"></p>
             <div class="form-inline form-group form-text">
                 <label for="UserPwd">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                <input type="password" name="UserPwd" maxlength="10" onfocus="UserPwdfocus()" class="form-control" style="width:35%;" placeholder="请输入密码" />
+                <input type="password" name="UserPwd" maxlength="10" onblur="HidePwd()" onfocus="UserPwdfocus()" class="form-control" style="width:35%;" placeholder="请输入密码" />
             </div>
             <p class="UserPwdTips" style="color:red;text-align:center;"></p>
             <p class="twoTips" style="color:red;text-align:center;"></p>
@@ -148,10 +148,14 @@
         $(".UserNameTips").html("");
         $(".twoTips").html("");
     }
-
     function UserPwdfocus() {
         $(".UserPwdTips").html("");
         $(".twoTips").html("");
+
+        $("input[name='UserPwd']").attr('type','text');
+    }
+    function HidePwd() {
+        $("input[name='UserPwd']").attr('type', 'password');
     }
     //登录部分
 

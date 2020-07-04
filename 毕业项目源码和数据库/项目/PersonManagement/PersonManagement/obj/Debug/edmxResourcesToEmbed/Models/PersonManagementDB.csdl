@@ -7,6 +7,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="LoginPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Board" Relationship="PersonManagementModel.FK__Board__AdminID__24285DB4" FromRole="AdminT" ToRole="Board" />
   </EntityType>
   <EntityType Name="Attendance">
     <Key>
@@ -178,6 +179,11 @@
       <End Role="UserT" EntitySet="UserT" />
       <End Role="A_U_Message" EntitySet="A_U_Message" />
     </AssociationSet>
+    <EntitySet Name="Board" EntityType="PersonManagementModel.Board" />
+    <AssociationSet Name="FK__Board__AdminID__24285DB4" Association="PersonManagementModel.FK__Board__AdminID__24285DB4">
+      <End Role="AdminT" EntitySet="AdminT" />
+      <End Role="Board" EntitySet="Board" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="proc_pay_Result">
     <Property Type="Int32" Name="findDay" Nullable="true" />
@@ -275,6 +281,29 @@
       </Principal>
       <Dependent Role="A_U_Message">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Board">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="PublishTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Topic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AdminT" Relationship="PersonManagementModel.FK__Board__AdminID__24285DB4" FromRole="Board" ToRole="AdminT" />
+  </EntityType>
+  <Association Name="FK__Board__AdminID__24285DB4">
+    <End Type="PersonManagementModel.AdminT" Role="AdminT" Multiplicity="1" />
+    <End Type="PersonManagementModel.Board" Role="Board" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Board">
+        <PropertyRef Name="AdminID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

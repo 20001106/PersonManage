@@ -12,19 +12,14 @@ namespace PersonManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AdminT
+    public partial class Board
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AdminT()
-        {
-            this.Board = new HashSet<Board>();
-        }
-    
         public int ID { get; set; }
-        public string LoginName { get; set; }
-        public string LoginPwd { get; set; }
+        public int AdminID { get; set; }
+        public System.DateTime PublishTime { get; set; }
+        public string Topic { get; set; }
+        public string Content { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Board> Board { get; set; }
+        public virtual AdminT AdminT { get; set; }
     }
 }

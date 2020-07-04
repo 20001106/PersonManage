@@ -46,6 +46,16 @@
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="PublishTime" Type="datetime" Nullable="false" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID" />
@@ -185,7 +195,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pay__PersonID__7EF6D905">
+        <Association Name="FK__Board__AdminID__24285DB4">
+          <End Role="AdminT" Type="Self.AdminT" Multiplicity="1" />
+          <End Role="Board" Type="Self.Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Board">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pay__PersonID__1E6F845E">
           <End Role="Person" Type="Self.Person" Multiplicity="1" />
           <End Role="Pay" Type="Self.Pay" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,6 +251,7 @@
           <EntitySet Name="A_U_Message" EntityType="Self.A_U_Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminT" EntityType="Self.AdminT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Board" EntityType="Self.Board" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employment" EntityType="Self.Employment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
@@ -252,7 +275,11 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pay__PersonID__7EF6D905" Association="Self.FK__Pay__PersonID__7EF6D905">
+          <AssociationSet Name="FK__Board__AdminID__24285DB4" Association="Self.FK__Board__AdminID__24285DB4">
+            <End Role="AdminT" EntitySet="AdminT" />
+            <End Role="Board" EntitySet="Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pay__PersonID__1E6F845E" Association="Self.FK__Pay__PersonID__1E6F845E">
             <End Role="Person" EntitySet="Person" />
             <End Role="Pay" EntitySet="Pay" />
           </AssociationSet>
@@ -276,6 +303,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LoginName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LoginPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Board" Relationship="PersonManagementModel.FK__Board__AdminID__24285DB4" FromRole="AdminT" ToRole="Board" />
         </EntityType>
         <EntityType Name="Attendance">
           <Key>
@@ -447,6 +475,11 @@
             <End Role="UserT" EntitySet="UserT" />
             <End Role="A_U_Message" EntitySet="A_U_Message" />
           </AssociationSet>
+          <EntitySet Name="Board" EntityType="PersonManagementModel.Board" />
+          <AssociationSet Name="FK__Board__AdminID__24285DB4" Association="PersonManagementModel.FK__Board__AdminID__24285DB4">
+            <End Role="AdminT" EntitySet="AdminT" />
+            <End Role="Board" EntitySet="Board" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="proc_pay_Result">
           <Property Type="Int32" Name="findDay" Nullable="true" />
@@ -544,6 +577,29 @@
             </Principal>
             <Dependent Role="A_U_Message">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="PublishTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Topic" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AdminT" Relationship="PersonManagementModel.FK__Board__AdminID__24285DB4" FromRole="Board" ToRole="AdminT" />
+        </EntityType>
+        <Association Name="FK__Board__AdminID__24285DB4">
+          <End Type="PersonManagementModel.AdminT" Role="AdminT" Multiplicity="1" />
+          <End Type="PersonManagementModel.Board" Role="Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Board">
+              <PropertyRef Name="AdminID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -700,6 +756,17 @@
                 <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Board">
+            <EntityTypeMapping TypeName="PersonManagementModel.Board">
+              <MappingFragment StoreEntitySet="Board">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -10,18 +10,26 @@
 }
 
 <style>
-    table {
-        text-align: center;
-        overflow: auto;
+    #epmdeleteinfo {
+        width: 80%;
+        height: 337px;
         margin: 10px 10%;
-        max-height: 300px;
+        overflow: auto;
     }
+
+        #epmdeleteinfo table {
+            width: 100%;
+            text-align: center;
+        }
+
     tr {
         height: 30px;
     }
+
     table tr:hover {
         background-color: whitesmoke;
     }
+
     tr th {
         cursor: pointer;
     }
@@ -36,30 +44,39 @@
     <input type="submit" value="重&nbsp;&nbsp;置" class="btn btn-toolbar" />
 </form>
 
-<table border="1" width="80%">
-    <tr>
-        <th style="width:4%;font-weight:bold;">编号</th>
-        <th style="width:6%;">姓名</th>
-        <th style="width:12%;">联系电话</th>
-        <th style="width:22%;">地址</th>
-        <th style="width:8%;">学历</th>
-        <th style="width:12%;">工作经验</th>
-        <th style="width:15%;">备注</th>
-        <th>操作</th>
-    </tr>
-    @foreach (var item in epm)
-    {
-        <tr>
-            <td style="font-weight:bold;">@item.ID</td>
-            <td>@item.Name</td>
-            <td>@item.Phone</td>
-            <td>@item.Address</td>
-            <td>@item.Diploma</td>
-            <td>@item.WorkExper</td>
-            <td>@item.Remark</td>
-            <td>
-                <a href="/Employment/Record?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定恢复 @item.Name 应聘者吗？')">恢&nbsp;&nbsp;复</a>
-            </td>
-        </tr>
-    }
-</table>
+@if (epm.Count() == 0)
+{
+    <p style="margin-left:10%">暂无数据！</p>
+}
+else
+{
+    <div id="epmdeleteinfo">
+        <table border="1">
+            <tr>
+                <th style="width:4%;font-weight:bold;">编号</th>
+                <th style="width:6%;">姓名</th>
+                <th style="width:12%;">联系电话</th>
+                <th style="width:22%;">地址</th>
+                <th style="width:8%;">学历</th>
+                <th style="width:12%;">工作经验</th>
+                <th style="width:15%;">备注</th>
+                <th>操作</th>
+            </tr>
+            @foreach (var item in epm)
+            {
+                <tr>
+                    <td style="font-weight:bold;">@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.Diploma</td>
+                    <td>@item.WorkExper</td>
+                    <td>@item.Remark</td>
+                    <td>
+                        <a href="/Employment/Record?id=@item.ID" class="btn btn-danger" onclick="return confirm('确定恢复 @item.Name 应聘者吗？')">恢&nbsp;&nbsp;复</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}

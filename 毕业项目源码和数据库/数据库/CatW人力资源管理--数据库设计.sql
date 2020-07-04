@@ -13,6 +13,18 @@ create table AdminT(
 	LoginPwd nvarchar(50) not null--登录密码
 )
 
+if Exists(select * from sysobjects where name='Board')
+drop table Board
+go
+--创建公告表(Board)
+create table Board(
+	ID int primary key identity(1,1),--消息ID
+	AdminID int foreign key references AdminT(ID) not null,--外键，管理员表ID
+	PublishTime datetime not null,--发布时间
+	Topic nvarchar(20) not null,--公告主题
+	Content nvarchar(500) not null,--公告内容
+)
+
 if Exists(select * from sysobjects where name='Train')
 drop table Train
 go
@@ -160,6 +172,10 @@ create table A_U_Message(
 --插入管理员表数据
 insert into AdminT Values('sansan','123321')
 insert into AdminT Values('admin','111111')
+
+--插入公告表数据
+insert into Board Values('1','2020-05-20 22:00:00','培训','现针对公司技术问题，对员工进行技术上的培训，如：Java、js、Bootatrsp。望员工们积极报名。')
+insert into Board Values('2','2020-05-26 22:00:00','奖惩','有个别员工上班不积极，迟到问题常有，具体姓名不公布，给予警告，望各位员工积极向上，互相督促，互相进步。')
 
 --插入部门表数据
 insert into Department Values('技术部','2020-05-10','管理技术','30')
