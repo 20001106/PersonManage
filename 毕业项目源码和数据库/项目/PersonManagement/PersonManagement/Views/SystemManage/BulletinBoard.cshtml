@@ -69,7 +69,7 @@ else
                     @item.Content
                 </td>
                 <td>
-                    <a href="/SystemManage/BoardDelete?id=@item.ID" class="btn btn-danger">删&nbsp;&nbsp;除</a>
+                    <a href="/SystemManage/BoardDelete?id=@item.ID" class="btn btn-danger" onclick="return confirm('确认删除该条公告！')">删&nbsp;&nbsp;除</a>
                 </td>
             </tr>
         }
