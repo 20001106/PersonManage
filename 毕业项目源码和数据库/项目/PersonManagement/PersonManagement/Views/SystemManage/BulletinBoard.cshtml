@@ -65,9 +65,11 @@ else
                 <td>@item.AdminT.LoginName</td>
                 <td>@item.Topic</td>
                 <td>@item.PublishTime</td>
-                <td style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">@item.Content</td>
+                <td style="white-space:nowrap;text-overflow:ellipsis;overflow:hidden;cursor:pointer;" title="@item.Content">
+                    @item.Content
+                </td>
                 <td>
-                    <a href="/SystemManage/BoardDetail?id=@item.ID" class="btn btn-info">查&nbsp;&nbsp;看</a>
+                    <a href="/SystemManage/BoardDelete?id=@item.ID" class="btn btn-danger">删&nbsp;&nbsp;除</a>
                 </td>
             </tr>
         }

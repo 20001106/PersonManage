@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\A_P_MessageController.cs" />
     <Compile Include="Controllers\A_U_MessageController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmploymentController.cs" />
     <Compile Include="Controllers\FrontPageController.cs" />
@@ -318,8 +319,8 @@
     <Content Include="Views\Person\PMyMessage.cshtml" />
     <Content Include="Views\Person\PMySendMessage.cshtml" />
     <Content Include="Views\Person\PMyLookMessage.cshtml" />
-    <Content Include="Views\SystemManage\BoardDetail.cshtml" />
     <Content Include="Views\SystemManage\PublishBoard.cshtml" />
+    <Content Include="Views\Board\BoardInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

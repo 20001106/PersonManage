@@ -105,12 +105,13 @@ namespace PersonManagement.Controllers
             return View();
         }
 
-        //查看公告详情
-        public ActionResult BoardDetail(int? id)
+        //删除公告
+        public ActionResult BoardDelete(int? id)
         {
             var board = db.Board.Find(id);
-            ViewBag.Board = board;
-            return View();
+            db.Board.Remove(board);
+            db.SaveChanges();
+            return RedirectToAction("BulletinBoard","SystemManage");
         }
     }
 }

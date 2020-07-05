@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "BoardInfo";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+}
+
+@using PersonManagement.Models
+@{ 
+    List<Board> board = ViewBag.Board;
+}
+
+<style>
+    #boardinfo {
+        width: 70%;
+        height: 600px;
+        background-color: white;
+        border-radius: 5px;
+        margin: 20px 15%;
+    }
+    #boardscroll {
+        width: 80%;
+        height: 500px;
+        margin-left: 10%;
+        overflow: auto;
+    }
+</style>
+
+<div id="boardinfo">
+    <div style="height: 50px;"></div>
+    <div id="boardscroll">
+        <ul class="list-group">
+            @foreach (var item in board)
+            {
+                <li class="list-group-item">@item.Content</li>
+            }
+        </ul>
+    </div>
+    
+</div>
