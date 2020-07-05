@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "BoardDetail";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    Board board = ViewBag.Board;
+}
+
+<style>
+    #boarddetail {
+        width: 70%;
+        height: 580px;
+        background-color: aliceblue;
+        border-radius: 5px;
+        margin: 20px 15%;
+    }
+    .detailreturn {
+        margin-left: 5%;
+    }
+    .detailinfo {
+        width: 80%;
+        height: 480px;
+        margin-left: 10%;
+    }
+    .detailinfo p {
+        text-indent: 2em;
+    }
+</style>
+
+<div id="boarddetail">
+    <div style="height:50px;"></div>
+    <a href="/Board/BoardInfo" class="detailreturn"><span class="glyphicon glyphicon-arrow-left"></span>返&nbsp;&nbsp;回</a>
+    <div class="detailinfo">
+        <div style="height:20px;"></div>
+        <div>
+            <label for="AdminID">发布人：</label>
+            <p>@board.AdminT.LoginName</p>
+        </div>
+        <div>
+            <label for="Topic">关键字：</label>
+            <p>@board.Topic</p>
+        </div>
+        <div>
+            <label for="PublishTime">发布时间：</label>
+            <p>@board.PublishTime</p>
+        </div>
+        <div>
+            <label for="Content">发布内容：</label>
+            <p>@board.Content</p>
+        </div>
+    </div>
+</div>

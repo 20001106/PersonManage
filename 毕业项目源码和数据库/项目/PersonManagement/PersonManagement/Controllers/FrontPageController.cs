@@ -26,7 +26,7 @@ namespace PersonManagement.Controllers
         }
 
         //更多
-        public ActionResult More()
+        public ActionResult FrontMore()
         {
             return View();
         }

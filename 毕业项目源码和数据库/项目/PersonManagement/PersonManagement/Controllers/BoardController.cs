@@ -17,5 +17,12 @@ namespace PersonManagement.Controllers
             ViewBag.Board = board;
             return View();
         }
+
+        public ActionResult BoardDetail(int? id)
+        {
+            var board = db.Board.Find(id);
+            ViewBag.Board = board;
+            return View();
+        }
     }
 }

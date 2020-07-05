@@ -12,26 +12,40 @@
 <style>
     #boardinfo {
         width: 70%;
-        height: 600px;
-        background-color: white;
+        height: 580px;
+        background-color: aliceblue;
         border-radius: 5px;
         margin: 20px 15%;
     }
     #boardscroll {
         width: 80%;
-        height: 500px;
+        height: 480px;
         margin-left: 10%;
         overflow: auto;
+    }
+    .boarddata {
+        display: inline-block;
+        width: 50%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .boardbtn {
+        float: right;
     }
 </style>
 
 <div id="boardinfo">
-    <div style="height: 50px;"></div>
+    <div style="height:50px;"></div>
     <div id="boardscroll">
         <ul class="list-group">
             @foreach (var item in board)
             {
-                <li class="list-group-item">@item.Content</li>
+                <li class="list-group-item">
+                    <p class="boarddata" title="@item.Content">@item.ID、@item.Content</p>
+                    <a href="/Board/BoardDetail?id=@item.ID" class="boardbtn">查&nbsp;&nbsp;看</a>
+                </li>
             }
         </ul>
     </div>

@@ -321,6 +321,8 @@
     <Content Include="Views\Person\PMyLookMessage.cshtml" />
     <Content Include="Views\SystemManage\PublishBoard.cshtml" />
     <Content Include="Views\Board\BoardInfo.cshtml" />
+    <Content Include="Views\Board\BoardDetail.cshtml" />
+    <Content Include="Views\FrontPage\FrontMore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
