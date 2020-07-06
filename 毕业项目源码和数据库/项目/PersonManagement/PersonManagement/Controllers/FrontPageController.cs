@@ -30,5 +30,11 @@ namespace PersonManagement.Controllers
         {
             return View();
         }
+
+        //关于
+        public ActionResult FrontAbout()
+        {
+            return View();
+        }
     }
 }

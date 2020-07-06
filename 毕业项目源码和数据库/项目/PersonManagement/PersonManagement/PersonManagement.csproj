@@ -323,6 +323,7 @@
     <Content Include="Views\Board\BoardInfo.cshtml" />
     <Content Include="Views\Board\BoardDetail.cshtml" />
     <Content Include="Views\FrontPage\FrontMore.cshtml" />
+    <Content Include="Views\FrontPage\FrontAbout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

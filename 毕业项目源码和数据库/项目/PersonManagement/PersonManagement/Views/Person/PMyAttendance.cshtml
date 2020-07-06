@@ -4,8 +4,55 @@
     Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
 }
 
-<style>
+@using PersonManagement.Models
+@{ 
+    Attendance att = ViewBag.Attendance;
+}
 
+<style>
+    #attinfo {
+        width: 50%;
+        height: 300px;
+        margin-top: 100px;
+        margin-left: 25%;
+    }
+    #noatt {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+    #att {
+        margin-left: 43%;
+    }
+    #okatt {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+    .day {
+        margin-left: 10%;
+    }
 </style>
 
 <h4>打卡时间段每日(8:00--22:00)</h4>
+
+<div id="attinfo">
+    @if (att == null)
+    {
+        <div style="width:100%;height:80px;"></div>
+        <p id="noatt">今日还未打卡，请点击打卡！</p>
+        <a href="/Person/PMyOK" id="att" class="btn btn-info">打&nbsp;&nbsp;卡</a>
+    }
+    else
+    {
+        <div style="width:100%;height:50px;"></div>
+        <p id="okatt">已打卡！</p>
+        <p class="day">今日：@att.TadayTime.ToShortDateString()</p>
+        <p class="day">打卡时间：@att.StartTime</p>
+        <p class="day">下班时间：@att.EndTime</p>
+    }
+</div>

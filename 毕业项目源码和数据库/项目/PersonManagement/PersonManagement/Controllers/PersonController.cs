@@ -98,8 +98,37 @@ namespace PersonManagement.Controllers
         //考勤
         public ActionResult PMyAttendance()
         {
-
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            string year = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString();
+            string day = DateTime.Now.Day.ToString();
+            var att = db.Attendance.Where(p => p.PersonID == id && p.TadayTime.Year.ToString() == year && p.TadayTime.Month.ToString() == month && p.TadayTime.Day.ToString() == day).SingleOrDefault();
+            if (att == null)
+            {
+                att = null;
+            }
+            ViewBag.Attendance = att;
             return View();
+        }
+        //打卡
+        public ActionResult PMyOK()
+        {
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            Attendance att = new Attendance();
+            att.PersonID = id;
+            att.TadayTime = DateTime.Now;
+            att.StartTime = DateTime.Now;
+            string endtime = DateTime.Now.Year.ToString() + "-"
+                + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " 22:00:00.000";
+            DateTime EndTime = DateTime.Parse(endtime);
+            att.EndTime = EndTime;
+            db.Attendance.Add(att);
+            db.SaveChanges();
+            return RedirectToAction("PMyAttendance", "Person");
         }
 
         //薪资
