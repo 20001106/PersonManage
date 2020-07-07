@@ -13,35 +13,26 @@ namespace PersonManagement.Controllers
     {
         PersonManagementEntities db = new PersonManagementEntities();
         // GET: Pay--薪资管理
-        public ActionResult PayInfo(string StartTime = "", string EndTime = "", string Name = "")
+        public ActionResult PayInfo(string OverTime = "", string Name = "")
         {
-            if (!string.IsNullOrEmpty(StartTime) && !string.IsNullOrEmpty(EndTime))
+            if (!string.IsNullOrEmpty(OverTime))
             {
-                DateTime startTime = Convert.ToDateTime(StartTime);
-                DateTime endTime = Convert.ToDateTime(EndTime);
-                if (startTime > endTime)
-                {
-                    return Content("<script>alert('筛选时间段错误！');history.go(-1)</script>");
-                }
-                else
-                {
-                    ViewBag.Pay = db.Pay.OrderByDescending(n => n.OverTime).Where(p => p.OverTime >= startTime && p.OverTime < endTime).ToList();
-                }
+                DateTime ot = DateTime.Parse(OverTime);
+                string year = ot.Year.ToString();
+                string month = ot.Month.ToString();
+                string day = ot.Day.ToString();
+                ViewBag.Pay = db.Pay.Where(p => p.OverTime.Year.ToString() == year && p.OverTime.Month.ToString() == month && p.OverTime.Day.ToString() == day).ToList();
             }
             else if (!string.IsNullOrEmpty(Name))
             {
-                if (Name == "全部")
-                {
-                    ViewBag.Pay = db.Pay.OrderByDescending(n => n.OverTime).ToList();
-                }
-                else
-                {
-                    ViewBag.Pay = db.Pay.OrderByDescending(n => n.OverTime).Where(p => Name == "" || p.Person.Name.Contains(Name)).ToList();
-                }
+                ViewBag.Pay = db.Pay.OrderByDescending(n => n.OverTime).Where(p => Name == "" || p.Person.Name.Contains(Name)).ToList();
             }
             else
             {
-                ViewBag.Pay = db.Pay.OrderByDescending(n => n.OverTime).ToList();
+                string year = DateTime.Now.Year.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string day = DateTime.Now.Day.ToString();
+                ViewBag.Pay = db.Pay.Where(p => p.OverTime.Year.ToString() == year && p.OverTime.Month.ToString() == month && p.OverTime.Day.ToString() == day).ToList();
             }
             ViewBag.Person = db.Person.ToList();
             return View();

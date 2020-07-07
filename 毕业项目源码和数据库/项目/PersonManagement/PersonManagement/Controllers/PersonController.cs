@@ -14,7 +14,7 @@ namespace PersonManagement.Controllers
         // GET: Person
         public ActionResult PersonInfo(string Name = "")
         {
-            ViewBag.Person = db.Person.OrderByDescending(p => p.ID).Where(n => Name == "" || n.Name.Contains(Name)).ToList();
+            ViewBag.Person = db.Person.Where(n => Name == "" || n.Name.Contains(Name)).ToList();
             return View();
         }
 
@@ -36,7 +36,7 @@ namespace PersonManagement.Controllers
             if (Alist.Count > 0)
             {
                 TempData["Tips"] = person.Name + "员工有考勤信息记录，不能删除！";
-                return RedirectToAction("PersonInfo","Person");
+                return RedirectToAction("PersonInfo", "Person");
             }
             else if (Plist.Count > 0)
             {
@@ -62,7 +62,7 @@ namespace PersonManagement.Controllers
         }
 
         //前端界面，员工个人信息整合
-        public ActionResult PCenter() 
+        public ActionResult PCenter()
         {
             return View();
         }
@@ -80,7 +80,7 @@ namespace PersonManagement.Controllers
         }
         //更改部分个人信息
         [HttpPost]
-        public ActionResult EditSingleInfo(string UserName, string UserPwd,string ID, string Age, string Phone, string Address) {
+        public ActionResult EditSingleInfo(string UserName, string UserPwd, string ID, string Age, string Phone, string Address) {
             var user = db.UserT.Where(p => p.UserName == UserName).SingleOrDefault();
             user.UserPwd = UserPwd;
             int id = int.Parse(ID);
@@ -92,7 +92,7 @@ namespace PersonManagement.Controllers
             db.Entry(user).State = EntityState.Modified;
             db.Entry(person).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("PMyInfo","Person");
+            return RedirectToAction("PMyInfo", "Person");
         }
 
         //考勤
@@ -129,6 +129,20 @@ namespace PersonManagement.Controllers
             db.Attendance.Add(att);
             db.SaveChanges();
             return RedirectToAction("PMyAttendance", "Person");
+        }
+        //所有记录
+        public ActionResult PMyAttRecord()
+        {
+            string PersonName = Session["FrontLoginName"].ToString();
+            var person = db.Person.Where(p => p.Name == PersonName).SingleOrDefault();
+            int id = person.ID;
+            List<Attendance> att = db.Attendance.OrderByDescending(n => n.TadayTime).Where(p => p.PersonID == id).ToList();
+            if (att.Count() == 0)
+            {
+                att = null;
+            }
+            ViewBag.AttRecord = att;
+            return View();
         }
 
         //薪资

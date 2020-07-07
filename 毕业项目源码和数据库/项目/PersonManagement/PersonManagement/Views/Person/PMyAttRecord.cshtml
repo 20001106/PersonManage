@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "PMyAttRecord";
+    Layout = "~/Views/Shared/_LayoutPersonCenter.cshtml";
+}
+
+@using PersonManagement.Models
+@{
+    List<Attendance> att = ViewBag.AttRecord;
+}
+
+<style>
+    #form1 {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+        font-size: 16px;
+        margin-left: 5%;
+    }
+    #table1 {
+        width: 90%;
+        height: 350px;
+        overflow: auto;
+        margin-left: 5%;
+        margin-top: 40px;
+    }
+    #table1 table {
+        width: 100%;
+    }
+    #table1 table tr {
+        height: 30px;
+        text-align: center;
+    }
+</style>
+
+<a href="/Person/PMyAttendance" style="text-indent:3em;"><span class="glyphicon glyphicon-arrow-left"></span>返回</a>
+
+@if (att == null)
+{
+    <p style="text-align:center;margin-top:250px;">你从入职开始暂无考勤记录，请谨慎对待！</p>
+}
+else
+{
+    <div id="table1">
+        <table border="1">
+            <tr>
+                <th>编号</th>
+                <th>日期</th>
+                <th>上班时间</th>
+                <th>下班时间</th>
+            </tr>
+            @foreach (var item in att)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.TadayTime.ToShortDateString()</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.EndTime</td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+<p style="text-align:center;margin-top:50px;">已打卡：@att.Count() 天</p>

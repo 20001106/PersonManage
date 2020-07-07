@@ -25,12 +25,6 @@ namespace PersonManagement.Controllers
             return RedirectToAction("LoginRegister","UserT");
         }
 
-        //更多
-        public ActionResult FrontMore()
-        {
-            return View();
-        }
-
         //关于
         public ActionResult FrontAbout()
         {

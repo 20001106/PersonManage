@@ -15,7 +15,16 @@ namespace PersonManagement.Controllers
         // GET: Attendance
         public ActionResult AttInfo(string TadayTime = "")
         {
-            List<Attendance> att = db.Attendance.Where(p => p.TadayTime.ToString() == TadayTime).ToList();
+            List<Attendance> att = null;
+            if (TadayTime == "")
+            {
+                att = db.Attendance.Where(p => p.TadayTime.Year.ToString() == DateTime.Now.Year.ToString() && p.TadayTime.Month.ToString() == DateTime.Now.Month.ToString() && p.TadayTime.Day.ToString() == DateTime.Now.Day.ToString()).ToList();
+            }
+            else
+            {
+                DateTime tt = DateTime.Parse(TadayTime);
+                att = db.Attendance.Where(p => p.TadayTime.Year.ToString() == tt.Year.ToString() && p.TadayTime.Month.ToString() == tt.Month.ToString() && p.TadayTime.Day.ToString() == tt.Day.ToString()).ToList();
+            }
 
             //记录人数
             var person = db.Person.Count();//所有员工
