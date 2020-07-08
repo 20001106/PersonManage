@@ -227,7 +227,7 @@
         </div>
         <div class="form-inline form-group">
             <label for="IDCard">身份证号：</label>
-            <input type="text" name="IDCard" id="IDCard" maxlength="18" class="form-control" onfocus="IDCardFocus()" onblur="IDCardBlur()" style="width:40%;" placeholder="请输入你的省份证号" />
+            <input type="text" name="IDCard" id="IDCard" maxlength="18" class="form-control" onfocus="IDCardFocus()" onblur="IDCardBlur()" style="width:40%;" placeholder="请输入你的身份证号" />
             <span style="color:red;" class="IDCard"></span>
         </div>
         <div class="form-inline form-group">
@@ -297,7 +297,7 @@
             $(".Address").html("请输入你的家庭地址！");
             $(".Phone").html("请输入你的电话号码！");
             $(".Email").html("请输入你的邮箱！");
-            $(".IDCard").html("请输入你的省份证号！");
+            $(".IDCard").html("请输入你的身份证号！");
             $(".Remark").html("请输入你的备注！");
             return false;
         } else if ($("#Name").val() == "" || $("#Age").val() == "" || $("#Major").val() == "" ||
@@ -342,7 +342,7 @@
                 return false;
             }
             if ($("#IDCard").val() == "") {
-                $(".IDCard").html("请输入你的省份证号！");
+                $(".IDCard").html("请输入你的身份证号！");
                 return false;
             }
             if ($("#Remark").val() == "") {

@@ -4,136 +4,103 @@
     Layout = "~/Views/Shared/_LayoutPerson.cshtml";
 }
 
+@using PersonManagement.Models
+@{ 
+    Person person1 = ViewBag.Person1;
+    Person person2 = ViewBag.Person2;
+    Person person3 = ViewBag.Person3;
+    Person person4 = ViewBag.Person4;
+    Person person5 = ViewBag.Person5;
+    Person person6 = ViewBag.Person6;
+}
+
 <script src="~/Content/ECharts/echatrs.min.js"></script>
 
-<div id="main" style="width:100%;height:400px;margin-top:100px"></div>
+<h3 style="text-align:center;height:50px;line-height:50px;">员工薪资图</h3>
+<div id="main" style="width:100%;height:500px;margin-top:20px;"></div>
 
 <script type="text/javascript">
-    $.ajax({
-        url: "/Pay/PayData",
-        type: "get",
-        data: {},
-        dataType: "Json",
-        success: function (res) {
-            var day = [];//x轴
-            var totpay = [];//y轴
-            for (var i = 0; i < res.data.length; i++) {
-                day[i] = res.data.DRUGNAME;
-                totpay[i] = res.data.STOCk;
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        backgroundColor: 'lightcyan',
+        tooltip: {
+            show: true,
+            trigger: 'item',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            axisPointer: {
+                lineStyle: {
+                    color: {
+                        type: 'linear', x: 0,  y: 0, x2: 0, y2: 1,
+                        colorStops: [{ offset: 0, color: '#FFD56E' }, { offset: 0.5, color: '#fff', }, { offset: 1, color: '#FFD56E' }],
+                        global: false
+                    }
+                },
             }
-            // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById('main'));
-            // 指定图表的配置项和数据
-            var option = {
-                title: {
-                    text: '5月份每日下发员工总薪资柱状图'
-                },
-                tooltip: {
-                    show: true,
-                    trigger: 'item',
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                    axisPointer: {
-                        lineStyle: {
-                            color: {
-                                type: 'linear',
-                                x: 0,
-                                y: 0,
-                                x2: 0,
-                                y2: 1,
-                                colorStops: [{
-                                    offset: 0,
-                                    color: '#FFD56E'
-                                }, {
-                                    offset: 0.5,
-                                    color: '#fff',
-                                }, {
-                                    offset: 1,
-                                    color: '#FFD56E'
-                                }],
-                                global: false
-                            }
-                        },
-                    }
-                },
-                xAxis: {
-                    type: 'category',
-                    data: day,
-                    name: '日',
-                    axisTick: {
-                        show: false // 是否显示坐标轴轴线
-                    },
-                    axisLabel: {
-                        color: '#282828'
-                    },
-                    splitLine: {
-                        show: false
-                    },
-                    boundaryGap: true,
-                    axisLine: { //坐标轴轴线相关设置。
-                        show: true,
-                        inside: false,
-                        lineStyle: {
-                            color: '#000'
-                        }
-                    }
-                },
-                yAxis: [{
-                    type: 'value',
-                    min: 0,
-                    splitNumber: 4,
-                    splitLine: {
-                        show: true
-                    },
-                    axisLabel: { //坐标轴刻度标签的相关设置。
-                        show: true,
-                        textStyle: {
-                            color: '#737373',
-                        }
-                    },
-                    axisLine: {
-                        show: true,
-                    },
-                    axisTick: {
-                        show: false,
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: 'rgba(131,101,101,0.2)',
-                            type: 'dashed',
-                        }
-                    },
-                    show: true,
-                }],
-                series: [{
-                    type: 'bar',
-                    barMaxWidth: 20,
-                    zlevel: 10,
-                    data: totpay,
-                    itemStyle: {
-                        normal: {
-                            color: {
-                                type: 'linear',
-                                x: 0,
-                                y: 0,
-                                x2: 0,
-                                y2: 1,
-                                colorStops: [{
-                                    offset: 0,
-                                    color: 'lightblue'
-                                }, {
-                                    offset: 1,
-                                    color: 'blue'
-                                }]
-                            },
-                            barBorderRadius: [30, 30, 0, 0],
-                        }
-                    },
-                }
-                ]
-            };
+        },
 
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
-        }
-    })
+        legend: {
+            right: 20,
+            top: 0,
+            itemGap: 10,//各个item之间的间隔，单位px，默认为10，
+            itemWidth: 30,//图例图形宽度
+            itemHeight: 10,//图例图形高度
+            textStyle: { color: 'red', fontWeight: 'normal', fontSize: 14 },
+        },
+
+        yAxis: [{
+            type: 'value',
+            min: 0,
+            splitNumber: 4,
+            splitLine: { show: true },
+            axisLabel: {  show: true, textStyle: { color: '#737373', } },//坐标轴刻度标签的相关设置。
+            axisLine: { show: true, },
+            axisTick: { show: false, },
+            splitLine: { lineStyle: { color: 'rgba(131,101,101,0.2)', type: 'dashed', } },
+            show: true,
+        }],
+
+        xAxis: [{
+            type: 'category',
+            data: [
+                '@person1.Name',
+                '@person2.Name',
+                '@person3.Name',
+                '@person4.Name',
+                '@person5.Name',
+                '@person6.Name',
+            ],//x轴员工数据
+            axisTick: { show: false },// 是否显示坐标轴轴线
+            axisLabel: { color: '#282828' },
+            splitLine: { show: false },
+            boundaryGap: true,
+            axisLine: {  show: true, inside: false, lineStyle: { color: '#000' } }//坐标轴轴线相关设置。
+        },],
+
+        series: [{
+            type: 'bar',
+            barMaxWidth: 20,//柱形图宽度
+            zlevel: 10,
+            data: [
+                '@person1.Pay.Sum(p => p.OtherPay + p.AttPay).ToString("F2")',
+                '@person2.Pay.Sum(p => p.OtherPay + p.AttPay).ToString("F2")',
+                '@person3.Pay.Sum(p => p.OtherPay + p.AttPay).ToString("F2")',
+                '@person4.Pay.Sum(p => p.OtherPay + p.AttPay).ToString("F2")',
+                '@person5.Pay.Sum(p => p.OtherPay + p.AttPay).ToString("F2")',
+                '@person6.Pay.Sum(p => p.OtherPay + p.AttPay).ToString("F2")'
+            ],//y轴薪资数据
+            itemStyle: {
+                normal: {
+                    color: {
+                        type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+                        colorStops: [{ offset: 0, color: 'deepskyblue' }, { offset: 1, color: 'wheat' }]
+                    },
+                    barBorderRadius: [30, 30, 0, 0],
+                }
+            },
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
 </script>

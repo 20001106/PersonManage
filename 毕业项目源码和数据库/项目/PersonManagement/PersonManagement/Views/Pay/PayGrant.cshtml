@@ -4,5 +4,51 @@
     Layout = "~/Views/Shared/_LayoutPerson.cshtml";
 }
 
-<h2>发放工资</h2>
+@using PersonManagement.Models
+@{
+    List<Person> person = ViewBag.Person;
+    List<Pay> pay = ViewBag.Pay;
+}
 
+<style>
+    #paygrant {
+        width: 80%;
+        height: 560px;
+        margin-left: 10%;
+    }
+    #book {
+        width: 80%;
+        height: 450px;
+        border: 1px dashed grey;
+        overflow: auto;
+        margin-left: 10%;
+    }
+    #book::-webkit-scrollbar {
+        width: 0px;
+    }
+</style>
+<h4 style="text-align:center;">薪资发放(缺勤：考勤费为0，打卡：其它费(初始固定20)+10)，考勤详情见考勤管理。</h4>
+@if (pay == null)
+{
+    <form action="/Pay/PaySubmit" method="post" id="paygrant">
+        <div id="book">
+            <br />
+            @foreach (var item in person)
+            {
+                <div class="form-inline" style="margin-left:27%;">
+                    <label for="PersonID">@item.Name：</label>
+                    <input type="hidden" name="PersonID" class="form-control" value="@item.ID" />
+                    <label for="AttPay">考勤费：</label>
+                    <input type="number" max="10" min="0" name="AttPay" class="form-control" placeholder="@item.Name" />
+                    <label for="OtherPay">&nbsp;&nbsp;&nbsp;其它费：</label>
+                    <input type="number" max="30" min="20" name="OtherPay" class="form-control" placeholder="@item.Name" />
+                </div><br />
+            }
+        </div><br />
+        <input type="submit" value="确&nbsp;&nbsp;认" class="btn btn-info" style="margin-left:45%;" />
+    </form>
+}
+else
+{
+    <p style="text-align:center;margin-top:250px;">今日份薪资已发。</p>
+}
