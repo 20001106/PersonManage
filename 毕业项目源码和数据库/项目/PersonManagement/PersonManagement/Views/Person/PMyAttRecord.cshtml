@@ -17,6 +17,7 @@
         font-size: 16px;
         margin-left: 5%;
     }
+
     #table1 {
         width: 90%;
         height: 350px;
@@ -24,13 +25,15 @@
         margin-left: 5%;
         margin-top: 40px;
     }
-    #table1 table {
-        width: 100%;
-    }
-    #table1 table tr {
-        height: 30px;
-        text-align: center;
-    }
+
+        #table1 table {
+            width: 100%;
+        }
+
+            #table1 table tr {
+                height: 30px;
+                text-align: center;
+            }
 </style>
 
 <a href="/Person/PMyAttendance" style="text-indent:3em;"><span class="glyphicon glyphicon-arrow-left"></span>返回</a>
@@ -60,5 +63,5 @@ else
             }
         </table>
     </div>
+    <p style="text-align:center;margin-top:50px;">已打卡：@att.Count() 天</p>
 }
-<p style="text-align:center;margin-top:50px;">已打卡：@att.Count() 天</p>
