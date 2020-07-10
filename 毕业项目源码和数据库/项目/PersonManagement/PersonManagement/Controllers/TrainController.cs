@@ -36,7 +36,7 @@ namespace PersonManagement.Controllers
         {
             db.Train.Add(train);
             db.SaveChanges();
-            return RedirectToAction("TrainDelete", "Train");
+            return RedirectToAction("TrainInfo", "Train");
         }
     }
 }
