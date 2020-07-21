@@ -23,7 +23,7 @@ namespace PersonManagement.Controllers
             Train train = db.Train.Find(id);
             db.Train.Remove(train);
             db.SaveChanges();
-            return RedirectToAction("TrainDelete", "Train");
+            return RedirectToAction("TrainInfo", "Train");
         }
 
         //添加培训信息
